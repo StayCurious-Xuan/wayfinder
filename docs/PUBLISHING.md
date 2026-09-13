@@ -1,6 +1,6 @@
 # Publication Status
 
-Public release: **0.3.15 early access**. Status reviewed 2026-09-13.
+Public release: **0.3.16 early access**. Status reviewed 2026-09-13.
 The live website's source commit is recorded by the production
 `deployment.json` marker and must match the latest deployed `main` commit.
 
@@ -11,7 +11,7 @@ Wayfinder is distributed as a desktop application for macOS and Windows.
 | Channel | Public entry | Status |
 | --- | --- | --- |
 | Official website | https://wayfinder-ai.pages.dev | Live download site |
-| Desktop app | https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.15 | Apple Silicon and Intel DMGs plus Windows x64 NSIS installer |
+| Desktop app | https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16 | Apple Silicon and Intel DMGs plus Windows x64 NSIS installer |
 | Source | https://github.com/StayCurious-Xuan/wayfinder | Public repository and CI |
 | Product Hunt | https://www.producthunt.com/products/wayfinder-5?launch=wayfinder-6 | Public listing updated to the macOS and Windows desktop positioning |
 | Issues | https://github.com/StayCurious-Xuan/wayfinder/issues | Public support channel |

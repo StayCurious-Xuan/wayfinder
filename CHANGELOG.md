@@ -3,6 +3,21 @@
 Notable public changes to Wayfinder are recorded here. Release notes describe
 user-visible behavior; implementation detail remains in the linked commits.
 
+## [0.3.16] - 2026-09-13
+
+### Fixed
+
+- Applied the concrete waypoint-title rule to Codex and Claude history as well
+  as TRAE CN.
+- Used the specific prompt text when a generic domain fallback would otherwise
+  produce labels such as "fix current task" or "advance Wayfinder".
+
+### Verification
+
+- 215 JavaScript and Chromium checks.
+- 10 Rust checks and native Apple Silicon, Intel macOS, and Windows x64 release
+  builds.
+
 ## [0.3.15] - 2026-09-13
 
 ### Added
@@ -146,5 +161,6 @@ user-visible behavior; implementation detail remains in the linked commits.
 [0.3.11]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.11
 [0.3.12]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.12
 [0.3.13]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.13
+[0.3.16]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16
 [0.3.15]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.15
 [0.3.14]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.14

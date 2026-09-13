@@ -38,6 +38,9 @@ validated on macOS. The complete history stays under `~/.wayfinder`.
   packages as current installation paths.
 - Do not fabricate historical diffs or send raw conversations/source files to
   a cloud service.
+- Waypoint titles must name a concrete task, object, or result in short,
+  readable language. Reject generic labels such as "optimize current task",
+  "continue current task", or "implement current task".
 - Keep the website's 1440x900 desktop rendering pixel-stable. At 540px and
   below, use the dedicated phone compositions documented in
   `docs/MOBILE-REDESIGN.md`; do not shrink or crop the desktop scene.
@@ -49,7 +52,7 @@ validated on macOS. The complete history stays under `~/.wayfinder`.
 
 ## Current State
 
-- Public/live release: `0.3.15` early access.
+- Public/live release: `0.3.16` early access.
 - Public artifacts: Apple Silicon and Intel macOS DMGs plus a Windows x64 NSIS
   installer, with SHA-256 checksums.
-- Local source version: `0.3.15`.
+- Local source version: `0.3.16`.

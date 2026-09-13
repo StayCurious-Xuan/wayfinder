@@ -54,9 +54,9 @@ test("repository overview uses the public 2K presentation assets", () => {
   assert.match(readme, /wayfinder-social-preview-2k\.png/);
   assert.match(readme, /wayfinder-voyage-overview-2k\.png/);
   assert.match(readme, /No account\. No telemetry\. No cloud sync\./);
-  assert.match(readme, /Wayfinder-Alpha-0\.3\.15-macOS-aarch64\.dmg/);
-  assert.match(readme, /Wayfinder-Alpha-0\.3\.15-macOS-x86_64\.dmg/);
-  assert.match(readme, /Wayfinder-Alpha-0\.3\.15-Windows-x86_64\.exe/);
+  assert.match(readme, /Wayfinder-Alpha-0\.3\.16-macOS-aarch64\.dmg/);
+  assert.match(readme, /Wayfinder-Alpha-0\.3\.16-macOS-x86_64\.dmg/);
+  assert.match(readme, /Wayfinder-Alpha-0\.3\.16-Windows-x86_64\.exe/);
   assert.match(readme, /collection cursors, and project maps/);
   assert.doesNotMatch(readme, /collection cursors, and snapshots/);
   assert.doesNotMatch(readme, /wayfinder-product-hunt-map\.png/);
@@ -113,7 +113,7 @@ test("public support and release documents are explicit and current", () => {
 
   assert.match(security, /private vulnerability reporting/);
   assert.ok(security.includes("`~/.wayfinder`"));
-  assert.match(security, /\| 0\.3\.15 \| Yes \|/);
+  assert.match(security, /\| 0\.3\.16 \| Yes \|/);
   assert.match(privacy, /file-change summaries, and map state/);
   assert.doesNotMatch(privacy, /Snapshot exclusions/);
   assert.doesNotMatch(privacyPage, /代码快照|和快照存储/);

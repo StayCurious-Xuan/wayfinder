@@ -78,6 +78,11 @@ Wayfinder keeps three separate concepts:
 3. **Waypoint**: one or more adjacent turns pursuing the same sub-goal become a
    waypoint on that voyage.
 
+Waypoint titles name the concrete task, object, or result in short, readable
+language. Generic placeholders such as "optimize current task", "continue
+current task", and "implement current task" are rejected; a continuation
+inherits a concrete prior topic or uses its result or changed file.
+
 Codex, Claude Code, and TRAE are provenance, not map boundaries. Work from
 supported tools can appear in the same project map and voyage. Wayfinder does
 not merge two different working directories merely because their text looks

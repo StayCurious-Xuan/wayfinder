@@ -351,7 +351,7 @@ function traeWaypointTitle(
 }
 
 function isEmptyTaskTitle(title: string): boolean {
-  return /^(?:优化|继续|实现|修复|推进|探索|确认|撰写|重构|理清)(?:当前任务|\s*Wayfinder)$/i
+  return /^(?:(?:优化|继续|实现|修复|推进|探索|确认|撰写|重构|理清)\s*(?:当前任务|实时任务|当前项目|Wayfinder)|(?:optimize|continue|implement|fix|advance)\s+(?:current task|Wayfinder)|当前任务|实时任务|当前项目|未命名会话|Wayfinder|继续|接着|continue|proceed|整理本轮协作结果)$/i
     .test(title.trim());
 }
 
@@ -1095,7 +1095,15 @@ export function summarizeSessionTitle(
     /寻找|探索|调研/.test(text) ? "探索" :
     /撰写|重写|写/.test(text) ? "撰写" :
     "推进";
-  return `${action}${domain}`.replace(/[.…。；，、]+$/g, "");
+  const summary = `${action}${domain}`.replace(/[.…。；，、]+$/g, "");
+  if (!isEmptyTaskTitle(summary)) {
+    return summary;
+  }
+  const promptHead = imperativeHead(text);
+  if (promptHead && !isEmptyTaskTitle(promptHead)) {
+    return promptHead;
+  }
+  return isEmptyTaskTitle(fallback) ? "整理本轮协作结果" : fallback;
 }
 
 function summaryDomain(text: string, fallback: string): string {

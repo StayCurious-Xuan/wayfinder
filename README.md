@@ -18,7 +18,7 @@ macOS.
 [![Release](https://img.shields.io/github/v/release/StayCurious-Xuan/wayfinder?include_prereleases&label=release)](https://github.com/StayCurious-Xuan/wayfinder/releases)
 [![License](https://img.shields.io/github/license/StayCurious-Xuan/wayfinder)](LICENSE)
 
-[Download Wayfinder](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.15) ·
+[Download Wayfinder](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16) ·
 [Website](https://wayfinder-ai.pages.dev) ·
 [Install guide](docs/INSTALL.md) ·
 [Changelog](CHANGELOG.md) ·
@@ -60,9 +60,9 @@ Wayfinder early access is available for:
 
 | Platform | Build | Download |
 | --- | --- | --- |
-| macOS | Apple Silicon | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.15/Wayfinder-Alpha-0.3.15-macOS-aarch64.dmg) |
-| macOS | Intel | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.15/Wayfinder-Alpha-0.3.15-macOS-x86_64.dmg) |
-| Windows | x64 | [EXE](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.15/Wayfinder-Alpha-0.3.15-Windows-x86_64.exe) |
+| macOS | Apple Silicon | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.16/Wayfinder-Alpha-0.3.16-macOS-aarch64.dmg) |
+| macOS | Intel | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.16/Wayfinder-Alpha-0.3.16-macOS-x86_64.dmg) |
+| Windows | x64 | [EXE](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.16/Wayfinder-Alpha-0.3.16-Windows-x86_64.exe) |
 
 Download the latest installers and checksums from
 [GitHub Releases](https://github.com/StayCurious-Xuan/wayfinder/releases). The current

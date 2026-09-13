@@ -167,7 +167,15 @@ test("session titles are summarized without ellipses", () => {
     ],
     [
       "排查新版本发布后侧栏无法刷新的问题",
-      "修复实时任务"
+      "排查新版本发布后侧栏无法刷新的问题"
+    ],
+    [
+      "实现当前任务",
+      "整理本轮协作结果"
+    ],
+    [
+      "推进 Wayfinder",
+      "整理本轮协作结果"
     ]
   ];
 
@@ -175,6 +183,10 @@ test("session titles are summarized without ellipses", () => {
     const summary = summarizeSessionTitle(input, "实时任务");
     assert.equal(summary, expected);
     assert.doesNotMatch(summary, /…|\.{3}/);
+    assert.doesNotMatch(
+      summary,
+      /^(?:优化|继续|实现|修复|推进).*(?:当前任务|实时任务|Wayfinder)$/i
+    );
   }
 });
 

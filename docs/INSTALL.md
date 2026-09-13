@@ -1,10 +1,10 @@
 # Install Wayfinder
 
-Current public version: **0.3.15 early access**.
+Current public version: **0.3.16 early access**.
 
 Wayfinder is distributed as a desktop application for macOS and Windows:
 
-https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.15
+https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16
 
 ## Choose Your Installer
 
