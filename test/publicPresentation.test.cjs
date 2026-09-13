@@ -80,7 +80,7 @@ test("website metadata states the product category and current platforms", () =>
   assert.match(html, /property="og:image:alt" content="Wayfinder [^"]+"/);
   assert.match(html, /name="twitter:image:alt" content="Wayfinder [^"]+"/);
   assert.match(html, /"@type": "SoftwareApplication"/);
-  assert.match(html, /"softwareVersion": "0\.3\.15"/);
+  assert.match(html, /"softwareVersion": "0\.3\.16"/);
   assert.match(
     read("website/robots.txt").toString("utf8"),
     /Sitemap: https:\/\/wayfinder-ai\.pages\.dev\/sitemap\.xml/

@@ -3130,7 +3130,7 @@ test(
         assert.equal(layout.legacyWaypoints, 0);
         assert.equal(
           layout.productImageSource,
-          "./login-voyage-focus-4k.png?v=map-0.3.15"
+          "./login-voyage-focus-4k.png?v=map-0.3.16"
         );
         assert.equal(layout.productImageInteractive, false);
         if (viewport.width <= 540) {
