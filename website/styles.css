@@ -1719,13 +1719,20 @@ footer a {
   .hero-downloads {
     width: 100%;
     margin-top: 25px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero-downloads .download-option {
     min-width: 0;
     min-height: 62px;
     padding: 8px 3px;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-downloads .download-option:nth-child(3) {
+    grid-column: 1 / -1;
+    border-top: 1px solid currentColor;
+    border-left: 0;
   }
 
   .hero-downloads .download-option strong {

@@ -56,13 +56,19 @@ test("download website exposes architecture-specific release links", () => {
   assert.doesNotMatch(html, /<animateMotion/);
   assert.doesNotMatch(html, /hero-waypoint|data-waypoint/);
   assert.match(html, /src="\.\/wayfinder-icon\.svg"/);
-  assert.match(html, /href="\.\/styles\.css\?v=0\.3\.14-mobile-layout-v3"/);
-  assert.match(html, /src="\.\/app\.js\?v=0\.3\.14-mobile-layout-v3"/);
   assert.match(
     html,
-    /srcset="\.\/login-voyage-mobile-2k\.png\?v=map-mobile-3-0\.3\.14"/
+    /href="\.\/styles\.css\?v=0\.3\.15-mobile-downloads-v1"/
   );
-  assert.match(html, /src="\.\/login-voyage-focus-4k\.png\?v=map-0\.3\.14"/);
+  assert.match(
+    html,
+    /src="\.\/app\.js\?v=0\.3\.15-mobile-downloads-v1"/
+  );
+  assert.match(
+    html,
+    /srcset="\.\/login-voyage-mobile-2k\.png\?v=map-mobile-3-0\.3\.15"/
+  );
+  assert.match(html, /src="\.\/login-voyage-focus-4k\.png\?v=map-0\.3\.15"/);
   assert.match(html, /<figure class="product-visual">/);
   assert.doesNotMatch(html, /class="product-image-link"/);
   assert.doesNotMatch(html, /href="\.\/login-voyage-focus-4k\.png/);
@@ -83,6 +89,7 @@ test("download website exposes architecture-specific release links", () => {
   assert.match(html, /按实际可用情况保留/);
   assert.doesNotMatch(html, /每个结论，都能回到原始证据/);
   assert.doesNotMatch(html, /每个结论都连着对应会话、文件与测试证据/);
+  assert.equal(releases.version, "0.3.15");
   assert.equal(typeof releases.published, "boolean");
   assert.ok(["alpha", "stable"].includes(releases.channel));
   const tag = releases.channel === "alpha"
@@ -338,7 +345,7 @@ test("public Windows installer smoke test installs and launches the release", ()
   assert.match(workflow, /SHA256SUMS/);
   assert.match(workflow, /Get-FileHash \$installer -Algorithm SHA256/);
   assert.match(workflow, /ArgumentList @\("\/S", "\/D=\$installDir"\)/);
-  assert.match(workflow, /default: alpha-v0\.3\.14/);
+  assert.match(workflow, /default: alpha-v0\.3\.15/);
   assert.match(workflow, /collector sidecar was not found/);
   assert.match(workflow, /\$machine -ne 0x8664/);
   assert.match(workflow, /& \$sidecar\.FullName --version/);

@@ -80,7 +80,7 @@ test("website metadata states the product category and current platforms", () =>
   assert.match(html, /property="og:image:alt" content="Wayfinder [^"]+"/);
   assert.match(html, /name="twitter:image:alt" content="Wayfinder [^"]+"/);
   assert.match(html, /"@type": "SoftwareApplication"/);
-  assert.match(html, /"softwareVersion": "0\.3\.14"/);
+  assert.match(html, /"softwareVersion": "0\.3\.15"/);
   assert.match(
     read("website/robots.txt").toString("utf8"),
     /Sitemap: https:\/\/wayfinder-ai\.pages\.dev\/sitemap\.xml/
@@ -91,7 +91,7 @@ test("website metadata states the product category and current platforms", () =>
   );
   assert.match(
     read("website/sitemap.xml").toString("utf8"),
-    /<lastmod>2026-09-12<\/lastmod>/
+    /<lastmod>2026-09-13<\/lastmod>/
   );
 });
 

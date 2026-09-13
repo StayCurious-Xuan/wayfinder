@@ -66,6 +66,8 @@ metrics, visual identity, or category boundaries.
   do not crop or uniformly shrink desktop coordinates.
 - The phone hero presents the promise and all three downloads before its
   voyage, while keeping part of the voyage visible in the first viewport.
+  It may use two rows when that prevents platform labels from clipping in
+  narrow or text-scaled browsers.
 - The phone product-proof section uses one legible portrait voyage image as
   its dominant element.
 - The final phone download section stays below 500 CSS pixels and keeps all

@@ -2847,7 +2847,7 @@ test(
         { width: 320, height: 568 },
         { width: 390, height: 844 },
         { width: 430, height: 932 },
-        { width: 812, height: 375 },
+        { width: 844, height: 390 },
         { width: 1440, height: 900 }
       ]) {
         await cdp.send("Emulation.setDeviceMetricsOverride", {
@@ -2897,7 +2897,16 @@ test(
                 top: rect.top,
                 right: rect.right,
                 bottom: rect.bottom,
-                left: rect.left
+                left: rect.left,
+                labelsInside: [...element.querySelectorAll(
+                  'strong, span'
+                )].every((label) => {
+                  const bounds = label.getBoundingClientRect();
+                  return bounds.left >= rect.left - .5 &&
+                    bounds.right <= rect.right + .5 &&
+                    bounds.top >= rect.top - .5 &&
+                    bounds.bottom <= rect.bottom + .5;
+                })
               };
             });
             return {
@@ -3121,7 +3130,7 @@ test(
         assert.equal(layout.legacyWaypoints, 0);
         assert.equal(
           layout.productImageSource,
-          "./login-voyage-focus-4k.png?v=map-0.3.14"
+          "./login-voyage-focus-4k.png?v=map-0.3.15"
         );
         assert.equal(layout.productImageInteractive, false);
         if (viewport.width <= 540) {
@@ -3136,6 +3145,18 @@ test(
           assert.ok(layout.mobileHero.top >= layout.heroCopyBottom - .5);
           assert.ok(layout.mobileHero.top < layout.height);
           assert.ok(layout.heroBottom > layout.mobileHero.top);
+          assert.ok(Math.abs(
+            layout.downloads[0].top - layout.downloads[1].top
+          ) <= .5);
+          assert.ok(
+            layout.downloads[2].top >= layout.downloads[0].bottom - .5
+          );
+          assert.ok(Math.abs(
+            layout.downloads[2].left - layout.downloads[0].left
+          ) <= .5);
+          assert.ok(Math.abs(
+            layout.downloads[2].right - layout.downloads[1].right
+          ) <= .5);
           assert.equal(
             layout.productImageCurrentSource,
             "/website/login-voyage-mobile-2k.png"
@@ -3176,7 +3197,8 @@ test(
               download.top >= 0 &&
               download.bottom <= layout.heroBottom + .5 &&
               download.left >= 0 &&
-              download.right <= layout.width + .5
+              download.right <= layout.width + .5 &&
+              download.labelsInside
           )
         );
         if (viewport.width <= 540) {

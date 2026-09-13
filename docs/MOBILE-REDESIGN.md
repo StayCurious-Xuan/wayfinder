@@ -48,7 +48,7 @@ Order:
 
 1. Brand navigation.
 2. Product category, name, and one-sentence promise.
-3. Three equal platform downloads.
+3. Three equally prominent platform downloads.
 4. One mobile voyage scene with a complete coast, sea, branch, and vessel.
 
 The voyage cannot overlap the copy or downloads. Its successful endpoint and
@@ -119,7 +119,9 @@ Reduced-motion users receive the final successful state without animation.
 - At 320x568, 390x844, and 430x932, each module has one dominant element and no
   horizontal overflow, clipping, text overlap, or coastline intrusion.
 - The first phone viewport contains the product name, promise, all three
-  platform choices, and at least part of the voyage scene.
+  platform choices, and at least part of the voyage scene. In the hero, the
+  two macOS choices share the first row and Windows uses a full-width second
+  row so labels remain intact in narrow or text-scaled browsers.
 - Product-proof text inside the image remains legible at 390 CSS pixels.
 - The final download choices remain in one row at 320 CSS pixels.
 - The 1440x900 desktop viewport and full-page screenshots remain pixel
@@ -127,8 +129,8 @@ Reduced-motion users receive the final successful state without animation.
 
 ## Verification
 
-- `npm run check`: 213 tests pass, including Chromium at 320x568, 390x844,
-  430x932, 812x375, and 1440x900.
+- `npm run check`: 215 tests pass, including Chromium at 320x568, 390x844,
+  430x932, 844x390, and 1440x900.
 - `cargo test --manifest-path companion/src-tauri/Cargo.toml`: 10 tests pass.
 - `cargo clippy --manifest-path companion/src-tauri/Cargo.toml --all-targets
   -- -D warnings`: passes.
