@@ -29,12 +29,13 @@ result.
 
 - macOS: Apple Silicon and Intel
 - Windows: x64
-- Current collectors: Codex and Claude Code
-- Current public release: 0.3.14 early access
+- Current collectors: Codex, Claude Code, and TRAE CN
+- TRAE CN collection: Early Access, currently validated on macOS
+- Current public release: 0.3.15 early access
 
-Do not describe Codex and Claude Code as the product boundary. Do not claim
-support for an unreleased collector, package manager, plugin, Skill, or MCP
-surface.
+Do not describe the current collectors as the product boundary. Do not claim
+Windows TRAE validation, or support for an unreleased package manager, plugin,
+Skill, or MCP surface.
 
 ## Benchmarks
 

@@ -5,9 +5,9 @@
 Wayfinder is a standalone macOS and Windows application that turns work with
 AI into a visual history of how a project reached its result. It is designed
 for AI-assisted conversations, research, writing, design, coding, and other
-project work. Codex and Claude Code are the current early-access collectors,
-not the boundary of the product. The complete history stays under
-`~/.wayfinder`.
+project work. Codex, Claude Code, and TRAE CN are the current early-access
+collectors, not the boundary of the product. TRAE CN collection is currently
+validated on macOS. The complete history stays under `~/.wayfinder`.
 
 ## Stack And Commands
 
@@ -21,7 +21,8 @@ not the boundary of the product. The complete history stays under
 
 ## Structure
 
-- `src/sessionCollector.ts`: local Codex/Claude JSONL collection and edit replay.
+- `src/sessionCollector.ts`: local Codex, Claude, and TRAE collection and edit
+  replay.
 - `src/forestMapPanel.ts`: voyage-map rendering and interaction.
 - `companion/`: desktop shell and generated web surface.
 - `website/`: static download site; public downloads come from
@@ -48,7 +49,7 @@ not the boundary of the product. The complete history stays under
 
 ## Current State
 
-- Public/live release: `0.3.14` early access.
+- Public/live release: `0.3.15` early access.
 - Public artifacts: Apple Silicon and Intel macOS DMGs plus a Windows x64 NSIS
   installer, with SHA-256 checksums.
-- Local source version: `0.3.14`.
+- Local source version: `0.3.15`.

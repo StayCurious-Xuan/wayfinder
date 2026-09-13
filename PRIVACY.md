@@ -1,7 +1,8 @@
 # Privacy And Local Data
 
 Wayfinder has no analytics, advertising, account service, or cloud sync.
-Its capture and storage code does not send HTTP requests.
+Its capture and storage code does not send project data to a Wayfinder server
+or third-party analysis service.
 
 Wayfinder Companion reads the same local data. The current build does not call
 a cloud analysis service. It prepares a redacted, evidence-only request format
@@ -17,10 +18,17 @@ project data.
 
 On macOS and Windows, Companion reads supported local session files from active
 and archived Codex storage, Claude Code projects, and Claude Cowork session
-storage. It stores incremental collection progress in
-`~/.wayfinder/collector-state.json`. This collection is local and does not
-modify source transcripts, scrape application windows, or send transcript
-content to Wayfinder.
+storage. On supported TRAE CN installations, it also watches TRAE's local
+workspace and snapshot data. While TRAE CN is running, Wayfinder can connect to
+its loopback-only Chromium debugging endpoint to read the app's local session
+service. The connection stays on `127.0.0.1`; Wayfinder does not automate the
+TRAE interface, modify its conversation database, or send transcript content
+to Wayfinder.
+
+Incremental collection progress is stored in
+`~/.wayfinder/collector-state.json`. Normalized TRAE messages used for
+incremental replay are cached under `~/.wayfinder/trae-runtime/`. Both
+locations remain on the user's computer.
 
 Desktop collection does not capture workspace snapshots or reconstruct
 historical file contents. File-change summaries are recorded only when the

@@ -6,7 +6,7 @@
   <meta name="description" content="Wayfinder 本地数据与隐私边界。">
   <title>数据边界 — Wayfinder</title>
   <link rel="icon" href="./wayfinder-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css?v=0.3.14">
+  <link rel="stylesheet" href="./styles.css?v=0.3.15">
 </head>
 <body class="document-page">
   <header class="site-header document-header">
@@ -26,7 +26,7 @@
     </section>
     <section>
       <h2>自动采集</h2>
-      <p>Wayfinder 在本机读取 Codex 与 Claude Code 保存的会话记录，并以增量方式更新航海图。它不抓取应用窗口，也不会把会话发送给 Wayfinder 服务。</p>
+      <p>Wayfinder 在本机读取 Codex、Claude Code 与 TRAE CN 的兼容会话记录，并以增量方式更新航海图。TRAE CN 采集目前为 macOS Early Access，通过运行中应用的本机回环会话服务读取完整消息，不操作界面，也不修改 TRAE 数据库。</p>
     </section>
     <section>
       <h2>规则分析</h2>
@@ -34,13 +34,13 @@
     </section>
     <section>
       <h2>网络访问</h2>
-      <p>应用仅在你主动查看版本信息时打开 GitHub Releases。会话内容、文件变化摘要和航迹不会随该操作上传。</p>
+      <p>TRAE CN 采集只连接 <code>127.0.0.1</code>；应用仅在你主动查看版本信息时打开 GitHub Releases。会话内容、文件变化摘要和航迹不会上传到 Wayfinder 服务。</p>
     </section>
     <section>
       <h2>删除数据</h2>
       <p>卸载应用不会删除历史。需要清除时，请先退出 Wayfinder，再删除 <code>~/.wayfinder</code> 中对应项目或全部数据。</p>
     </section>
-    <p class="document-updated">更新日期：2026 年 9 月 12 日</p>
+    <p class="document-updated">更新日期：2026 年 9 月 13 日</p>
   </main>
   <footer>
     <span>Wayfinder</span>

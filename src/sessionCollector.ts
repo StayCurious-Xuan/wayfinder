@@ -41,6 +41,7 @@ export interface CollectedTurn {
   turnIndex: number;
   cwd?: string;
   prompt: string;
+  promptSource?: "transcript" | "derived-files";
   response?: string;
   actions: ToolAction[];
   files: FileChange[];
@@ -1359,7 +1360,7 @@ interface CollectorFileCursor {
 }
 
 interface CollectorCursor {
-  version: 2;
+  version: 4;
   files: Record<string, CollectorFileCursor>;
 }
 
@@ -1378,13 +1379,13 @@ function readCursor(): CollectorCursor {
   try {
     const raw = fs.readFileSync(collectorStatePath(), "utf8");
     const parsed = JSON.parse(raw) as CollectorCursor;
-    if (parsed.version === 2 && parsed.files) {
+    if (parsed.version === 4 && parsed.files) {
       return parsed;
     }
   } catch {
     // Fresh cursor.
   }
-  return { version: 2, files: {} };
+  return { version: 4, files: {} };
 }
 
 function transcriptIdentity(stat: fs.Stats): string | undefined {
@@ -1617,6 +1618,10 @@ async function collectSessionsUnlocked(): Promise<CollectRunResult> {
   const coworkFiles = [...new Set(
     claudeCoworkSessionRoots().flatMap(listCoworkAuditFiles)
   )];
+  const { discoverTraeSnapshotSources } = await import(
+    "./traeSessionCollector"
+  );
+  const traeSources = await discoverTraeSnapshotSources();
   const result: CollectRunResult = {
     scannedFiles: 0,
     newTurns: 0,
@@ -1627,8 +1632,16 @@ async function collectSessionsUnlocked(): Promise<CollectRunResult> {
 
   const process_ = async (
     file: string,
-    parse: (file: string) => CollectedSession | undefined,
-    contextFile?: (file: string) => string
+    parse: (
+      file: string
+    ) => CollectedSession | undefined | Promise<CollectedSession | undefined>,
+    contextFile?: (file: string) => string,
+    replace?: {
+      host: AgentHost;
+      sessionId: string;
+      rolloutPath: string;
+      cwd?: string;
+    }
   ): Promise<void> => {
     let stat: fs.Stats;
     try {
@@ -1673,13 +1686,28 @@ async function collectSessionsUnlocked(): Promise<CollectRunResult> {
       return;
     }
     result.scannedFiles += 1;
-    const session = parse(file);
+    const session = await parse(file);
     if (!session || session.turns.length === 0) {
+      if (replace) {
+        const staleRoot =
+          resolveProjectRoot(replace.cwd) || previous?.projectRoot;
+        if (staleRoot) {
+          await removeCollectedSession(
+            staleRoot,
+            replace.host,
+            replace.sessionId,
+            replace.rolloutPath
+          );
+          touchedProjects.add(staleRoot);
+        }
+      }
       cursor.files[file] = {
         ...metadata,
-        collectedTurns: continues ? previous?.collectedTurns || 0 : 0,
-        projectRoot: previous?.projectRoot,
-        cwd: previous?.cwd
+        collectedTurns: 0,
+        projectRoot: replace
+          ? resolveProjectRoot(replace.cwd) || previous?.projectRoot
+          : previous?.projectRoot,
+        cwd: replace?.cwd || previous?.cwd
       };
       return;
     }
@@ -1692,8 +1720,11 @@ async function collectSessionsUnlocked(): Promise<CollectRunResult> {
     const routeChanged = Boolean(
       previous?.projectRoot && previous.projectRoot !== root
     );
-    const alreadyCollected =
-      continues && !routeChanged ? previous?.collectedTurns || 0 : 0;
+    const alreadyCollected = replace
+      ? 0
+      : continues && !routeChanged
+        ? previous?.collectedTurns || 0
+        : 0;
     const fresh = session.turns.filter((turn) => turn.turnIndex >= alreadyCollected);
     if (fresh.length === 0) {
       cursor.files[file] = {
@@ -1706,6 +1737,15 @@ async function collectSessionsUnlocked(): Promise<CollectRunResult> {
     }
 
     const persisted = await persistTurns(root, session.host, fresh);
+    if (replace) {
+      await removeCollectedSession(
+        root,
+        replace.host,
+        replace.sessionId,
+        replace.rolloutPath,
+        new Set(session.turns.map(collectedTurnKey))
+      );
+    }
     if (routeChanged && previous?.projectRoot) {
       await removeCollectedSession(
         previous.projectRoot,
@@ -1738,6 +1778,19 @@ async function collectSessionsUnlocked(): Promise<CollectRunResult> {
       coworkSidecarPath
     );
   }
+  for (const source of traeSources) {
+    await process_(
+      source.activityPath,
+      source.parse,
+      () => source.contextPath,
+      {
+        host: "trae",
+        sessionId: source.sessionId,
+        rolloutPath: source.rolloutPath,
+        cwd: source.cwd
+      }
+    );
+  }
 
   await writeCursor(cursor);
   result.projects = [...touchedProjects];
@@ -1748,7 +1801,8 @@ async function removeCollectedSession(
   root: string,
   host: AgentHost,
   sessionId: string,
-  rolloutPath: string
+  rolloutPath: string,
+  keepTurns = new Set<string>()
 ): Promise<void> {
   await mutateProjectState(root, (state) => {
     const removedParents = new Map<string, string | undefined>();
@@ -1757,7 +1811,8 @@ async function removeCollectedSession(
         node.source?.type === "rollout" &&
         node.source.host === host &&
         node.source.sessionId === sessionId &&
-        node.source.rolloutPath === rolloutPath
+        node.source.rolloutPath === rolloutPath &&
+        !keepTurns.has(sourceTurnKey(node.source))
       ) {
         removedParents.set(node.id, node.parentId);
       }
@@ -1786,6 +1841,20 @@ async function removeCollectedSession(
       parentNodeId: survivingParent(branch.parentNodeId)
     }));
   });
+}
+
+function collectedTurnKey(turn: CollectedTurn): string {
+  return turn.turnId
+    ? `id:${turn.turnId}`
+    : `index:${turn.turnIndex}`;
+}
+
+function sourceTurnKey(
+  source: Extract<NonNullable<TimelineNode["source"]>, { type: "rollout" }>
+): string {
+  return source.turnId
+    ? `id:${source.turnId}`
+    : `index:${source.turnIndex}`;
 }
 
 async function persistTurns(
@@ -1823,6 +1892,7 @@ async function persistTurns(
         sessionId: turn.sessionId,
         turnIndex: turn.turnIndex,
         turnId: turn.turnId,
+        promptSource: turn.promptSource,
         collectedAt: new Date().toISOString()
       };
 
@@ -1922,7 +1992,12 @@ function mergeCollectedTurn(
     turn.startedAt < node.startedAt ? turn.startedAt : node.startedAt;
   node.completedAt =
     turn.completedAt > node.completedAt ? turn.completedAt : node.completedAt;
-  if (
+  if (turn.promptSource && node.prompt !== turn.prompt) {
+    node.prompt = clipText(turn.prompt, 4_000);
+  }
+  if (turn.surface === "trae-code" && !turn.response) {
+    delete node.response;
+  } else if (
     turn.response &&
     (
       !node.response ||

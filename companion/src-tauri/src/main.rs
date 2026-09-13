@@ -682,12 +682,14 @@ async fn run_collect_once(app: &AppHandle, active: &ActiveCollector) -> Result<(
     }
 }
 
-/// Transcript directories every comparable local tool watches: active and
-/// archived Codex rollouts, Claude Code project logs, and Claude Cowork audits.
+/// Transcript directories every comparable local tool watches: TRAE workspace
+/// state and snapshots, active and archived Codex rollouts, Claude Code project
+/// logs, and Claude Cowork audits.
 fn transcript_watch_roots() -> Vec<PathBuf> {
     let data_dir = env::var_os("APPDATA")
         .map(PathBuf::from)
         .or_else(dirs::data_dir);
+    let trae_data_dir = data_dir.clone();
     let local_data_dir = if cfg!(target_os = "windows") {
         env::var_os("LOCALAPPDATA")
             .map(PathBuf::from)
@@ -695,7 +697,7 @@ fn transcript_watch_roots() -> Vec<PathBuf> {
     } else {
         None
     };
-    resolve_transcript_roots(TranscriptRootInputs {
+    let mut roots = resolve_transcript_roots(TranscriptRootInputs {
         codex_sessions_root: env::var_os("CODEX_SESSIONS_ROOT").map(PathBuf::from),
         codex_archived_sessions_root: env::var_os("CODEX_ARCHIVED_SESSIONS_ROOT")
             .map(PathBuf::from),
@@ -705,7 +707,27 @@ fn transcript_watch_roots() -> Vec<PathBuf> {
         home: dirs::home_dir(),
         data_dir,
         local_data_dir,
-    })
+    });
+    let trae_apps = if let Some(root) = env::var_os("TRAE_APP_ROOT") {
+        vec![PathBuf::from(root)]
+    } else {
+        trae_data_dir
+            .into_iter()
+            .flat_map(|root| {
+                ["Trae CN", "TRAE SOLO CN", "Trae"]
+                    .map(|name| root.join(name))
+            })
+            .collect()
+    };
+    for app in trae_apps {
+        roots.push(app.join("User").join("workspaceStorage"));
+        roots.push(
+            app.join("ModularData")
+                .join("ai-agent")
+                .join("snapshot"),
+        );
+    }
+    roots
 }
 
 struct TranscriptRootInputs {

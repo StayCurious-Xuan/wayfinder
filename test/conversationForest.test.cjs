@@ -262,6 +262,55 @@ test("live voyages with file signal route through the content engine", () => {
   assert.equal(sessions.filter((s) => s.verdict === "failure").length, 0);
 });
 
+test("TRAE keeps each native session as one voyage without root fan-out", () => {
+  const first = traeTurn(
+    "trae-a-1",
+    "10:00",
+    "调研外贸公司的岗位方向",
+    [],
+    "session-a"
+  );
+  const second = traeTurn(
+    "trae-a-2",
+    "14:30",
+    "统计已经搜集到的岗位数量",
+    [],
+    "session-a"
+  );
+  const continuation = traeTurn(
+    "trae-a-3",
+    "14:40",
+    "continue",
+    [],
+    "session-a"
+  );
+  continuation.response =
+    "Windows 已真实上线，安装包已经完成发布和校验。";
+  const other = traeTurn(
+    "trae-b-1",
+    "15:00",
+    "检查简历 PDF 解析",
+    ["resume.tex"],
+    "session-b"
+  );
+
+  const forest = buildConversationForest(
+    projectState([first, second, continuation, other])
+  );
+
+  assert.equal(forest.trees.length, 2);
+  const sessionA = forest.trees.find((tree) => tree.nodeCount === 3);
+  assert.ok(sessionA);
+  assert.equal(sessionA.title, "调研外贸岗位");
+  assert.equal(sessionA.sessions.length, 3);
+  assert.equal(sessionA.sessions[1].parentId, sessionA.sessions[0].id);
+  assert.equal(sessionA.sessions[2].shortTitle, "发布 Windows 安装包");
+  assert.equal(
+    sessionA.sessions.some((session) => /当前任务$/.test(session.shortTitle)),
+    false
+  );
+});
+
 test("related turns from Claude and Codex share one waypoint with provenance", () => {
   const first = liveTurn(
     "cross-host-a",
@@ -760,6 +809,25 @@ function liveTurn(id, hhmm, prompt, files) {
     actions: [],
     validation: { status: "skipped" }
   };
+}
+
+function traeTurn(id, hhmm, prompt, files, sourceSessionId) {
+  const turn = liveTurn(id, hhmm, prompt, files);
+  turn.kind = "collected";
+  turn.sourceHost = "trae";
+  turn.sessionId = `trae:${sourceSessionId}`;
+  turn.source = {
+    type: "rollout",
+    host: "trae",
+    surface: "trae-code",
+    rolloutPath: `/tmp/${sourceSessionId}/v2`,
+    sessionId: sourceSessionId,
+    turnIndex: 0,
+    turnId: id,
+    promptSource: "transcript",
+    collectedAt: turn.completedAt
+  };
+  return turn;
 }
 
 function folderImport(

@@ -3,6 +3,33 @@
 Notable public changes to Wayfinder are recorded here. Release notes describe
 user-visible behavior; implementation detail remains in the linked commits.
 
+## [0.3.15] - 2026-09-13
+
+### Added
+
+- Added Early Access collection for TRAE CN sessions on macOS.
+- Paired complete TRAE prompts and replies with verifiable local snapshot
+  changes by stable turn identity.
+
+### Changed
+
+- Kept each native TRAE conversation in one voyage while preserving
+  evidence-backed branches inside it.
+- Replaced empty waypoint names such as "continue current task" with concise
+  titles derived from the actual goal, result, or changed file.
+
+### Privacy
+
+- Reads TRAE messages through its loopback-only local session service while
+  the app is running.
+- Stores normalized TRAE replay data only under
+  `~/.wayfinder/trae-runtime/`; no Wayfinder cloud service receives it.
+
+### Verification
+
+- 215 JavaScript and Chromium checks.
+- 10 Rust checks, plus packaged macOS validation.
+
 ## [0.3.14] - 2026-09-12
 
 ### Changed
@@ -119,4 +146,5 @@ user-visible behavior; implementation detail remains in the linked commits.
 [0.3.11]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.11
 [0.3.12]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.12
 [0.3.13]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.13
+[0.3.15]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.15
 [0.3.14]: https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.14

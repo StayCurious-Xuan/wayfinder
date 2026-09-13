@@ -1,9 +1,10 @@
 # Wayfinder Companion
 
-Wayfinder Companion is the macOS and Windows desktop surface for local Claude
-Code and Codex work. It reads compatible history already stored on the machine,
-watches later session changes, stores normalized turns under `~/.wayfinder`,
-and renders the complete visual voyage map.
+Wayfinder Companion is the macOS and Windows desktop surface for local AI
+collaboration history. It reads compatible Codex, Claude Code, and TRAE CN
+history already stored on the machine, watches later session changes, stores
+normalized turns under `~/.wayfinder`, and renders the complete visual voyage
+map. TRAE CN collection is currently validated on macOS.
 
 The desktop application is the supported Wayfinder product. Its collector runs
 at launch and then reacts to local session changes in the background without
@@ -25,6 +26,7 @@ early access.
 ```text
 Codex active + archived rollouts
 Claude Code transcripts + Cowork audits
+TRAE CN runtime messages + snapshot changes
                    |
        initial backfill + filesystem watcher
                    |
@@ -38,17 +40,19 @@ Claude Code transcripts + Cowork audits
 - Host identity remains provenance on every turn and waypoint.
 - Related turns may share a topic or waypoint; raw turns are never collapsed
   or overwritten.
-- A first launch scans compatible history under the Codex, Claude Code, and
-  Claude Cowork local stores. A recursive filesystem watcher then coalesces
-  transcript writes for two seconds, runs an incremental collection pass, and
-  records per-file progress in `~/.wayfinder/collector-state.json`.
+- A first launch scans compatible history under the Codex, Claude Code, Claude
+  Cowork, and TRAE CN local stores. A recursive filesystem watcher then
+  coalesces transcript writes for two seconds, runs an incremental collection
+  pass, and records per-file progress in
+  `~/.wayfinder/collector-state.json`.
 - The Companion refreshes the selected map when its project data changes.
 - The project sidebar follows the established session-viewer pattern: projects
   are always scannable on wide screens and move into a drawer on narrow
   screens.
 - The Companion builds directly from `ExperienceMapPanel`; it does not maintain
   a second simplified map.
-- Collected turns show their Codex or Claude Code source in the detail panel.
+- Collected turns show their Codex, Claude Code, or TRAE source in the detail
+  panel.
 - File-change summaries are reconstructed only when the transcript records
   both sides of an edit, such as `apply_patch`, `Edit`, and `MultiEdit`.
   Ambiguous `Write` operations remain visible as actions without a fabricated
@@ -74,10 +78,11 @@ Wayfinder keeps three separate concepts:
 3. **Waypoint**: one or more adjacent turns pursuing the same sub-goal become a
    waypoint on that voyage.
 
-Codex and Claude Code are provenance, not map boundaries. Work from both tools
-can appear in the same project map and voyage. Wayfinder does not merge two
-different working directories merely because their text looks similar; doing
-so would invent a relationship without reliable project evidence.
+Codex, Claude Code, and TRAE are provenance, not map boundaries. Work from
+supported tools can appear in the same project map and voyage. Wayfinder does
+not merge two different working directories merely because their text looks
+similar; doing so would invent a relationship without reliable project
+evidence.
 
 The horizontal renderer reserves fixed geometry for every waypoint card. Cards
 are native SVG so WebKit and Chromium render the same structure. The current

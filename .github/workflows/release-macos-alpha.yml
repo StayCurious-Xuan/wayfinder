@@ -43,6 +43,12 @@ jobs:
           retries: 3
           retry-exempt-status-codes: 400,401,403,404,422
           script: |
+            const fs = require("fs");
+            const notesPath = `docs/RELEASE-${process.env.RELEASE_VERSION}.md`;
+            if (!fs.existsSync(notesPath)) {
+              throw new Error(`Release notes are missing: ${notesPath}`);
+            }
+            const releaseBody = fs.readFileSync(notesPath, "utf8").trim();
             const resolveTagCommit = async (tag) => {
               try {
                 let ref = (await github.rest.git.getRef({
@@ -106,11 +112,7 @@ jobs:
                 release_id: release.id,
                 target_commitish: context.sha,
                 name: `Wayfinder Alpha v${process.env.RELEASE_VERSION}`,
-                body: [
-                  "Early-access desktop build for macOS and Windows.",
-                  "The macOS build is not Apple-notarized. On first launch, use System Settings > Privacy & Security > Open Anyway.",
-                  "The Windows build is not code-signed. Microsoft Defender SmartScreen may require More info > Run anyway."
-                ].join("\n"),
+                body: releaseBody,
                 draft: true,
                 prerelease: true
               })).data;
@@ -121,11 +123,7 @@ jobs:
                 tag_name: process.env.RELEASE_TAG,
                 target_commitish: context.sha,
                 name: `Wayfinder Alpha v${process.env.RELEASE_VERSION}`,
-                body: [
-                  "Early-access desktop build for macOS and Windows.",
-                  "The macOS build is not Apple-notarized. On first launch, use System Settings > Privacy & Security > Open Anyway.",
-                  "The Windows build is not code-signed. Microsoft Defender SmartScreen may require More info > Run anyway."
-                ].join("\n"),
+                body: releaseBody,
                 draft: true,
                 prerelease: true
               });

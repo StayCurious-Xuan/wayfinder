@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const test = require("node:test");
+const git = require("isomorphic-git");
 
 const {
   claudeCoworkSessionRoots,
@@ -18,6 +19,9 @@ const {
   resolveClaudeCoworkSessionRoots,
   unfiledConversationsRoot
 } = require("../out/sessionCollector.js");
+const {
+  parseTraeSnapshot
+} = require("../out/traeSessionCollector.js");
 const { processHookEvent } = require("../out/hook.js");
 const {
   readProjectState,
@@ -28,7 +32,13 @@ const missingCoworkRoot = path.join(
   os.tmpdir(),
   `wayfinder-test-no-cowork-${process.pid}`
 );
+const missingTraeRoot = path.join(
+  os.tmpdir(),
+  `wayfinder-test-no-trae-${process.pid}`
+);
 process.env.CLAUDE_COWORK_ROOT = missingCoworkRoot;
+process.env.TRAE_APP_ROOT = missingTraeRoot;
+process.env.TRAE_CDP_PORT = "1";
 
 // The real desktop-app "讲个冷笑话" rollout: a mid-turn model switch
 // (gpt-5.2 -> gpt-5.5) replays the same user prompt, and no lifecycle hook
@@ -521,7 +531,7 @@ test("version-one cursors are rescanned so prior no-cwd history is recovered", a
   const cursor = JSON.parse(
     fs.readFileSync(path.join(wayfinderHome, "collector-state.json"), "utf8")
   );
-  assert.equal(cursor.version, 2);
+  assert.equal(cursor.version, 4);
 });
 
 test("active and archived copies of one Codex turn remain deduplicated", async () => {
@@ -2151,4 +2161,111 @@ test("unresolved Claude writes never become file facts", () => {
   fs.writeFileSync(file, lines.map((line) => JSON.stringify(line)).join("\n") + "\n");
 
   assert.equal(parseClaudeTranscript(file).turns.length, 0);
+});
+
+test("TRAE joins native runtime text to snapshot diffs by stable turn id", async () => {
+  const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "wf-trae-runtime-"));
+  const sessionId = "6aa537d4436c873ef08c6911";
+  const turnId = "6aa647ff958be84f461652a3";
+  const repo = path.join(sandbox, sessionId, "v2");
+  fs.mkdirSync(path.join(repo, "base"), { recursive: true });
+  fs.mkdirSync(path.join(repo, "disk", "content"), { recursive: true });
+  await git.init({ fs, dir: repo, defaultBranch: sessionId });
+  const author = {
+    name: "trae-ai-agent",
+    email: "ai-agent@mail.trae.ai",
+    timestamp: Number.parseInt(turnId.slice(0, 8), 16),
+    timezoneOffset: 0
+  };
+
+  fs.writeFileSync(path.join(repo, "disk", "content", "resume.tex"), "old\n");
+  fs.writeFileSync(
+    path.join(repo, "base", "version_file_latest_change.json"),
+    `${JSON.stringify({ toolcall: { tag: "", map: {}, now_index: [] } })}\n`
+  );
+  for (const filepath of [
+    "disk/content/resume.tex",
+    "base/version_file_latest_change.json"
+  ]) {
+    await git.add({ fs, dir: repo, filepath });
+  }
+  const beforeOid = await git.commit({
+    fs,
+    dir: repo,
+    message: `before-chat-turn-${turnId}`,
+    author
+  });
+  await git.annotatedTag({
+    fs,
+    dir: repo,
+    ref: `before-chat-turn-${turnId}`,
+    object: beforeOid,
+    message: `before-chat-turn-${turnId}`,
+    tagger: author
+  });
+
+  fs.writeFileSync(
+    path.join(repo, "disk", "content", "resume.tex"),
+    "new\nsecond line\n"
+  );
+  fs.writeFileSync(
+    path.join(repo, "base", "version_file_latest_change.json"),
+    `${JSON.stringify({
+      toolcall: {
+        tag: `before-chat-turn-${turnId}`,
+        map: { "resume.tex": beforeOid },
+        now_index: []
+      }
+    })}\n`
+  );
+  for (const filepath of [
+    "disk/content/resume.tex",
+    "base/version_file_latest_change.json"
+  ]) {
+    await git.add({ fs, dir: repo, filepath });
+  }
+  const afterAuthor = { ...author, timestamp: author.timestamp + 20 };
+  const afterOid = await git.commit({
+    fs,
+    dir: repo,
+    message: `after-chat-turn-${turnId}`,
+    author: afterAuthor
+  });
+  await git.annotatedTag({
+    fs,
+    dir: repo,
+    ref: `after-chat-turn-${turnId}`,
+    object: afterOid,
+    message: `after-chat-turn-${turnId}`,
+    tagger: afterAuthor
+  });
+
+  const session = await parseTraeSnapshot(repo, sandbox, {
+    version: 1,
+    workspaceId: "workspace-test",
+    sessionId,
+    collectedAt: new Date().toISOString(),
+    turns: [{
+      turnId,
+      prompt: "只更新观众 Tags 文案",
+      response: "已更新文案并保留其他内容。",
+      startedAt: new Date(author.timestamp * 1000).toISOString(),
+      completedAt: new Date(afterAuthor.timestamp * 1000).toISOString()
+    }]
+  });
+
+  assert.ok(session);
+  assert.equal(session.turns.length, 1);
+  assert.equal(session.turns[0].turnId, turnId);
+  assert.equal(session.turns[0].prompt, "只更新观众 Tags 文案");
+  assert.equal(session.turns[0].response, "已更新文案并保留其他内容。");
+  assert.equal(session.turns[0].promptSource, "transcript");
+  assert.deepEqual(session.turns[0].files, [{
+    path: "resume.tex",
+    status: "M",
+    additions: 2,
+    deletions: 1,
+    binary: undefined,
+    lineCountsKnown: true
+  }]);
 });

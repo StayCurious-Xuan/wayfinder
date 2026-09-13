@@ -130,6 +130,20 @@ export function forestMetadataForChapter(chapter: string): ForestMetadata {
 export function buildConversationForest(
   state: ProjectState
 ): ConversationForest {
+  const traeNodes = state.nodes.filter(isTraeCollectedNode);
+  if (traeNodes.length > 0) {
+    const traeIds = new Set(traeNodes.map((node) => node.id));
+    const otherNodes = state.nodes.filter((node) => !traeIds.has(node.id));
+    const otherForest = otherNodes.length > 0
+      ? buildConversationForest({ ...state, nodes: otherNodes })
+      : emptyForest();
+    const traeForest = buildTraeForest(traeNodes);
+    return {
+      trees: [...otherForest.trees, ...traeForest.trees].sort(compareTrees),
+      sessionCount: otherForest.sessionCount + traeForest.sessionCount,
+      nodeCount: otherForest.nodeCount + traeForest.nodeCount
+    };
+  }
   // Live voyages (real turns that touched files, or a restore fork) carry the
   // structural + file signal the content engine needs, so they flow through the
   // content-driven path. Purely imported history has no such signal — text-only
@@ -156,6 +170,207 @@ export function buildConversationForest(
     };
   }
   return buildCuratedForest(state, state.nodes);
+}
+
+function isTraeCollectedNode(node: TimelineNode): boolean {
+  return (
+    node.sourceHost === "trae" &&
+    node.source?.type === "rollout" &&
+    node.source.surface === "trae-code"
+  );
+}
+
+/**
+ * TRAE's native conversation is the stable voyage boundary. The existing
+ * content engine still aggregates waypoints and identifies real divergences;
+ * an unclassified next waypoint continues the previous lane instead of
+ * creating an arbitrary root branch.
+ */
+function buildTraeForest(nodes: TimelineNode[]): ConversationForest {
+  const bySession = new Map<string, TimelineNode[]>();
+  for (const node of nodes) {
+    const sessionId = node.source?.type === "rollout"
+      ? node.source.sessionId
+      : node.sessionId;
+    const group = bySession.get(sessionId) || [];
+    group.push(node);
+    bySession.set(sessionId, group);
+  }
+
+  const trees: ForestTree[] = [];
+  for (const [sourceSessionId, sessionNodes] of bySession) {
+    const ordered = sessionNodes.slice().sort((left, right) =>
+      left.completedAt.localeCompare(right.completedAt) ||
+      left.id.localeCompare(right.id)
+    );
+    const nodeById = new Map(ordered.map((node) => [node.id, node]));
+    const idf = buildIdf(
+      ordered.map((node) => tokenize([node.prompt, node.response].join(" ")))
+    );
+    const waypoints = aggregateWaypoints(
+      ordered.map((node) => signalForNode(node, idf)),
+      idf
+    );
+    if (waypoints.length === 0) {
+      continue;
+    }
+    const relations = classifyRelations(waypoints);
+    const sessions: ForestSession[] = [];
+    for (const waypoint of waypoints) {
+      const session = liveSessionFor(waypoint, nodeById, idf, new Set());
+      const waypointNodes = waypoint.nodeIds
+        .map((nodeId) => nodeById.get(nodeId))
+        .filter((node): node is TimelineNode => Boolean(node));
+      session.shortTitle = traeWaypointTitle(
+        waypointNodes,
+        sessions[sessions.length - 1]?.shortTitle
+      );
+      sessions.push(session);
+    }
+    const sessionByWaypoint = new Map(
+      waypoints.map((waypoint, index) => [waypoint.id, sessions[index]])
+    );
+    for (let index = 1; index < waypoints.length; index += 1) {
+      const parentWaypoint = relations.get(waypoints[index].id)?.parentId;
+      sessions[index].parentId = parentWaypoint
+        ? sessionByWaypoint.get(parentWaypoint)?.id
+        : sessions[index - 1].id;
+    }
+    setDepths(sessions);
+    trees.push({
+      id: treeId(`trae:${sourceSessionId}`),
+      title: sessions[0].shortTitle,
+      sessions,
+      nodeCount: ordered.length,
+      successCount: sessions.reduce(
+        (sum, session) => sum + session.successCount,
+        0
+      ),
+      failureCount: sessions.reduce(
+        (sum, session) => sum + session.failureCount,
+        0
+      ),
+      lessonCount: sessions.reduce(
+        (sum, session) => sum + session.lessonCount,
+        0
+      ),
+      startedAt: ordered[0].startedAt || ordered[0].completedAt,
+      completedAt: ordered[ordered.length - 1].completedAt
+    });
+  }
+  trees.sort(compareTrees);
+  return {
+    trees,
+    sessionCount: trees.reduce((sum, tree) => sum + tree.sessions.length, 0),
+    nodeCount: nodes.length
+  };
+}
+
+function traeWaypointTitle(
+  nodes: TimelineNode[],
+  previousTitle?: string
+): string {
+  const prompt = normalizeText(nodes[0]?.prompt || "");
+  const rawResponse =
+    [...nodes].reverse().find((node) => node.response)?.response || "";
+  const response = normalizeText(rawResponse);
+  const rules: Array<[RegExp, string]> = [
+    [/动效视频.*岗位|Motion\s*Graphics.*岗位/i, "调研动效设计岗位"],
+    [/短视频内容整包.*岗位|技术文档.*岗位/, "补充内容与技术写作岗位"],
+    [/99\.9%.*真实市场|结论和报告.*充分证据/, "核验兼职市场结论"],
+    [/工作流.*(?:哪些|适合).*兼职|适合找哪些兼职/, "匹配工作流与兼职"],
+    [/建议.*基于什么数据|基于.*岗位信息提出/, "核验兼职建议证据"],
+    [/岗位职责.*(?:摘要|完整)|获取(?:到|了|到了)?哪些岗位信息|这\s*1000.*岗位.*哪些信息/, "核验岗位数据完整性"],
+    [/不登录.*影响.*搜集岗位|怕.*账号.*封/, "评估免登录采集风险"],
+    [/不要登录.*账号.*搜集|不依靠我的账号/, "改用免登录岗位采集"],
+    [/(?:搜集|采集).*(?:1000|千).*(?:岗位|样本)/, "扩充千条岗位样本"],
+    [/(?:找了|搜集了).*多少.*岗位/, "核对岗位样本量"],
+    [/闭门造车.*BOSS.*外贸|BOSS.*外贸相关岗位/i, "核验 BOSS 外贸岗位"],
+    [/调研.*外贸.*岗位|应聘外贸.*有哪些岗位|外贸公司一般有哪些岗位/, "调研外贸岗位"],
+    [/TRAE.*本地会话.*(?:存储|采集)/i, "接入 TRAE 本地会话"],
+    [/Wayfinder.*不支持.*TRAE/i, "确认 TRAE 支持范围"],
+    [/旧会话正文.*加密主库|聚类和区分航道/, "修复 TRAE 正文与聚类"],
+    [/项目经历.*最新情况.*重写|项目经历部分.*重写/, "更新简历项目经历"],
+    [/公司.*图标.*专业技能|图标太小.*专业技能/, "优化简历图标与技能区"],
+    [/观众\s*Tags.*(?:描述|文案|替换)/i, "优化观众 Tags 描述"],
+    [/解析.*PDF|PDF.*解析|ATS/i, "验证简历 PDF 解析"],
+    [/^\/?neat\b/i, "清理项目残留"]
+  ];
+  for (const [pattern, title] of rules) {
+    if (pattern.test(prompt) && !isEmptyTaskTitle(title)) {
+      return title;
+    }
+  }
+  const summarized = summarizeSessionTitle(prompt, "当前任务");
+  if (!isEmptyTaskTitle(summarized)) {
+    return summarized;
+  }
+  const responseRules: Array<[RegExp, string]> = [
+    [/预览图.*PDF.*(?:一致|单页)/i, "核对简历预览与 PDF"],
+    [/Windows.*(?:上线|安装包|发布)/i, "发布 Windows 安装包"],
+    [/(?:官网|网站).*(?:上线|部署|发布)/i, "部署 Wayfinder 官网"],
+    [/(?:V2|优化版).*成片|成片.*优化版/i, "输出优化版成片"],
+    [/人物.*(?:中央|构图).*(?:修复|优化)|头部出框.*0/, "优化人物居中构图"],
+    [/测试.*(?:通过|完成)|验证.*(?:通过|完成)/, "完成验证测试"]
+  ];
+  for (const [pattern, title] of responseRules) {
+    if (pattern.test(response)) {
+      return title;
+    }
+  }
+  const cleaned = prompt
+    .replace(/^\/(?:goal|plan|spec)\s*/i, "")
+    .replace(/`?(?:https?:\/\/|file:\/\/\/|\/Users\/)\S+`?/gi, " ")
+    .replace(/^[\d一二三四五六七八九十]+[、，,.]\s*/, "")
+    .trim();
+  const promptHead = imperativeHead(cleaned);
+  if (
+    promptHead &&
+    !/^(?:continue|继续|接着|开始执行|好的|可以)$/i.test(promptHead) &&
+    !isEmptyTaskTitle(promptHead)
+  ) {
+    return promptHead;
+  }
+  const responseHead = concreteResponseHead(rawResponse);
+  if (responseHead) {
+    return responseHead;
+  }
+  const changedFiles = [...new Set(
+    nodes.flatMap((node) => node.files.map((file) => file.path))
+  )];
+  if (changedFiles.length > 0) {
+    const names = changedFiles
+      .slice(0, 2)
+      .map((file) => file.split("/").pop() || file);
+    return `更新${names.join("与")}`.slice(0, 24);
+  }
+  if (previousTitle) {
+    return `继续${previousTitle}`.slice(0, 24);
+  }
+  return "整理本轮协作结果";
+}
+
+function isEmptyTaskTitle(title: string): boolean {
+  return /^(?:优化|继续|实现|修复|推进|探索|确认|撰写|重构|理清)(?:当前任务|\s*Wayfinder)$/i
+    .test(title.trim());
+}
+
+function concreteResponseHead(response: string): string {
+  for (const rawLine of response.split(/\n+/)) {
+    const line = rawLine
+      .replace(/^#{1,6}\s*/, "")
+      .replace(/^[-*>]\s*/, "")
+      .replace(/^\*\*|\*\*$/g, "")
+      .replace(/^(?:已完成|已确认|已处理|结论|结果)[：:\s]*/, "")
+      .trim();
+    if (
+      line.length >= 4 &&
+      !/^(?:好的|可以|完成|如下|说明|主要调整)$/.test(line)
+    ) {
+      return imperativeHead(line);
+    }
+  }
+  return "";
 }
 
 function buildCuratedForest(

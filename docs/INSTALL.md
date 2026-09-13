@@ -1,10 +1,10 @@
 # Install Wayfinder
 
-Current public version: **0.3.14 early access**.
+Current public version: **0.3.15 early access**.
 
 Wayfinder is distributed as a desktop application for macOS and Windows:
 
-https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.14
+https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.15
 
 ## Choose Your Installer
 
@@ -37,11 +37,16 @@ Get-FileHash .\Wayfinder-Alpha-<version>-Windows-x86_64.exe -Algorithm SHA256
 
 ## Start Recording
 
-Keep Wayfinder running, then continue working normally in Codex or Claude Code.
+Keep Wayfinder running, then continue working normally in Codex, Claude Code,
+or TRAE CN.
 
 Wayfinder updates the matching project map in the background. Workspace-backed
-plain chat and coding turns can both be collected. Codex and Claude Code
-activity from the same project appears in one map while retaining its source.
+plain chat and coding turns can both be collected. Activity from supported
+tools in the same project appears in one map while retaining its source.
+
+TRAE CN collection is currently validated on macOS. Keep TRAE CN open while
+working so Wayfinder can read completed messages from its local runtime and
+pair them with verifiable snapshot changes.
 
 ## Local Requirements
 

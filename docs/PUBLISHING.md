@@ -1,6 +1,6 @@
 # Publication Status
 
-Public release: **0.3.14 early access**. Status reviewed 2026-09-13.
+Public release: **0.3.15 early access**. Status reviewed 2026-09-13.
 The live website's source commit is recorded by the production
 `deployment.json` marker and must match the latest deployed `main` commit.
 
@@ -11,7 +11,7 @@ Wayfinder is distributed as a desktop application for macOS and Windows.
 | Channel | Public entry | Status |
 | --- | --- | --- |
 | Official website | https://wayfinder-ai.pages.dev | Live download site |
-| Desktop app | https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.14 | Apple Silicon and Intel DMGs plus Windows x64 NSIS installer |
+| Desktop app | https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.15 | Apple Silicon and Intel DMGs plus Windows x64 NSIS installer |
 | Source | https://github.com/StayCurious-Xuan/wayfinder | Public repository and CI |
 | Product Hunt | https://www.producthunt.com/products/wayfinder-5?launch=wayfinder-6 | Public listing updated to the macOS and Windows desktop positioning |
 | Issues | https://github.com/StayCurious-Xuan/wayfinder/issues | Public support channel |
@@ -24,13 +24,15 @@ Public screenshots must use synthetic demo data rather than a real
 The website, README, install guide, and future release notes must first explain
 Wayfinder's value across AI-assisted conversations, research, writing, design,
 coding, and other project work. The current early-access flow is then:
-install Wayfinder, continue working in Codex or Claude Code, and inspect the
-resulting visual voyage map in the app.
+install Wayfinder, continue working in Codex, Claude Code, or TRAE CN, and
+inspect the resulting visual voyage map in the app.
 
 Public positioning must describe Wayfinder as an AI collaboration history
-product for coding, research, writing, design, and other project work. Codex
-and Claude Code are the current early-access collection adapters, not the
-boundary of the product category.
+product for coding, research, writing, design, and other project work. Codex,
+Claude Code, and TRAE CN are the current early-access collection adapters, not
+the boundary of the product category. TRAE CN collection must be described as
+currently validated on macOS until a Windows TRAE installation has passed the
+same end-to-end checks.
 
 ## Retired Distribution Surfaces
 
