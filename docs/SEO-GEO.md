@@ -31,7 +31,7 @@ release notes, and approved directory or community submissions.
 
 Accuracy, privacy, and current product boundaries take priority over traffic.
 
-## Current Baseline
+## Initial Baseline
 
 Measured against `https://wayfinder-ai.pages.dev/` on 2026-09-14:
 
@@ -64,6 +64,23 @@ Measured against `https://wayfinder-ai.pages.dev/` on 2026-09-14:
    The repository description names the local-first AI collaboration history
    category, the homepage points to the official site, and the public topics
    include `ai-history` and `session-history`.
+
+## Current Status
+
+Verified on 2026-09-14:
+
+- The technical and content implementation is complete on the production site:
+  five indexable canonical pages, matching sitemap coverage, linked structured
+  data, `llms.txt`, and a real HTTP 404 response.
+- The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
+  Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
+  entry use the current Codex and Claude Code collector scope.
+- The latest main commit passed Linux, macOS, and Windows CI, production
+  deployment checks, and the public Windows installer smoke test.
+- Google Search Console ownership verification and the subsequent Bing
+  Webmaster import remain pending. Until those are complete and data accrues,
+  implementation can be evaluated, but search impressions, indexing coverage,
+  and AI citation trends cannot yet be measured.
 
 ## Measurement
 

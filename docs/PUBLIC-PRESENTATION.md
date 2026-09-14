@@ -147,7 +147,7 @@ Canonical assets:
 - No current public copy advertises a retired plugin, Skill, MCP, Homebrew, or
   Scoop installation path.
 - The website, README, Product Hunt, current release, Tauri post, Codex post,
-  and active awesome-mac pull request agree on product scope and availability.
+  and merged awesome-mac entry agree on product scope and availability.
 - All current download links return successfully.
 - Public screenshots use synthetic data and meet the resolution standard.
 - GitHub commit and pull request descriptions follow the documented structure.

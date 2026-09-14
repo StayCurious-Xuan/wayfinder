@@ -1,6 +1,6 @@
 # External Recognition
 
-Status reviewed: 2026-09-12.
+Status reviewed: 2026-09-14.
 
 Only externally verifiable outcomes may be described as recognition. A
 submission, open pull request, self-authored community post, or pending review
@@ -22,11 +22,11 @@ platform awards carry more weight than broad directory counts.
 
 ### awesome-mac
 
-- Submission: https://github.com/jaywcjlove/awesome-mac/pull/2828
+- Merged pull request: https://github.com/jaywcjlove/awesome-mac/pull/2828
 - Value: independently maintained macOS software list with more than 110K
   GitHub stars.
-- Current status: pull request open and mergeable; maintainer review pending.
-  Its description and four localized entries point to
+- Current status: merged on 2026-09-13. The English, Chinese, Japanese, and
+  Korean lists link to the official Wayfinder website and
   `StayCurious-Xuan/wayfinder`.
 
 ## Supporting Exposure
@@ -87,7 +87,8 @@ Tell posts use the same public imagery and link to the current username and
 
 ## Resume Rule
 
-Do not add awesome-mac or Made with Tauri as an achieved distinction until the
-corresponding listing is publicly live. Do not present the closed WinGet
-submission as a supported distribution channel. Community posts may be linked
-as launch activity, but must not be called awards or curated features.
+awesome-mac may be described as an independently maintained directory
+inclusion, not as an award. Do not add Made with Tauri as an achieved
+distinction until the listing is publicly live. Do not present the closed
+WinGet submission as a supported distribution channel. Community posts may be
+linked as launch activity, but must not be called awards or curated features.

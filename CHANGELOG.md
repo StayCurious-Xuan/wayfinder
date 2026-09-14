@@ -19,7 +19,7 @@ user-visible behavior; implementation detail remains in the linked commits.
 
 ### Verification
 
-- 223 JavaScript and Chromium checks.
+- 225 JavaScript and Chromium checks.
 - 10 Rust checks and clean dependency installation.
 
 ## [0.3.16] - 2026-09-13
