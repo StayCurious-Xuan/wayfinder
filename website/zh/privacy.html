@@ -20,18 +20,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/zh/privacy#webpage",
-      "url": "https://wayfinder-ai.pages.dev/zh/privacy",
-      "name": "数据边界 — Wayfinder",
-      "description": "Wayfinder 将完整会话、文件变化摘要和项目航海图保存在用户的电脑上。",
-      "inLanguage": "zh-CN",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/zh/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/zh/privacy#webpage",
+          "url": "https://wayfinder-ai.pages.dev/zh/privacy",
+          "name": "数据边界 — Wayfinder",
+          "description": "Wayfinder 将完整会话、文件变化摘要和项目航海图保存在用户的电脑上。",
+          "inLanguage": "zh-CN",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/privacy#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/zh/privacy#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "首页",
+              "item": "https://wayfinder-ai.pages.dev/zh/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "数据边界",
+              "item": "https://wayfinder-ai.pages.dev/zh/privacy"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

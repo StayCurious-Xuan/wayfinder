@@ -24,18 +24,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/updates#webpage",
-      "url": "https://wayfinder-ai.pages.dev/updates",
-      "name": "Wayfinder updates and release history",
-      "description": "Verified Wayfinder Early Access changes across local collection, project voyage maps, desktop platforms, privacy, and public documentation.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/updates#webpage",
+          "url": "https://wayfinder-ai.pages.dev/updates",
+          "name": "Wayfinder updates and release history",
+          "description": "Verified Wayfinder Early Access changes across local collection, project voyage maps, desktop platforms, privacy, and public documentation.",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/updates#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/updates#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://wayfinder-ai.pages.dev/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Updates",
+              "item": "https://wayfinder-ai.pages.dev/updates"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

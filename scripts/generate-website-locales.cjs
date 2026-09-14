@@ -217,6 +217,15 @@ const structuredTranslations = new Map(Object.entries({
     "Claude Code 会话历史与项目路径可视化",
   "Wayfinder reads Claude Code sessions locally and organizes goals, attempts, branches, and available evidence by project.":
     "Wayfinder 在本地读取 Claude Code 会话，并按项目整理目标、尝试、分叉和可用证据。",
+  "Home": "首页",
+  "Get started": "开始使用",
+  "AI collaboration history": "AI 协作历史",
+  "Compare ways to review AI history": "AI 历史回看方式对比",
+  "Integrations": "集成",
+  "Codex": "Codex",
+  "Claude Code": "Claude Code",
+  "Updates": "更新",
+  "Data boundary": "数据边界",
   "Data boundary — Wayfinder": "数据边界 — Wayfinder",
   "Wayfinder keeps full sessions, file-change summaries, and the voyage map on the user's computer.":
     "Wayfinder 将完整会话、文件变化摘要和项目航海图保存在用户的电脑上。"

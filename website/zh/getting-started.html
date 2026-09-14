@@ -23,18 +23,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/zh/getting-started#webpage",
-      "url": "https://wayfinder-ai.pages.dev/zh/getting-started",
-      "name": "安装并开始使用 Wayfinder",
-      "description": "选择正确的 Wayfinder 安装包，核对文件，完成首次打开，并开始采集本机 Codex 与 Claude Code 历史。",
-      "inLanguage": "zh-CN",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/zh/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/zh/getting-started#webpage",
+          "url": "https://wayfinder-ai.pages.dev/zh/getting-started",
+          "name": "安装并开始使用 Wayfinder",
+          "description": "选择正确的 Wayfinder 安装包，核对文件，完成首次打开，并开始采集本机 Codex 与 Claude Code 历史。",
+          "inLanguage": "zh-CN",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/getting-started#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/zh/getting-started#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "首页",
+              "item": "https://wayfinder-ai.pages.dev/zh/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "开始使用",
+              "item": "https://wayfinder-ai.pages.dev/zh/getting-started"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

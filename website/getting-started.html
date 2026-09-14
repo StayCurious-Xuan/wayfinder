@@ -24,18 +24,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/getting-started#webpage",
-      "url": "https://wayfinder-ai.pages.dev/getting-started",
-      "name": "Install and start using Wayfinder",
-      "description": "Choose the correct Wayfinder installer, verify it, complete first launch, and start collecting local Codex and Claude Code history.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/getting-started#webpage",
+          "url": "https://wayfinder-ai.pages.dev/getting-started",
+          "name": "Install and start using Wayfinder",
+          "description": "Choose the correct Wayfinder installer, verify it, complete first launch, and start collecting local Codex and Claude Code history.",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/getting-started#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/getting-started#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://wayfinder-ai.pages.dev/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Get started",
+              "item": "https://wayfinder-ai.pages.dev/getting-started"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

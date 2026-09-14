@@ -23,19 +23,50 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/integrations/codex#webpage",
-      "url": "https://wayfinder-ai.pages.dev/integrations/codex",
-      "name": "Codex session history and project path visualization",
-      "description": "Wayfinder reads Codex sessions locally and organizes goals, attempts, branches, and available evidence by project.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      },
-      "citation": "https://developers.openai.com/codex/cli/features/"
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/integrations/codex#webpage",
+          "url": "https://wayfinder-ai.pages.dev/integrations/codex",
+          "name": "Codex session history and project path visualization",
+          "description": "Wayfinder reads Codex sessions locally and organizes goals, attempts, branches, and available evidence by project.",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/integrations/codex#breadcrumb"
+          },
+          "citation": "https://developers.openai.com/codex/cli/features/"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/integrations/codex#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://wayfinder-ai.pages.dev/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Integrations",
+              "item": "https://wayfinder-ai.pages.dev/integrations"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Codex",
+              "item": "https://wayfinder-ai.pages.dev/integrations/codex"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

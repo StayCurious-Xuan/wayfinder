@@ -21,18 +21,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/privacy#webpage",
-      "url": "https://wayfinder-ai.pages.dev/privacy",
-      "name": "Data boundary — Wayfinder",
-      "description": "Wayfinder keeps full sessions, file-change summaries, and the voyage map on the user's computer.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/privacy#webpage",
+          "url": "https://wayfinder-ai.pages.dev/privacy",
+          "name": "Data boundary — Wayfinder",
+          "description": "Wayfinder keeps full sessions, file-change summaries, and the voyage map on the user's computer.",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/privacy#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/privacy#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://wayfinder-ai.pages.dev/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Data boundary",
+              "item": "https://wayfinder-ai.pages.dev/privacy"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

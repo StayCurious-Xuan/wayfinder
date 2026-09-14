@@ -23,18 +23,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/zh/updates#webpage",
-      "url": "https://wayfinder-ai.pages.dev/zh/updates",
-      "name": "Wayfinder 更新与发布记录",
-      "description": "Wayfinder Early Access 在本地采集、项目航海图、桌面平台、隐私和公开文档方面经过验证的变化。",
-      "inLanguage": "zh-CN",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/zh/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/zh/updates#webpage",
+          "url": "https://wayfinder-ai.pages.dev/zh/updates",
+          "name": "Wayfinder 更新与发布记录",
+          "description": "Wayfinder Early Access 在本地采集、项目航海图、桌面平台、隐私和公开文档方面经过验证的变化。",
+          "inLanguage": "zh-CN",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/updates#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/zh/updates#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "首页",
+              "item": "https://wayfinder-ai.pages.dev/zh/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "更新",
+              "item": "https://wayfinder-ai.pages.dev/zh/updates"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

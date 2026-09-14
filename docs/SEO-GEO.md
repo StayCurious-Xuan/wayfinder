@@ -81,6 +81,11 @@ Measured against `https://wayfinder-ai.pages.dev/` on 2026-09-14:
     verified production deployment. This accelerates discovery in Bing and
     other participating engines; it does not replace the sitemap or affect
     Google indexing.
+13. Publish locale-specific `BreadcrumbList` structured data for every
+    non-home canonical page. The two collector pages use the full
+    home-to-integrations-to-collector hierarchy; other pages use
+    home-to-current-page. CI verifies positions, labels, canonical item URLs,
+    and the `WebPage` reference in both languages.
 
 ## Current Status
 
@@ -98,6 +103,9 @@ Verified on 2026-09-14:
   retrieval crawlers
   (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) alongside `GPTBot`,
   `ClaudeBot`, and `Google-Extended`.
+- All 16 non-home canonical pages expose a locale-correct breadcrumb hierarchy
+  in JSON-LD. English trails resolve through `/`; Chinese trails resolve
+  through `/zh/`, and collector pages include their `/integrations` parent.
 - The deployment workflow verifies the public release and commit marker before
   posting all canonical URLs to IndexNow. The production run for commit
   `506086a5d30aa716b821c1a516430dcd8079b600` validated the deployed key and
@@ -237,6 +245,9 @@ progress and never counted as published authority.
 - All nine Chinese pages are readable with JavaScript disabled, self-canonical,
   listed in the sitemap, paired with their English source, and reproduced
   byte-for-byte by `npm run generate:website-locales`.
+- Every non-home canonical page has exactly one `BreadcrumbList` with
+  sequential positions, localized labels, canonical item URLs, and a matching
+  reference from its `WebPage` node.
 - Every sitemap URL returns HTTP 200 at its canonical URL after deployment;
   an unknown URL returns HTTP 404; the home-page Lighthouse SEO score remains
   100 and its 1440x900 visual baseline remains unchanged.

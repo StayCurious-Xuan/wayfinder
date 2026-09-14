@@ -78,6 +78,22 @@ test("discovery verifier rejects a missing canonical URL", () => {
   }
 });
 
+test("discovery verifier rejects a missing breadcrumb trail", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "getting-started.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace('"@type": "BreadcrumbList"', '"@type": "ItemList"');
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /must declare one breadcrumb trail/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("discovery verifier rejects an unhelpfully short description", () => {
   const directory = temporaryWebsite();
   try {

@@ -24,18 +24,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/integrations#webpage",
-      "url": "https://wayfinder-ai.pages.dev/integrations",
-      "name": "Wayfinder integrations for Codex and Claude Code",
-      "description": "Wayfinder reads compatible Codex and Claude Code session history locally, groups related work by project, and keeps source evidence traceable.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/integrations#webpage",
+          "url": "https://wayfinder-ai.pages.dev/integrations",
+          "name": "Wayfinder integrations for Codex and Claude Code",
+          "description": "Wayfinder reads compatible Codex and Claude Code session history locally, groups related work by project, and keeps source evidence traceable.",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/integrations#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/integrations#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://wayfinder-ai.pages.dev/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Integrations",
+              "item": "https://wayfinder-ai.pages.dev/integrations"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

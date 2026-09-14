@@ -23,18 +23,43 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/zh/integrations#webpage",
-      "url": "https://wayfinder-ai.pages.dev/zh/integrations",
-      "name": "Wayfinder 的 Codex 与 Claude Code 集成",
-      "description": "Wayfinder 在本地读取兼容的 Codex 与 Claude Code 会话历史，按项目归并相关工作，并保持来源证据可追溯。",
-      "inLanguage": "zh-CN",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/zh/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/zh/integrations#webpage",
+          "url": "https://wayfinder-ai.pages.dev/zh/integrations",
+          "name": "Wayfinder 的 Codex 与 Claude Code 集成",
+          "description": "Wayfinder 在本地读取兼容的 Codex 与 Claude Code 会话历史，按项目归并相关工作，并保持来源证据可追溯。",
+          "inLanguage": "zh-CN",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/integrations#breadcrumb"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/zh/integrations#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "首页",
+              "item": "https://wayfinder-ai.pages.dev/zh/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "集成",
+              "item": "https://wayfinder-ai.pages.dev/zh/integrations"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

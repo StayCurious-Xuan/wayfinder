@@ -23,19 +23,50 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/integrations/claude-code#webpage",
-      "url": "https://wayfinder-ai.pages.dev/integrations/claude-code",
-      "name": "Claude Code session history and project path visualization",
-      "description": "Wayfinder reads Claude Code sessions locally and organizes goals, attempts, branches, and available evidence by project.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      },
-      "citation": "https://code.claude.com/docs/en/sessions"
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/integrations/claude-code#webpage",
+          "url": "https://wayfinder-ai.pages.dev/integrations/claude-code",
+          "name": "Claude Code session history and project path visualization",
+          "description": "Wayfinder reads Claude Code sessions locally and organizes goals, attempts, branches, and available evidence by project.",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/integrations/claude-code#breadcrumb"
+          },
+          "citation": "https://code.claude.com/docs/en/sessions"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/integrations/claude-code#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://wayfinder-ai.pages.dev/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Integrations",
+              "item": "https://wayfinder-ai.pages.dev/integrations"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Claude Code",
+              "item": "https://wayfinder-ai.pages.dev/integrations/claude-code"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>

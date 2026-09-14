@@ -118,6 +118,55 @@ function jsonLdNodes(documents) {
   );
 }
 
+const breadcrumbTrails = new Map([
+  ["/ai-collaboration-history", [
+    ["/", "Home", "首页"],
+    ["/ai-collaboration-history", "AI collaboration history", "AI 协作历史"]
+  ]],
+  ["/compare", [
+    ["/", "Home", "首页"],
+    ["/compare", "Compare ways to review AI history", "AI 历史回看方式对比"]
+  ]],
+  ["/getting-started", [
+    ["/", "Home", "首页"],
+    ["/getting-started", "Get started", "开始使用"]
+  ]],
+  ["/integrations", [
+    ["/", "Home", "首页"],
+    ["/integrations", "Integrations", "集成"]
+  ]],
+  ["/integrations/claude-code", [
+    ["/", "Home", "首页"],
+    ["/integrations", "Integrations", "集成"],
+    ["/integrations/claude-code", "Claude Code", "Claude Code"]
+  ]],
+  ["/integrations/codex", [
+    ["/", "Home", "首页"],
+    ["/integrations", "Integrations", "集成"],
+    ["/integrations/codex", "Codex", "Codex"]
+  ]],
+  ["/privacy", [
+    ["/", "Home", "首页"],
+    ["/privacy", "Data boundary", "数据边界"]
+  ]],
+  ["/updates", [
+    ["/", "Home", "首页"],
+    ["/updates", "Updates", "更新"]
+  ]]
+]);
+
+function expectedBreadcrumbTrail(pathname) {
+  const isChinese = pathname.startsWith("/zh/");
+  const englishPath = isChinese ? pathname.slice(3) || "/" : pathname;
+  const trail = breadcrumbTrails.get(englishPath) || [];
+  return trail.map(([itemPath, englishName, chineseName]) => ({
+    path: isChinese
+      ? itemPath === "/" ? "/zh/" : `/zh${itemPath}`
+      : itemPath,
+    name: isChinese ? chineseName : englishName
+  }));
+}
+
 function normalizePathSeparators(value) {
   return value.replaceAll("\\", "/");
 }
@@ -323,7 +372,8 @@ function verifyStaticWebsite({
     titles.add(title);
     descriptions.add(description);
     canonicalUrls.add(expectedUrl);
-    const structuredPages = jsonLdNodes(jsonLd).filter(
+    const structuredNodes = jsonLdNodes(jsonLd);
+    const structuredPages = structuredNodes.filter(
       (node) => node["@type"] === "WebPage" || node["@type"] === "WebSite"
     );
     assert.ok(
@@ -335,6 +385,54 @@ function verifyStaticWebsite({
         node.inLanguage,
         isChinese ? "zh-CN" : "en",
         `${relativeFile} JSON-LD has the wrong language`
+      );
+    }
+    const expectedBreadcrumbs = expectedBreadcrumbTrail(
+      new URL(expectedUrl).pathname
+    );
+    const breadcrumbs = structuredNodes.filter(
+      (node) => node["@type"] === "BreadcrumbList"
+    );
+    if (expectedBreadcrumbs.length === 0) {
+      assert.equal(
+        breadcrumbs.length,
+        0,
+        `${relativeFile} must not declare a breadcrumb trail`
+      );
+    } else {
+      assert.equal(
+        breadcrumbs.length,
+        1,
+        `${relativeFile} must declare one breadcrumb trail`
+      );
+      const breadcrumb = breadcrumbs[0];
+      assert.equal(
+        breadcrumb["@id"],
+        `${expectedUrl}#breadcrumb`,
+        `${relativeFile} breadcrumb ID is stale`
+      );
+      const webPage = structuredNodes.find(
+        (node) => node["@type"] === "WebPage"
+      );
+      assert.equal(
+        webPage?.breadcrumb?.["@id"],
+        breadcrumb["@id"],
+        `${relativeFile} WebPage does not reference its breadcrumb`
+      );
+      assert.deepEqual(
+        breadcrumb.itemListElement?.map((item) => ({
+          type: item["@type"],
+          position: item.position,
+          name: item.name,
+          item: new URL(item.item).href
+        })),
+        expectedBreadcrumbs.map((item, index) => ({
+          type: "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: new URL(item.path, `${baseUrl}/`).href
+        })),
+        `${relativeFile} breadcrumb trail is stale`
       );
     }
 

@@ -22,19 +22,50 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://wayfinder-ai.pages.dev/zh/integrations/codex#webpage",
-      "url": "https://wayfinder-ai.pages.dev/zh/integrations/codex",
-      "name": "Codex 会话历史与项目路径可视化",
-      "description": "Wayfinder 在本地读取 Codex 会话，并按项目整理目标、尝试、分叉和可用证据。",
-      "inLanguage": "zh-CN",
-      "isPartOf": {
-        "@id": "https://wayfinder-ai.pages.dev/zh/#website"
-      },
-      "about": {
-        "@id": "https://wayfinder-ai.pages.dev/#software"
-      },
-      "citation": "https://developers.openai.com/codex/cli/features/"
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/zh/integrations/codex#webpage",
+          "url": "https://wayfinder-ai.pages.dev/zh/integrations/codex",
+          "name": "Codex 会话历史与项目路径可视化",
+          "description": "Wayfinder 在本地读取 Codex 会话，并按项目整理目标、尝试、分叉和可用证据。",
+          "inLanguage": "zh-CN",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          },
+          "breadcrumb": {
+            "@id": "https://wayfinder-ai.pages.dev/zh/integrations/codex#breadcrumb"
+          },
+          "citation": "https://developers.openai.com/codex/cli/features/"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wayfinder-ai.pages.dev/zh/integrations/codex#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "首页",
+              "item": "https://wayfinder-ai.pages.dev/zh/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "集成",
+              "item": "https://wayfinder-ai.pages.dev/zh/integrations"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Codex",
+              "item": "https://wayfinder-ai.pages.dev/zh/integrations/codex"
+            }
+          ]
+        }
+      ]
     }
   </script>
 </head>
