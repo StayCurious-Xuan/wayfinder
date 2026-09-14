@@ -56,7 +56,7 @@ test("discovery verifier rejects a missing canonical URL", () => {
     const pageFile = path.join(directory, "ai-collaboration-history.html");
     const html = fs.readFileSync(pageFile, "utf8")
       .replace(
-        '  <link rel="canonical" href="https://wayfinder-ai.pages.dev/ai-collaboration-history">\n',
+        /\s*<link rel="canonical" href="https:\/\/wayfinder-ai\.pages\.dev\/ai-collaboration-history">\r?\n/,
         ""
       );
     fs.writeFileSync(pageFile, html);
