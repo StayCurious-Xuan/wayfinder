@@ -69,6 +69,14 @@ test("download website exposes architecture-specific release links", () => {
     /srcset="\.\/login-voyage-mobile-2k\.png\?v=map-mobile-3-0\.3\.17"/
   );
   assert.match(html, /src="\.\/login-voyage-focus-4k\.png\?v=map-0\.3\.17"/);
+  assert.match(
+    html,
+    /<source[^>]*width="2800" height="3024"[^>]*login-voyage-mobile-2k\.png/s
+  );
+  assert.match(
+    html,
+    /<img[^>]*login-voyage-focus-4k\.png[^>]*width="3840" height="2160"/s
+  );
   assert.match(html, /<figure class="product-visual">/);
   assert.doesNotMatch(html, /class="product-image-link"/);
   assert.doesNotMatch(html, /href="\.\/login-voyage-focus-4k\.png/);
@@ -125,6 +133,11 @@ test("website scripts parse and visual CSS avoids decorative gradients", () => {
   assert.doesNotThrow(() => new vm.Script(script));
   assert.doesNotMatch(styles, /linear-gradient|radial-gradient/i);
   assert.match(styles, /a:focus-visible/);
+  assert.doesNotMatch(styles, /\.reveal\s*\{[^}]*opacity:\s*\.[0-9]+/s);
+  assert.match(
+    styles,
+    /\.flow-list > li > span\s*\{[^}]*color: #0f6f91/s
+  );
   assert.match(styles, /\.hero\s*\{/);
   assert.match(styles, /#voyageCanvas/);
   assert.doesNotMatch(styles, /\.scroll-cue|@keyframes scroll-cue/);
