@@ -69,6 +69,47 @@ function titleText(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
 }
 
+function nodeAttribute(node, name) {
+  return node.attrs?.find((attribute) => attribute.name === name)?.value;
+}
+
+function nodeText(node) {
+  if (node.nodeName === "#text") return node.value;
+  return (node.childNodes || []).map(nodeText).join("");
+}
+
+function findNodes(node, predicate, matches = []) {
+  if (predicate(node)) matches.push(node);
+  for (const child of node.childNodes || []) {
+    findNodes(child, predicate, matches);
+  }
+  return matches;
+}
+
+function visibleBreadcrumb(html, pageUrl) {
+  const document = parse5.parse(html);
+  const trails = findNodes(document, (node) =>
+    node.tagName === "nav" &&
+    (nodeAttribute(node, "class") || "").split(/\s+/)
+      .includes("document-breadcrumb")
+  );
+  return trails.map((trail) => ({
+    ariaLabel: nodeAttribute(trail, "aria-label"),
+    items: (trail.childNodes || [])
+      .filter((node) =>
+        (node.tagName === "a" || node.tagName === "span") &&
+        nodeAttribute(node, "aria-hidden") !== "true"
+      )
+      .map((node) => ({
+        name: nodeText(node).trim(),
+        item: node.tagName === "a"
+          ? new URL(nodeAttribute(node, "href"), pageUrl).href
+          : null,
+        current: nodeAttribute(node, "aria-current")
+      }))
+  }));
+}
+
 function assertValidHtml(html, relativeFile) {
   const errors = [];
   parse5.parse(html, {
@@ -125,7 +166,7 @@ const breadcrumbTrails = new Map([
   ]],
   ["/compare", [
     ["/", "Home", "首页"],
-    ["/compare", "Compare ways to review AI history", "AI 历史回看方式对比"]
+    ["/compare", "Compare", "回看方式对比"]
   ]],
   ["/getting-started", [
     ["/", "Home", "首页"],
@@ -393,11 +434,17 @@ function verifyStaticWebsite({
     const breadcrumbs = structuredNodes.filter(
       (node) => node["@type"] === "BreadcrumbList"
     );
+    const visibleBreadcrumbs = visibleBreadcrumb(html, expectedUrl);
     if (expectedBreadcrumbs.length === 0) {
       assert.equal(
         breadcrumbs.length,
         0,
         `${relativeFile} must not declare a breadcrumb trail`
+      );
+      assert.equal(
+        visibleBreadcrumbs.length,
+        0,
+        `${relativeFile} must not render a breadcrumb trail`
       );
     } else {
       assert.equal(
@@ -433,6 +480,29 @@ function verifyStaticWebsite({
           item: new URL(item.path, `${baseUrl}/`).href
         })),
         `${relativeFile} breadcrumb trail is stale`
+      );
+      assert.equal(
+        visibleBreadcrumbs.length,
+        1,
+        `${relativeFile} must render one breadcrumb trail`
+      );
+      assert.equal(
+        visibleBreadcrumbs[0].ariaLabel,
+        isChinese ? "面包屑" : "Breadcrumb",
+        `${relativeFile} breadcrumb label is stale`
+      );
+      assert.deepEqual(
+        visibleBreadcrumbs[0].items,
+        expectedBreadcrumbs.map((item, index) => ({
+          name: item.name,
+          item: index === expectedBreadcrumbs.length - 1
+            ? null
+            : new URL(item.path, `${baseUrl}/`).href,
+          current: index === expectedBreadcrumbs.length - 1
+            ? "page"
+            : undefined
+        })),
+        `${relativeFile} visible breadcrumb trail is stale`
       );
     }
 

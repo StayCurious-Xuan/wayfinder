@@ -220,7 +220,7 @@ const structuredTranslations = new Map(Object.entries({
   "Home": "首页",
   "Get started": "开始使用",
   "AI collaboration history": "AI 协作历史",
-  "Compare ways to review AI history": "AI 历史回看方式对比",
+  "Compare": "回看方式对比",
   "Integrations": "集成",
   "Codex": "Codex",
   "Claude Code": "Claude Code",

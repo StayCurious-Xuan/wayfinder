@@ -94,6 +94,25 @@ test("discovery verifier rejects a missing breadcrumb trail", () => {
   }
 });
 
+test("discovery verifier rejects a visible breadcrumb mismatch", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "getting-started.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace(
+        '<a href="/" data-zh="首页">Home</a>',
+        '<a href="/privacy" data-zh="首页">Home</a>'
+      );
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /visible breadcrumb trail is stale/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("discovery verifier rejects an unhelpfully short description", () => {
   const directory = temporaryWebsite();
   try {
