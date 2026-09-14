@@ -222,3 +222,19 @@ test("SEO and GEO monitoring covers both public languages", () => {
   assert.match(generator, /GEO English/);
   assert.match(generator, /GEO Simplified Chinese/);
 });
+
+test("collector pages cite first-party session documentation", () => {
+  const codex = read("website/integrations/codex.html").toString("utf8");
+  const claude = read(
+    "website/integrations/claude-code.html"
+  ).toString("utf8");
+
+  assert.match(
+    codex,
+    /https:\/\/developers\.openai\.com\/codex\/cli\/features\/#resuming-conversations/
+  );
+  assert.match(
+    claude,
+    /https:\/\/code\.claude\.com\/docs\/en\/sessions#export-and-locate-session-data/
+  );
+});

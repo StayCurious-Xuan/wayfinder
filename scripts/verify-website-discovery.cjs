@@ -3,6 +3,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const parse5 = require("parse5");
 
 const DEFAULT_BASE_URL = "https://wayfinder-ai.pages.dev";
 const DEFAULT_LIVE_ATTEMPTS = 12;
@@ -66,6 +67,37 @@ function alternateHrefs(html) {
 
 function titleText(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
+}
+
+function assertValidHtml(html, relativeFile) {
+  const errors = [];
+  parse5.parse(html, {
+    onParseError: (error) => {
+      errors.push(`${error.code}@${error.startLine}:${error.startCol}`);
+    }
+  });
+  assert.equal(
+    errors.length,
+    0,
+    `${relativeFile} contains malformed HTML: ${errors.join(", ")}`
+  );
+  for (const tagName of ["html", "head", "body", "main"]) {
+    const opening = (html.match(new RegExp(`<${tagName}\\b`, "gi")) || [])
+      .length;
+    const closing = (
+      html.match(new RegExp(`</${tagName}>`, "gi")) || []
+    ).length;
+    assert.equal(
+      opening,
+      1,
+      `${relativeFile} must contain exactly one <${tagName}>`
+    );
+    assert.equal(
+      closing,
+      1,
+      `${relativeFile} must contain exactly one </${tagName}>`
+    );
+  }
 }
 
 function jsonLdDocuments(html, filename) {
@@ -208,6 +240,7 @@ function verifyStaticWebsite({
       `${baseUrl}/`
     ).href;
     const html = fs.readFileSync(file, "utf8");
+    assertValidHtml(html, relativeFile);
     const title = titleText(html);
     const description = metaContent(html, "name", "description");
     const canonical = canonicalHref(html);
@@ -320,6 +353,7 @@ function verifyStaticWebsite({
   }
 
   const missingHtml = fs.readFileSync(missingPage, "utf8");
+  assertValidHtml(missingHtml, "404.html");
   assert.match(
     metaContent(missingHtml, "name", "robots") || "",
     /noindex/i,
@@ -469,6 +503,32 @@ function verifyStaticWebsite({
     new RegExp(`\\b${release.version.replaceAll(".", "\\.")}\\b`),
     "updates.html is missing the current release version"
   );
+  for (const [relativeFile, citation] of [
+    [
+      "integrations/codex.html",
+      "https://developers.openai.com/codex/cli/features/#resuming-conversations"
+    ],
+    [
+      "integrations/claude-code.html",
+      "https://code.claude.com/docs/en/sessions#export-and-locate-session-data"
+    ]
+  ]) {
+    const page = pageRecords.find(
+      (record) => record.relativeFile === relativeFile
+    );
+    const webPage = jsonLdNodes(page.jsonLd).find(
+      (node) => node["@type"] === "WebPage"
+    );
+    assert.equal(
+      webPage.citation,
+      citation,
+      `${relativeFile} JSON-LD citation is stale`
+    );
+    assert.ok(
+      page.html.includes(citation),
+      `${relativeFile} must visibly link its primary source`
+    );
+  }
 
   const pagesByUrl = new Map(
     pageRecords.map((page) => [page.expectedUrl, page])
@@ -657,6 +717,7 @@ module.exports = {
   DEFAULT_LIVE_ATTEMPTS,
   DEFAULT_LIVE_INTERVAL_MS,
   alternateHrefs,
+  assertValidHtml,
   canonicalHref,
   indexNowKeyFile,
   sitemapLocations,

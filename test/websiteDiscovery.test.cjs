@@ -69,6 +69,22 @@ test("discovery verifier rejects a missing canonical URL", () => {
   }
 });
 
+test("discovery verifier rejects malformed HTML structure", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "integrations", "codex.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace("</main>", "</main>\n  </main>");
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /must contain exactly one <\/main>/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("discovery verifier rejects a Chinese page canonicalized to English", () => {
   const directory = temporaryWebsite();
   try {
