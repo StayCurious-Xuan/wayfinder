@@ -696,7 +696,7 @@ h1 {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 50%;
-  color: var(--blue);
+  color: #0f6f91;
   background: var(--background);
   font: 11px ui-monospace, "SFMono-Regular", monospace;
   transition:
@@ -706,9 +706,9 @@ h1 {
 }
 
 .flow-list li.is-active > span {
-  border-color: var(--blue);
+  border-color: #0f6f91;
   color: #ffffff;
-  background: var(--blue);
+  background: #0f6f91;
 }
 
 .flow-list strong {
@@ -1279,15 +1279,11 @@ footer a {
 }
 
 .reveal {
-  opacity: .66;
   transform: translateY(26px);
-  transition:
-    opacity 700ms cubic-bezier(.2, .8, .2, 1),
-    transform 700ms cubic-bezier(.2, .8, .2, 1);
+  transition: transform 700ms cubic-bezier(.2, .8, .2, 1);
 }
 
 .reveal.visible {
-  opacity: 1;
   transform: none;
 }
 
