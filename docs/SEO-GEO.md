@@ -122,6 +122,15 @@ website citation.
 `GEO Optimizer` may run as an advisory check. Its score is not an acceptance
 gate because its rules are not official engine ranking criteria.
 
+### Monthly Log
+
+Record every month's SEO and GEO readings in
+[seo-geo-monitoring.md](seo-geo-monitoring.md). Run
+`node scripts/new-monitoring-entry.cjs` on or after the first business day of
+each month to append a blank dated entry, then fill it from Search Console,
+Bing Webmaster, and the fixed GEO prompt runs. The log is append-only; this
+document defines the method, the log holds the readings.
+
 ## Acceptance
 
 - Repository tests pass without skipped or weakened checks, and the discovery
