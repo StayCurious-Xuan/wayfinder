@@ -156,4 +156,18 @@ Perplexity probe into the required 15-run denominator.
   intents, topics, citation share, and prior-period comparison when processing
   completes.
 
+### Scheduled Checkpoints
+
+| Date | Check |
+| --- | --- |
+| 2026-09-16 | Recheck GSC Sitemap and Page indexing after its stated 1-2 day processing window; recheck Bing after its stated 48-hour import window |
+| 2026-09-21 | Record any first-week indexed pages, queries, impressions, clicks, Bing citations, and crawl errors without treating missing data as zero |
+| 2026-10-01 | Run the first complete monthly SEO/GEO reading, including 15 observations per engine per language where authenticated consumer sessions are available |
+| 2026-10-12 | Earliest four-week directional review; do not claim durable SEO/GEO impact before this checkpoint |
+| 2026-11-09 | Eight-week acceptance review and decision on content, distribution, and brand/domain changes |
+
+The consumer-engine baseline can be completed before these dates as soon as
+the owner provides authenticated ChatGPT Search and Perplexity sessions plus a
+Google session/region where AI Mode is actually available.
+
 ---
