@@ -1,6 +1,6 @@
 # Public Presentation Standard
 
-Reviewed: 2026-09-13.
+Reviewed: 2026-09-14.
 
 This document is the consistency contract for Wayfinder's public surfaces. It
 keeps positioning factual while applying patterns used by established
@@ -84,6 +84,8 @@ metrics, visual identity, or category boundaries.
   listicles, or competitor claims merely to increase page count.
 - Every indexed page has a unique title, description, canonical URL, visible
   H1, and structured data that agrees with visible copy.
+- Every non-home page has a visible localized breadcrumb matching its
+  `BreadcrumbList` JSON-LD and canonical URL hierarchy.
 - Unknown paths must return HTTP 404. `llms.txt` supplements, but never
   replaces, the sitemap and ordinary HTML navigation.
 - Do not add testimonials, usage counts, awards, or trust logos without a

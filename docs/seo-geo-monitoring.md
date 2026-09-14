@@ -50,15 +50,17 @@ unattended cron job; every step below is done inside a session on purpose.
 
 - 2026-09-14: Production has nine English pages and nine matching independently
   indexable Simplified Chinese pages, reciprocal `hreflang`, an 18-URL
-  bilingual sitemap, structured data, `llms.txt`, and a real HTTP 404.
-  Audited production commit `506086a5d30aa716b821c1a516430dcd8079b600`
-  passed three-platform CI, production verification, live crawling of all 18
-  URLs, and IndexNow submission. Lighthouse 13.4.1 reported SEO 100 for all 18
+  bilingual sitemap, visible and JSON-LD breadcrumbs on all 16 non-home pages,
+  structured data, `llms.txt`, and a real HTTP 404. Audited production commit
+  `51c72998ba2f7d7170de217c3f2f549fddc54364` passed 244 checks on all
+  three CI platforms, production verification, live crawling of all 18 URLs,
+  and IndexNow submission. Lighthouse 13.4.1 reported SEO 100 for all 18
   pages. Its latest production home-page audit reported performance 94,
   accessibility 100, best practices 100, SEO 100, agentic browsing 100, FCP
   and LCP of 1.4 seconds, CLS 0, and TBT 0 ms. Nu HTML Checker returned zero
   messages; Linkinator 8.1.0 verified 45 live pages, assets, and external links
-  with zero failures or redirects.
+  with zero failures or redirects. Schema.org Validator returned zero errors
+  and zero warnings for deployed English and Chinese breadcrumb samples.
   Google Search Console ownership is verified and Bing imported the property.
   Search Console accepted a manual `/sitemap.xml` resubmission on 2026-09-14,
   but the immediate table state remained `Couldn't fetch`, with no last-read

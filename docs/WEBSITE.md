@@ -40,9 +40,11 @@ internal links. Generated Chinese HTML and the bilingual sitemap are committed;
 
 Every indexed HTML page must have a unique title, description, canonical URL,
 one visible H1, reciprocal `en` / `zh-Hans` / `x-default` alternates, and valid
-JSON-LD that agrees with visible copy and language. `404.html` must remain
-present so Cloudflare Pages returns HTTP 404 for unknown paths instead of
-serving the home page as a soft 404.
+JSON-LD that agrees with visible copy and language. Every non-home page also
+has matching visible and JSON-LD breadcrumbs; collector pages include the
+integration index as their parent. `404.html` must remain present so
+Cloudflare Pages returns HTTP 404 for unknown paths instead of serving the home
+page as a soft 404.
 
 Run the locale and discovery checks before publishing:
 

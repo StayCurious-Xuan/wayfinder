@@ -44,11 +44,14 @@ supported product surfaces:
 - Homebrew Tap and Scoop Bucket;
 - MCP bundle and MCP directory listings.
 
-Historical release assets remain available for reproducibility. They must not
-be updated, relabeled as current, or linked as recommended installation paths.
-The self-hosted Homebrew and Scoop repositories were archived on 2026-09-10.
-The five open GitHub submissions owned by StayCurious-Xuan for plugins, Skills,
-workflows, and MCP directories were closed as withdrawn on the same date.
+Historical release pages remain for traceability, but their assets are not
+uniformly retained. Releases `0.3.15` and `0.3.16` are marked withdrawn and
+their installer and checksum asset lists are empty; both point users to
+`0.3.17`. Any retained older assets must not be updated, relabeled as current,
+or linked as recommended installation paths. The self-hosted Homebrew and
+Scoop repositories were archived on 2026-09-10. The five open GitHub
+submissions owned by StayCurious-Xuan for plugins, Skills, workflows, and MCP
+directories were closed as withdrawn on the same date.
 
 ## Release Process
 
