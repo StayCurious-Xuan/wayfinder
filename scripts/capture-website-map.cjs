@@ -77,6 +77,35 @@ async function main() {
       width: 1920, height: 1080, deviceScaleFactor, mobile: false
     });
     await delay(250);
+    // The shared product renderer emits Chinese chrome (the "推进/沉淀/…" action
+    // prefix on card titles and the " 轮" turn counter in card meta), and it
+    // re-renders on capture. Install a persistent observer so every render is
+    // translated for this English marketing capture. This touches the PNG, not
+    // the shipped app.
+    await evaluate(cdp, `(() => {
+      const actionPrefix = /^(?:推进|沉淀|修复|重构|优化|实现|测试|回退|探索|确认|撰写|理清)/;
+      const translate = () => {
+        for (const node of document.querySelectorAll('#graph text, #graph tspan')) {
+          if (node.children.length) continue;
+          const text = node.textContent;
+          if (!text) continue;
+          const next = text
+            .replace(actionPrefix, '')
+            .replace(/(\\d+)\\s*轮/g, (_, count) =>
+              count + (count === '1' ? ' turn' : ' turns'));
+          if (next !== text) node.textContent = next;
+        }
+      };
+      translate();
+      const graph = document.querySelector('#graph');
+      if (graph) {
+        new MutationObserver(translate).observe(graph, {
+          childList: true, subtree: true, characterData: true
+        });
+      }
+      globalThis.__wayfinderTranslate = translate;
+      return true;
+    })()`);
     const { data } = await cdp.send("Page.captureScreenshot", {
       format: "png", clip: crop, captureBeyondViewport: true
     });
