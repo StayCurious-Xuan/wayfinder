@@ -81,12 +81,15 @@ Verified on 2026-09-14:
   `https://wayfinder-ai.pages.dev/` via the HTML file method
   (`website/google9326e3bda374ef14.html`, live and immutable). Do not remove
   this file.
-- Sitemap submission in Search Console and the Bing Webmaster import from the
-  verified Google property remain pending manual steps. `robots.txt` already
-  advertises the sitemap, so Google can discover it without a manual submission;
-  the manual submission only makes status explicit sooner. Until data accrues,
-  implementation can be evaluated, but search impressions, indexing coverage,
-  and AI citation trends cannot yet be measured.
+- The sitemap `/sitemap.xml` is submitted in Google Search Console (2026-09-14)
+  and present in Bing Webmaster Tools, which imported the verified Google
+  property and already crawled the sitemap with status Success and 5 discovered
+  URLs. Bing's own reports may take up to 48 hours to populate.
+- All four setup steps (Google verification, sitemap submission, Bing import,
+  monthly monitoring cadence) are complete. Search impressions, indexing
+  coverage, and AI citation trends still need indexing time before they can be
+  measured; record them monthly in
+  [seo-geo-monitoring.md](seo-geo-monitoring.md).
 
 ## Measurement
 
