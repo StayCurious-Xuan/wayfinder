@@ -10,13 +10,16 @@ running record only; it does not redefine the method.
    day of each month to append a blank dated entry below.
 2. Fill the SEO block from Google Search Console (Performance + Pages +
    Sitemaps) and Bing Webmaster Tools. Use absolute dates.
-3. Fill both GEO language blocks by running the five fixed prompts three times
+3. Fill the first-party GEO block from Bing Webmaster Tools AI Performance,
+   including citations, cited pages, grounding queries, and visibility
+   dimensions. Keep `Pending` while Bing says imported data is processing.
+4. Fill both GEO language blocks by running the five fixed prompts three times
    each in the consumer interfaces of ChatGPT, Perplexity, Gemini, and Google
    AI Mode. Record only cited Wayfinder-owned URLs as citations; uncited model
    recall is not a citation.
-4. Recheck the authority table against the linked public page or pull request.
+5. Recheck the authority table against the linked public page or pull request.
    A submission remains `Pending` until the third party publishes or merges it.
-5. Keep prior months intact. This is an append-only ledger.
+6. Keep prior months intact. This is an append-only ledger.
 
 ## Reminder
 
@@ -60,8 +63,10 @@ unattended cron job; every step below is done inside a session on purpose.
   Search Console accepted a manual `/sitemap.xml` resubmission on 2026-09-14,
   but the immediate table state remained `Couldn't fetch`, with no last-read
   date and zero discovered pages. The public sitemap independently returned
-  HTTP 200 to a Googlebot user agent with valid XML. Successful console reads,
-  discovered URL counts, impressions, index coverage, and citation data remain
+  HTTP 200 to a Googlebot user agent with valid XML. Bing reports one
+  successful sitemap and five discovered URLs from the earlier crawl, while
+  its imported data and reports may take up to 48 hours to appear. Successful
+  18-URL console reads, impressions, index coverage, and citation data remain
   pending.
 
 ---
@@ -82,7 +87,20 @@ Recorded: 2026-09-14
 | Total clicks | Pending | 28-day; GSC data is processing |
 | Crawl / indexing errors | Pending | GSC Page indexing data is processing |
 | Sitemap status | Re-submitted; read pending | GSC accepted it on 2026-09-14; immediate row remained `Couldn't fetch` / 0 |
+| Bing sitemap status | Success; expanded read pending | 1 sitemap, 0 errors, 0 warnings, 5 URLs discovered; imported data may take up to 48 hours |
 | IndexNow deployment submission | Success | 2026-09-14; verified deployment workflow |
+
+### GEO First-Party (Bing AI Performance)
+
+| Metric | Value | Notes |
+| --- | --- | --- |
+| Total citations | Pending | Bing data and reports are processing |
+| Average cited pages | Pending | unique cited URLs per day |
+| Cited URLs | Pending | record URL and citation count |
+| Grounding queries | Pending | sampled retrieval phrases, not verbatim user prompts |
+| Intents / topics | Pending | preview dimensions |
+| Citation share | Pending | observational metric, not a ranking |
+| Prior-period comparison | Pending | annotate backfills or reporting changes |
 
 ### GEO English (5 prompts x 3 runs per engine)
 
@@ -119,5 +137,8 @@ Recorded: 2026-09-14
 - Confirm Google and Bing have re-read the 18-URL sitemap.
 - Record the first available query, impression, click, index, and fixed-prompt
   citation data without backfilling missing values.
+- Record Bing AI Performance citations, cited URLs, grounding queries,
+  intents, topics, citation share, and prior-period comparison when processing
+  completes.
 
 ---

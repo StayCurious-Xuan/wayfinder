@@ -219,6 +219,9 @@ test("SEO and GEO monitoring covers both public languages", () => {
     );
     assert.match(content, /哪些工具可以可视化 AI 辅助项目的工作历史？/);
   }
+  assert.match(method, /Bing Webmaster Tools AI Performance/);
+  assert.match(log, /### GEO First-Party \(Bing AI Performance\)/);
+  assert.match(generator, /GEO First-Party \(Bing AI Performance\)/);
   assert.match(generator, /GEO English/);
   assert.match(generator, /GEO Simplified Chinese/);
   assert.match(log, /### Authority And Distribution/);

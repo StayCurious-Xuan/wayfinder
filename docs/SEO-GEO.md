@@ -130,8 +130,11 @@ Verified on 2026-09-14:
   Googlebot-user-agent request independently returned HTTP 200 with
   `application/xml`, the XML parsed successfully, and `robots.txt` declared the
   same sitemap. The console's successful read and 18-page discovered count
-  therefore remain pending, as does Bing's reread of the expanded sitemap;
-  neither may be inferred from public crawling or the IndexNow response.
+  therefore remain pending. Bing reports one successful sitemap and five
+  discovered URLs from the earlier crawl, while its dashboard says imported
+  data can take up to 48 hours to appear. Bing's reread of the expanded
+  18-URL sitemap remains pending; neither console's final count may be inferred
+  from public crawling or the IndexNow response.
 - All setup steps (Google verification, sitemap submission, Bing import,
   monthly monitoring cadence) are complete. Search impressions, indexing
   coverage, and AI citation trends still need indexing time before they can be
@@ -174,6 +177,20 @@ counts remain the product acquisition measure.
 
 Run both fixed prompt sets monthly in the consumer search interfaces of
 ChatGPT, Perplexity, Gemini, and Google AI Mode.
+
+Also record the first-party Bing Webmaster Tools AI Performance report each
+month. It covers citations across Microsoft Copilot, AI-generated Bing
+summaries, and selected partner integrations; it does not prove visibility in
+the four independently tested consumer interfaces. Record total citations,
+average cited pages, cited URLs, grounding queries, intent and topic
+breakdowns, citation share, and the comparison with the prior period. The
+report is currently in preview and may backfill data, so annotate abrupt
+changes instead of attributing them automatically to site work. Microsoft's
+official definitions are in the
+[AI Performance launch](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)
+and
+[expanded visibility metrics](https://blogs.bing.com/search/June-2026/New-AI-Visibility-Insights-in-Bing-Webmaster-Tools-Intents-Topics-Citation-Share-Compare)
+announcements.
 
 English:
 
