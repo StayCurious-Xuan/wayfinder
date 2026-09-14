@@ -107,6 +107,12 @@ Verified on 2026-09-14:
   breadcrumb hierarchies. English trails resolve through `/`; Chinese trails
   resolve through `/zh/`, and collector pages include their `/integrations`
   parent.
+- Production commit `bc8323d69087b3dba137a6f983914d3fa75877cd`
+  passed Linux, macOS, and Windows CI, deployment verification, IndexNow
+  submission, and an independent 18-page live discovery run. Schema.org
+  Validator reported zero errors and zero warnings for the deployed English
+  Codex page, Chinese Codex page, and the comparison page's combined
+  `WebPage`, `FAQPage`, and `BreadcrumbList` graph.
 - The deployment workflow verifies the public release and commit marker before
   posting all canonical URLs to IndexNow. The production run for commit
   `506086a5d30aa716b821c1a516430dcd8079b600` validated the deployed key and
