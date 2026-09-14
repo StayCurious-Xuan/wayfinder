@@ -58,11 +58,11 @@ test("download website exposes architecture-specific release links", () => {
   assert.match(html, /src="\.\/wayfinder-icon\.svg"/);
   assert.match(
     html,
-    /href="\.\/styles\.css\?v=0\.3\.17-discovery-v1"/
+    /href="\.\/styles\.css\?v=0\.3\.17-i18n-v1"/
   );
   assert.match(
     html,
-    /src="\.\/app\.js\?v=0\.3\.17-discovery-v1"/
+    /src="\.\/app\.js\?v=0\.3\.17-i18n-v1"/
   );
   assert.match(
     html,
@@ -72,7 +72,7 @@ test("download website exposes architecture-specific release links", () => {
   assert.match(html, /<figure class="product-visual">/);
   assert.doesNotMatch(html, /class="product-image-link"/);
   assert.doesNotMatch(html, /href="\.\/login-voyage-focus-4k\.png/);
-  assert.match(html, />\s*示例航程 · 登录回跳稳定性\s*</);
+  assert.match(html, />\s*Example voyage · login redirect stability\s*</);
   assert.doesNotMatch(html, /4K 示例航程/);
   assert.equal(productImage.readUInt32BE(16), 2_560);
   assert.equal(productImage.readUInt32BE(20), 1_440);

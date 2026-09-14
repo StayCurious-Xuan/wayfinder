@@ -133,6 +133,22 @@ p {
   border-bottom: 1px solid #929aa3;
 }
 
+.lang-toggle {
+  padding: 5px 12px;
+  border: 1px solid #c4ccd4;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .6);
+  color: #40474f;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lang-toggle:hover {
+  border-color: #929aa3;
+}
+
 .hero {
   position: relative;
   display: grid;
@@ -1178,6 +1194,58 @@ footer a {
 .document-list li {
   padding-left: 18px;
   border-left: 3px solid var(--ocean-line);
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.spec-table th,
+.spec-table td {
+  padding: 10px 14px;
+  border: 1px solid var(--ocean-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.spec-table th[scope="row"] {
+  width: 42%;
+  font-weight: 700;
+  color: #2d343b;
+  background: rgba(0, 0, 0, .02);
+}
+
+.spec-table thead th {
+  font-weight: 700;
+  background: rgba(0, 0, 0, .03);
+}
+
+.compare-table {
+  font-size: 14px;
+}
+
+.compare-table th[scope="row"] {
+  width: auto;
+}
+
+@media (max-width: 540px) {
+  .spec-table {
+    font-size: 14px;
+  }
+
+  .spec-table th,
+  .spec-table td {
+    padding: 8px 10px;
+  }
+
+  .compare-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
 
 .document-actions {

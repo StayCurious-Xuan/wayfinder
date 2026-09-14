@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to review Codex and Claude Code session history, and how keeping the full process compares with keeping only the final output or a raw chat log.">
+  <meta property="og:title" content="How to review AI session history: final output vs full process — Wayfinder">
+  <meta property="og:description" content="A factual comparison of three ways to keep AI collaboration: the final output only, a raw chat log, and a reviewable project history with branches and evidence.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wayfinder-ai.pages.dev/compare">
+  <meta property="og:site_name" content="Wayfinder">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
+  <meta property="og:image:alt" content="Wayfinder organizes AI collaboration into a reviewable voyage map with branches and evidence">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wayfinder-ai.pages.dev/compare">
+  <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/compare">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/compare">
+  <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/compare">
+  <title>How to review Codex and Claude Code session history — Wayfinder</title>
+  <link rel="icon" href="/wayfinder-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=0.3.17-i18n-v1">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/compare#webpage",
+          "url": "https://wayfinder-ai.pages.dev/compare",
+          "name": "How to review Codex and Claude Code session history",
+          "description": "A factual comparison of keeping the final output only, a raw chat log, and a reviewable project history with branches and evidence.",
+          "inLanguage": ["en", "zh-CN"],
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://wayfinder-ai.pages.dev/compare#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How can I review the history of my Codex or Claude Code sessions?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can reopen individual session logs in each tool, or use a local-first desktop app such as Wayfinder that reads those sessions on your computer and organizes them by project into voyages with attempts, branches, file changes, and validation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is keeping only the final output not enough?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The final output does not show why one approach was abandoned, which test changed the direction, or what a different AI tool already tried. Keeping the full process preserves the reasoning and evidence behind the result."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is a project history different from a raw chat log?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A raw chat log stacks messages by time within one conversation. A project history groups related work across sessions and tools by project, keeps failed and working branches visible, and links each waypoint to the original session, file change, or validation."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+</head>
+<body class="document-page guide-page">
+  <header class="site-header guide-header">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/wayfinder-icon.svg" alt="">
+      <span>Wayfinder</span>
+    </a>
+    <nav class="header-nav" aria-label="Primary" data-zh-aria="主导航">
+      <a href="/ai-collaboration-history" data-zh="工作原理">How it works</a>
+      <a class="header-link" href="/" data-zh="下载">Download</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="切换到中文">中文</button>
+    </nav>
+  </header>
+  <main class="document guide-document">
+    <p class="eyebrow">HOW TO REVIEW AI SESSION HISTORY</p>
+    <h1 data-zh="如何回看 Codex 与 Claude Code 的会话历史">How to review Codex and Claude Code session history</h1>
+    <p class="document-lead" data-zh="回看 AI 会话历史有三种常见方式：只保留最终结果、保留原始聊天记录，或保留一份带分叉和证据的项目历史。三者目的不同，下面只做事实性对比。">There are three common ways to keep AI collaboration: keep only the final output, keep the raw chat log, or keep a reviewable project history with branches and evidence. They serve different purposes; the comparison below is factual, not a ranking of other tools.</p>
+
+    <section>
+      <h2 data-zh="一句话定义">One-sentence definition</h2>
+      <div class="document-copy">
+        <p data-zh="AI 协作历史是一份按项目组织的记录，保留目标、尝试、成功与失败分支，并把每个航点连回原始会话、文件变化和验证。">AI collaboration history is a project-organized record that keeps goals, attempts, and both successful and failed branches, and links each waypoint back to the original session, file change, and validation.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="三种方式对比">Three approaches compared</h2>
+      <div class="document-copy">
+        <table class="spec-table compare-table">
+          <thead>
+            <tr>
+              <th scope="col" data-zh="能力">Capability</th>
+              <th scope="col" data-zh="只留最终结果">Final output only</th>
+              <th scope="col" data-zh="原始聊天记录">Raw chat log</th>
+              <th scope="col" data-zh="项目历史（Wayfinder）">Project history (Wayfinder)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row" data-zh="保留最终答案">Keeps the final answer</th><td data-zh="是">Yes</td><td data-zh="是">Yes</td><td data-zh="是">Yes</td></tr>
+            <tr><th scope="row" data-zh="保留失败与被否决的尝试">Keeps failed / rejected attempts</th><td data-zh="否">No</td><td data-zh="部分（混在时间线里）">Partly (mixed in the timeline)</td><td data-zh="是（分支可见）">Yes (branches stay visible)</td></tr>
+            <tr><th scope="row" data-zh="跨会话/跨工具按项目归并">Groups by project across sessions/tools</th><td data-zh="否">No</td><td data-zh="否（按单次会话）">No (per single session)</td><td data-zh="是">Yes</td></tr>
+            <tr><th scope="row" data-zh="连回文件变化与验证">Links to file changes and validation</th><td data-zh="否">No</td><td data-zh="否">No</td><td data-zh="是（有证据时）">Yes (when evidence exists)</td></tr>
+            <tr><th scope="row" data-zh="数据存放">Where data lives</th><td data-zh="取决于你自己">Up to you</td><td data-zh="通常在各工具内">Usually inside each tool</td><td data-zh="本机 ~/.wayfinder">Local, ~/.wayfinder</td></tr>
+          </tbody>
+        </table>
+        <p data-zh="以上不评判其他工具的好坏；哪种方式合适取决于你是否需要回看过程。">This does not judge other tools; which approach fits depends on whether you need to review the process.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="什么时候需要项目历史">When a project history helps</h2>
+      <div class="document-copy">
+        <ul class="document-list">
+          <li data-zh="一周后回到项目，想知道为什么放弃了某个方案。">You return to a project a week later and want to know why an approach was abandoned.</li>
+          <li data-zh="同一目标在多个会话或多个 AI 工具之间推进。">One goal advanced across multiple sessions or multiple AI tools.</li>
+          <li data-zh="需要把某个结论连回当时的测试、文件修改或验证。">You need to trace a conclusion back to the test, file change, or validation behind it.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="Wayfinder 的做法">How Wayfinder does it</h2>
+      <div class="document-copy">
+        <p data-zh="Wayfinder 是本地优先的 macOS 与 Windows 桌面应用。它只读地读取本机 Codex 与 Claude Code 会话，按项目整理为航程与分支，并只在存在真实编辑证据时记录文件变化。当前版本没有账号、遥测、云同步或云分析。">Wayfinder is a local-first macOS and Windows desktop app. It reads local Codex and Claude Code sessions read-only, organizes them into voyages and branches by project, and records file changes only when real edit evidence exists. The current version has no account, telemetry, cloud sync, or cloud analysis.</p>
+        <div class="document-actions">
+          <a href="/ai-collaboration-history" data-zh="了解 AI 协作历史">Learn about AI collaboration history</a>
+          <a href="/integrations/codex" data-zh="Codex 采集说明">Codex collection</a>
+          <a href="/integrations/claude-code" data-zh="Claude Code 采集说明">Claude Code collection</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17" data-zh="下载 Early Access ↗">Download Early Access ↗</a>
+        </div>
+      </div>
+    </section>
+    <p class="document-updated" data-zh="更新日期：2026 年 9 月 14 日">Updated: 2026-09-14</p>
+  </main>
+  <footer class="guide-footer">
+    <span data-zh="Wayfinder · 本地优先的 AI 协作历史">Wayfinder · local-first AI collaboration history</span>
+    <nav class="footer-links" aria-label="Related" data-zh-aria="相关资料">
+      <a href="/" data-zh="首页">Home</a>
+      <a href="/ai-collaboration-history" data-zh="了解">Learn</a>
+      <a href="/privacy" data-zh="隐私">Privacy</a>
+      <a href="https://github.com/StayCurious-Xuan/wayfinder">GitHub ↗</a>
+    </nav>
+  </footer>
+  <script src="/i18n.js?v=0.3.17-i18n-v1" defer></script>
+</body>
+</html>

@@ -65,17 +65,19 @@ test("repository overview uses the public 2K presentation assets", () => {
 
 test("website metadata states the product category and current platforms", () => {
   const html = read("website/index.html").toString("utf8");
-  assert.match(html, /本地优先的 AI 协作航迹桌面应用/);
-  assert.match(html, /提供 macOS 与 Windows 版本/);
+  assert.match(html, /local-first desktop app that turns AI collaboration/i);
+  assert.match(html, /macOS, Windows/);
   assert.match(
     html,
-    /把 AI 协作中的目标、分叉与证据，整理成一张可回看的项目航海图/
+    /Turn the goals, branches, and evidence of AI collaboration/
   );
-  assert.match(html, /照常使用 AI，Wayfinder 自动整理成图/);
+  assert.match(html, /Use AI as usual; Wayfinder organizes it into a map\./);
   assert.match(html, /rel="canonical" href="https:\/\/wayfinder-ai\.pages\.dev\/"/);
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
   assert.match(html, /property="og:site_name" content="Wayfinder"/);
-  assert.match(html, /property="og:locale" content="zh_CN"/);
+  assert.match(html, /property="og:locale" content="en_US"/);
+  assert.match(html, /property="og:locale:alternate" content="zh_CN"/);
+  assert.match(html, /hreflang="zh-Hans"/);
   assert.match(html, /property="og:image:width" content="2560"/);
   assert.match(html, /property="og:image:alt" content="Wayfinder [^"]+"/);
   assert.match(html, /name="twitter:image:alt" content="Wayfinder [^"]+"/);
@@ -85,6 +87,9 @@ test("website metadata states the product category and current platforms", () =>
   assert.match(html, /"softwareVersion": "0\.3\.17"/);
   assert.match(html, /Wayfinder AI Collaboration History/);
   assert.match(html, /producthunt\.com\/products\/wayfinder-5/);
+  // Chinese remains available through the runtime language toggle.
+  assert.match(html, /data-zh="把 AI 协作中的目标、分叉与证据/);
+  assert.match(html, /data-lang-toggle/);
   assert.match(
     read("website/robots.txt").toString("utf8"),
     /Sitemap: https:\/\/wayfinder-ai\.pages\.dev\/sitemap\.xml/

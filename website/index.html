@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Wayfinder 是本地优先的 AI 协作航迹桌面应用，把目标、尝试、分叉、文件变更与验证整理成可回看的项目航海图。当前公开支持 Codex 与 Claude Code，提供 macOS 与 Windows 版本。">
+  <meta name="description" content="Wayfinder is a local-first desktop app that turns AI collaboration into a reviewable visual history of goals, attempts, branches, file changes, and validation. Public support for Codex and Claude Code, on macOS and Windows.">
   <meta name="theme-color" content="#f6f7f9">
-  <meta property="og:title" content="Wayfinder — 把 AI 协作过程变成可回看的航海图">
-  <meta property="og:description" content="把 AI 协作中的目标、分叉与证据整理成可回看的项目航海图。本地优先，支持 macOS 与 Windows。">
+  <meta property="og:title" content="Wayfinder — Turn AI collaboration into a reviewable voyage map">
+  <meta property="og:description" content="Organize the goals, branches, and evidence of AI collaboration into a reviewable project voyage map. Local-first, for macOS and Windows.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wayfinder-ai.pages.dev/">
   <meta property="og:site_name" content="Wayfinder">
-  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
   <meta property="og:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
   <meta property="og:image:width" content="2560">
   <meta property="og:image:height" content="1280">
-  <meta property="og:image:alt" content="Wayfinder 将 AI 协作中的目标、分叉和证据呈现为航海图">
+  <meta property="og:image:alt" content="Wayfinder renders the goals, branches, and evidence of AI collaboration as a voyage map">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Wayfinder — 把 AI 协作过程变成可回看的航海图">
-  <meta name="twitter:description" content="把 AI 协作中的目标、分叉与证据整理成可回看的项目航海图。本地优先，支持 macOS 与 Windows。">
+  <meta name="twitter:title" content="Wayfinder — Turn AI collaboration into a reviewable voyage map">
+  <meta name="twitter:description" content="Organize the goals, branches, and evidence of AI collaboration into a reviewable project voyage map. Local-first, for macOS and Windows.">
   <meta name="twitter:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
-  <meta name="twitter:image:alt" content="Wayfinder 将 AI 协作中的目标、分叉和证据呈现为航海图">
+  <meta name="twitter:image:alt" content="Wayfinder renders the goals, branches, and evidence of AI collaboration as a voyage map">
   <link rel="canonical" href="https://wayfinder-ai.pages.dev/">
-  <title>Wayfinder — 把 AI 协作过程变成可回看的航海图</title>
+  <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/">
+  <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/">
+  <title>Wayfinder — Turn AI collaboration into a reviewable voyage map</title>
   <link rel="icon" href="./wayfinder-icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./wayfinder-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=0.3.17-discovery-v1">
+  <link rel="stylesheet" href="./styles.css?v=0.3.17-i18n-v1">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -34,8 +38,8 @@
           "@id": "https://wayfinder-ai.pages.dev/#website",
           "url": "https://wayfinder-ai.pages.dev/",
           "name": "Wayfinder",
-          "description": "本地优先的 AI 协作历史桌面应用。",
-          "inLanguage": "zh-CN",
+          "description": "Local-first desktop app for AI collaboration history.",
+          "inLanguage": ["en", "zh-CN"],
           "publisher": {
             "@id": "https://wayfinder-ai.pages.dev/#organization"
           }
@@ -56,11 +60,11 @@
           "@id": "https://wayfinder-ai.pages.dev/#software",
           "name": "Wayfinder",
           "alternateName": "Wayfinder AI Collaboration History",
-          "applicationCategory": "ProductivityApplication",
+          "applicationCategory": "DeveloperApplication",
           "applicationSubCategory": "AI collaboration history",
           "operatingSystem": "macOS, Windows",
           "softwareVersion": "0.3.17",
-          "description": "Wayfinder 是本地优先的 AI 协作历史桌面应用，把目标、尝试、分叉、文件变更与验证整理成可回看的项目航海图。",
+          "description": "Wayfinder is a local-first desktop app that turns AI collaboration into a reviewable visual history of goals, attempts, branches, file changes, and validation.",
           "url": "https://wayfinder-ai.pages.dev/",
           "downloadUrl": "https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17",
           "softwareHelp": "https://wayfinder-ai.pages.dev/ai-collaboration-history",
@@ -70,10 +74,10 @@
           "screenshot": "https://wayfinder-ai.pages.dev/login-voyage-focus-4k.png",
           "isAccessibleForFree": true,
           "featureList": [
-            "按项目整理 AI 协作历史",
-            "保留成功与失败分支",
-            "关联可用的会话、文件变化与验证记录",
-            "本地保存完整历史"
+            "Organize AI collaboration history by project",
+            "Keep both successful and failed branches",
+            "Link waypoints to available sessions, file changes, and validation",
+            "Keep the complete history on your computer"
           ],
           "publisher": {
             "@id": "https://wayfinder-ai.pages.dev/#organization"
@@ -90,14 +94,15 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Wayfinder 首页">
+    <a class="brand" href="#top" aria-label="Wayfinder home" data-zh-aria="Wayfinder 首页">
       <img class="brand-mark" src="./wayfinder-icon.svg" alt="">
       <span>Wayfinder</span>
     </a>
-    <nav class="header-nav" aria-label="主导航">
-      <a href="#workflow">工作方式</a>
-      <a href="#download">下载</a>
+    <nav class="header-nav" aria-label="Primary" data-zh-aria="主导航">
+      <a href="#workflow" data-zh="工作方式">How it works</a>
+      <a href="#download" data-zh="下载">Download</a>
       <a class="header-link" href="https://github.com/StayCurious-Xuan/wayfinder">GitHub ↗</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="切换到中文">中文</button>
     </nav>
   </header>
 
@@ -150,25 +155,25 @@
             data-anchor-x="130" data-anchor-y="150">
             <path class="route-note-leader" d="M147 150 H174"></path>
             <text class="route-note-number" x="184" y="138">01</text>
-            <text class="route-note-title" x="212" y="138">确认目标</text>
-            <text class="route-note-copy" x="184" y="168">把同一件事的对话和操作放进一条航程</text>
+            <text class="route-note-title" x="212" y="138" data-zh="确认目标">Set the goal</text>
+            <text class="route-note-copy" x="184" y="168" data-zh="把同一件事的对话和操作放进一条航程">Group one goal's chats and actions into a voyage</text>
           </g>
           <g class="route-note note-branch" data-node="branch"
             data-anchor-x="300" data-anchor-y="390">
             <path class="route-note-leader" d="M283 390 H82"></path>
             <text class="route-note-number" x="82" y="372">02</text>
-            <text class="route-note-title" x="110" y="372">保留分叉</text>
-            <text class="route-note-copy" x="82" y="420">失败方案与有效路径同时可见</text>
+            <text class="route-note-title" x="110" y="372" data-zh="保留分叉">Keep branches</text>
+            <text class="route-note-copy" x="82" y="420" data-zh="失败方案与有效路径同时可见">Failed and working paths stay visible together</text>
           </g>
           <g class="route-note note-proof" data-node="proof"
             data-anchor-x="600" data-anchor-y="500">
             <path class="route-note-leader"
               d="M583 500 H558 V448 H378"></path>
             <text class="route-note-number" x="378" y="432">03</text>
-            <text class="route-note-title" x="406" y="432">查看记录</text>
+            <text class="route-note-title" x="406" y="432" data-zh="查看记录">Open the record</text>
             <text class="route-note-copy" x="378" y="476">
-              <tspan x="378">点击航点，查看当时的对话、文件修改</tspan>
-              <tspan x="378" dy="17">和测试结果</tspan>
+              <tspan x="378" data-zh="点击航点，查看当时的对话、文件修改">Click a waypoint to see the chat, file changes,</tspan>
+              <tspan x="378" dy="17" data-zh="和测试结果">and test results from that moment</tspan>
             </text>
           </g>
           <g class="route-note note-experience" data-node="experience"
@@ -176,8 +181,8 @@
             <path class="route-note-leader"
               d="M629 760 H564 V808 H366"></path>
             <text class="route-note-number" x="366" y="792">04</text>
-            <text class="route-note-title" x="394" y="792">沉淀经验</text>
-            <text class="route-note-copy" x="366" y="838">看懂走过的路，也知道下次怎么走</text>
+            <text class="route-note-title" x="394" y="792" data-zh="沉淀经验">Keep the lesson</text>
+            <text class="route-note-copy" x="366" y="838" data-zh="看懂走过的路，也知道下次怎么走">See the path you took, and how to take it next time</text>
           </g>
           <g class="hero-arrival" transform="translate(650,760)">
             <circle class="arrival-ring" r="24"></circle>
@@ -264,9 +269,9 @@
       <div class="hero-copy">
         <p class="eyebrow">AI COLLABORATION HISTORY · MACOS + WINDOWS</p>
         <h1 id="hero-title">Wayfinder</h1>
-        <p class="hero-line">把 AI 协作中的目标、分叉与证据，整理成一张可回看的项目航海图。</p>
+        <p class="hero-line" data-zh="把 AI 协作中的目标、分叉与证据，整理成一张可回看的项目航海图。">Turn the goals, branches, and evidence of AI collaboration into a reviewable project voyage map.</p>
         <div class="download-grid hero-downloads" role="group"
-          aria-label="下载 Wayfinder">
+          aria-label="Download Wayfinder" data-zh-aria="下载 Wayfinder">
           <a class="download-option" data-download="arm64"
             href="https://github.com/StayCurious-Xuan/wayfinder/releases">
             <strong>macOS</strong>
@@ -376,18 +381,18 @@
           </g>
 
           <g class="mobile-route-label label-goal">
-            <text x="20" y="36"><tspan>01</tspan> 确认目标</text>
+            <text x="20" y="36"><tspan>01</tspan> <tspan data-zh="确认目标">Set goal</tspan></text>
           </g>
           <g class="mobile-route-label label-branch">
-            <text x="50" y="219"><tspan>02</tspan> 保留分叉</text>
+            <text x="50" y="219"><tspan>02</tspan> <tspan data-zh="保留分叉">Branches</tspan></text>
           </g>
           <g class="mobile-route-label label-proof">
-            <text x="151" y="302"><tspan>03</tspan> 查看记录</text>
+            <text x="151" y="302"><tspan>03</tspan> <tspan data-zh="查看记录">Record</tspan></text>
           </g>
           <g class="mobile-route-label label-experience">
-            <text x="235" y="428"><tspan>04</tspan> 沉淀经验</text>
+            <text x="235" y="428"><tspan>04</tspan> <tspan data-zh="沉淀经验">Lesson</tspan></text>
           </g>
-          <text class="mobile-failure-note" x="279" y="63">失败保留</text>
+          <text class="mobile-failure-note" x="279" y="63" data-zh="失败保留">Failure kept</text>
 
           <g class="mobile-celebration" transform="translate(304 369)">
             <g class="mobile-celebration-rays">
@@ -420,10 +425,10 @@
           </g>
         </svg>
       </div>
-      <div class="hero-status" role="group" aria-label="产品状态">
-        <span><i class="status-dot"></i> 本地优先</span>
-        <span>无需账号</span>
-        <span>当前公开支持 Codex + Claude Code</span>
+      <div class="hero-status" role="group" aria-label="Product status" data-zh-aria="产品状态">
+        <span><i class="status-dot"></i> <span data-zh="本地优先">Local-first</span></span>
+        <span data-zh="无需账号">No account</span>
+        <span data-zh="当前公开支持 Codex + Claude Code">Public support for Codex + Claude Code</span>
       </div>
     </section>
 
@@ -431,21 +436,21 @@
       aria-labelledby="workflow-title">
       <div class="section-heading">
         <p class="eyebrow">WORKFLOW</p>
-        <h2 id="workflow-title">照常使用 AI，Wayfinder 自动整理成图。</h2>
-        <p class="section-intro">无需改变现有协作方式。当前公开版本会从 Codex 与 Claude Code 持续更新项目航海图。</p>
+        <h2 id="workflow-title" data-zh="照常使用 AI，Wayfinder 自动整理成图。">Use AI as usual; Wayfinder organizes it into a map.</h2>
+        <p class="section-intro" data-zh="无需改变现有协作方式。当前公开版本会从 Codex 与 Claude Code 持续更新项目航海图。">No change to how you already work. The current public build keeps the project voyage map updated from Codex and Claude Code.</p>
       </div>
       <ol class="flow-list">
         <li>
           <span>01</span>
-          <div><strong>打开 Wayfinder</strong><p>桌面应用在后台读取新的本地会话记录。</p></div>
+          <div><strong data-zh="打开 Wayfinder">Open Wayfinder</strong><p data-zh="桌面应用在后台读取新的本地会话记录。">The desktop app reads new local session records in the background.</p></div>
         </li>
         <li>
           <span>02</span>
-          <div><strong>照常使用 AI 工具</strong><p>目标、回复、工具动作和文件变化自动归入对应项目。</p></div>
+          <div><strong data-zh="照常使用 AI 工具">Use your AI tools as usual</strong><p data-zh="目标、回复、工具动作和文件变化自动归入对应项目。">Goals, replies, tool actions, and file changes are grouped into the right project automatically.</p></div>
         </li>
         <li>
           <span>03</span>
-          <div><strong>回看项目路径</strong><p>比较不同航程与分支，并回到原始会话和文件证据。</p></div>
+          <div><strong data-zh="回看项目路径">Review the project path</strong><p data-zh="比较不同航程与分支，并回到原始会话和文件证据。">Compare voyages and branches, and return to the original session and file evidence.</p></div>
         </li>
       </ol>
     </section>
@@ -457,23 +462,23 @@
           <source media="(max-width: 540px)"
             srcset="./login-voyage-mobile-2k.png?v=map-mobile-3-0.3.17">
           <img src="./login-voyage-focus-4k.png?v=map-0.3.17"
-            alt="Wayfinder 示例航程细节，清晰展示登录问题的失败分支、有效路径、验证节点与沉淀结果"
-            loading="lazy" decoding="async" draggable="false">
+            alt="Wayfinder example voyage detail, showing a login issue's failed branch, working path, validation node, and captured lesson"
+            loading="eager" decoding="async" draggable="false">
         </picture>
-        <figcaption>
-          示例航程 · 登录回跳稳定性
+        <figcaption data-zh="示例航程 · 登录回跳稳定性">
+          Example voyage · login redirect stability
         </figcaption>
       </figure>
       <div class="local-copy">
         <p class="eyebrow">THE PATH BEHIND THE RESULT</p>
-        <h2 id="local-title">不仅保留答案，也保留答案是怎么来的。</h2>
-        <p>从第一次尝试，到排除错误方案，再到最终验证；已有证据会按实际记录连接到对应会话、文件变化或验证结果。</p>
-        <div class="fact-line" role="group" aria-label="航程价值">
-          <span>目标与尝试</span>
-          <span>失败与回退</span>
-          <span>文件与验证</span>
+        <h2 id="local-title" data-zh="不仅保留答案，也保留答案是怎么来的。">Keep not just the answer, but how the answer was reached.</h2>
+        <p data-zh="从第一次尝试，到排除错误方案，再到最终验证；已有证据会按实际记录连接到对应会话、文件变化或验证结果。">From the first attempt, through ruling out wrong approaches, to the final validation; available evidence links to the matching session, file change, or validation result as actually recorded.</p>
+        <div class="fact-line" role="group" aria-label="Voyage value" data-zh-aria="航程价值">
+          <span data-zh="目标与尝试">Goals and attempts</span>
+          <span data-zh="失败与回退">Failures and rollbacks</span>
+          <span data-zh="文件与验证">Files and validation</span>
         </div>
-        <a class="text-link" href="./privacy">查看数据边界 →</a>
+        <a class="text-link" href="./privacy" data-zh="查看数据边界 →">See the data boundary →</a>
       </div>
     </section>
 
@@ -481,13 +486,13 @@
       aria-labelledby="evidence-title">
       <div class="section-heading">
         <p class="eyebrow">EVIDENCE, NOT VERDICTS</p>
-        <h2 id="evidence-title">关键结论，都能回到相关过程记录。</h2>
-        <p class="section-intro">会话、文件变化或验证记录会按实际可用情况保留；Wayfinder 不替你补造缺失证据。</p>
+        <h2 id="evidence-title" data-zh="关键结论，都能回到相关过程记录。">Key conclusions trace back to the related process records.</h2>
+        <p class="section-intro" data-zh="会话、文件变化或验证记录会按实际可用情况保留；Wayfinder 不替你补造缺失证据。">Sessions, file changes, and validation records are kept as actually available; Wayfinder does not invent missing evidence for you.</p>
       </div>
       <div class="evidence-lines">
-        <div><span class="route-sample live"></span><strong>正在推进</strong><p>同一目标下，不同 AI 工具的尝试可以汇入一条航程。</p></div>
-        <div><span class="route-sample failed"></span><strong>验证失败</strong><p>失败路线不会消失，测试、回滚与否决仍可追溯。</p></div>
-        <div><span class="route-sample conflict"></span><strong>证据冲突</strong><p>来源意见不一致时，保留各自证据，不替你编造结论。</p></div>
+        <div><span class="route-sample live"></span><strong data-zh="正在推进">In progress</strong><p data-zh="同一目标下，不同 AI 工具的尝试可以汇入一条航程。">Under one goal, attempts from different AI tools can merge into a single voyage.</p></div>
+        <div><span class="route-sample failed"></span><strong data-zh="验证失败">Validation failed</strong><p data-zh="失败路线不会消失，测试、回滚与否决仍可追溯。">Failed routes don't disappear; tests, rollbacks, and rejections stay traceable.</p></div>
+        <div><span class="route-sample conflict"></span><strong data-zh="证据冲突">Evidence conflict</strong><p data-zh="来源意见不一致时，保留各自证据，不替你编造结论。">When sources disagree, each side's evidence is kept; no conclusion is fabricated for you.</p></div>
       </div>
     </section>
 
@@ -503,8 +508,8 @@
       </svg>
       <div class="final-copy">
         <p class="eyebrow">TURN WORK INTO EXPERIENCE</p>
-        <h2 id="download-title">项目结束后，解决问题的方法还在。</h2>
-        <p>Wayfinder 把目标、尝试、失败和真实文件变更整理成一张本地航海图，让走过的弯路和验证过的方法都能被再次使用。</p>
+        <h2 id="download-title" data-zh="项目结束后，解决问题的方法还在。">Keep how you solved it.</h2>
+        <p data-zh="Wayfinder 把目标、尝试、失败和真实文件变更整理成一张本地航海图，让走过的弯路和验证过的方法都能被再次使用。">Wayfinder maps goals, attempts, failures, and real file changes locally, so your detours and validated methods can be reused.</p>
         <svg class="final-route-phone" viewBox="0 0 390 72"
           preserveAspectRatio="none" aria-hidden="true">
           <path class="final-route-shadow"
@@ -514,7 +519,7 @@
           <circle cx="166" cy="27" r="7"></circle>
         </svg>
         <div class="download-grid final-downloads" role="group"
-          aria-label="下载 Wayfinder">
+          aria-label="Download Wayfinder" data-zh-aria="下载 Wayfinder">
           <a class="download-option" data-download="arm64"
             href="https://github.com/StayCurious-Xuan/wayfinder/releases">
             <strong>macOS</strong><span>Apple Silicon</span>
@@ -529,17 +534,18 @@
           </a>
         </div>
       </div>
-      <div class="final-meta" role="group" aria-label="Wayfinder 网站信息">
+      <div class="final-meta" role="group" aria-label="Wayfinder site info" data-zh-aria="Wayfinder 网站信息">
         <span>Wayfinder</span>
-        <span>本地优先 · 开源</span>
+        <span data-zh="本地优先 · 开源">Local-first · open source</span>
         <span class="footer-links">
-          <a href="./ai-collaboration-history">了解</a>
-          <a href="./privacy">隐私</a>
-          <a href="https://github.com/StayCurious-Xuan/wayfinder/issues">反馈</a>
+          <a href="./ai-collaboration-history" data-zh="了解">Learn</a>
+          <a href="./privacy" data-zh="隐私">Privacy</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/issues" data-zh="反馈">Feedback</a>
         </span>
       </div>
     </section>
   </main>
-  <script src="./app.js?v=0.3.17-discovery-v1" defer></script>
+  <script src="./i18n.js?v=0.3.17-i18n-v1" defer></script>
+  <script src="./app.js?v=0.3.17-i18n-v1" defer></script>
 </body>
 </html>

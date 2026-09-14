@@ -10,6 +10,7 @@ The complete history stays on the user's computer under `~/.wayfinder`. The curr
 
 - [Wayfinder official website](https://wayfinder-ai.pages.dev/): Product overview and verified macOS and Windows downloads
 - [What is AI collaboration history?](https://wayfinder-ai.pages.dev/ai-collaboration-history): Goals, attempts, branches, evidence, supported scenarios, and common questions
+- [How to review AI session history](https://wayfinder-ai.pages.dev/compare): Final output vs raw chat log vs reviewable project history, with a factual comparison
 - [Data and privacy boundaries](https://wayfinder-ai.pages.dev/privacy): Local storage, collection, network access, and deletion
 
 ## Current Collectors

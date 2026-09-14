@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Wayfinder 本地数据与隐私边界。">
-  <meta property="og:title" content="数据边界 — Wayfinder">
-  <meta property="og:description" content="Wayfinder 的完整会话、文件变化摘要和航海图保存在你的电脑上。">
+  <meta name="description" content="Wayfinder's local data and privacy boundary.">
+  <meta property="og:title" content="Data boundary — Wayfinder">
+  <meta property="og:description" content="Wayfinder keeps full sessions, file-change summaries, and the voyage map on your computer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wayfinder-ai.pages.dev/privacy">
   <meta property="og:site_name" content="Wayfinder">
-  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
   <link rel="canonical" href="https://wayfinder-ai.pages.dev/privacy">
-  <title>数据边界 — Wayfinder</title>
+  <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/privacy">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/privacy">
+  <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/privacy">
+  <title>Data boundary — Wayfinder</title>
   <link rel="icon" href="./wayfinder-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css?v=0.3.17">
+  <link rel="stylesheet" href="./styles.css?v=0.3.17-i18n-v1">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "@id": "https://wayfinder-ai.pages.dev/privacy#webpage",
       "url": "https://wayfinder-ai.pages.dev/privacy",
-      "name": "数据边界 — Wayfinder",
-      "description": "Wayfinder 的完整会话、文件变化摘要和航海图保存在用户电脑上。",
-      "inLanguage": "zh-CN",
+      "name": "Data boundary — Wayfinder",
+      "description": "Wayfinder keeps full sessions, file-change summaries, and the voyage map on the user's computer.",
+      "inLanguage": ["en", "zh-CN"],
       "isPartOf": {
         "@id": "https://wayfinder-ai.pages.dev/#website"
       },
@@ -38,43 +42,45 @@
       <img class="brand-mark" src="./wayfinder-icon.svg" alt="">
       <span>Wayfinder</span>
     </a>
-    <nav class="header-nav" aria-label="文档导航">
-      <a href="./ai-collaboration-history">工作原理</a>
-      <a class="header-link" href="./">返回下载页</a>
+    <nav class="header-nav" aria-label="Document" data-zh-aria="文档导航">
+      <a href="./ai-collaboration-history" data-zh="工作原理">How it works</a>
+      <a class="header-link" href="./" data-zh="返回下载页">Back to download</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="切换到中文">中文</button>
     </nav>
   </header>
   <main class="document">
     <p class="eyebrow">PRIVACY</p>
-    <h1>数据边界</h1>
-    <p class="document-lead">Wayfinder 的完整会话、文件变化摘要和航海图保存在你的电脑上。</p>
+    <h1 data-zh="数据边界">Data boundary</h1>
+    <p class="document-lead" data-zh="Wayfinder 的完整会话、文件变化摘要和航海图保存在你的电脑上。">Wayfinder keeps full sessions, file-change summaries, and the voyage map on your computer.</p>
     <section>
-      <h2>本地保存</h2>
-      <p>Prompt、回复、工具摘要、验证结果、文件变化摘要和航海图存储在 <code>~/.wayfinder</code>。当前版本没有账号、遥测、广告或云同步。</p>
+      <h2 data-zh="本地保存">Stored locally</h2>
+      <p data-zh="Prompt、回复、工具摘要、验证结果、文件变化摘要和航海图存储在 ~/.wayfinder。当前版本没有账号、遥测、广告或云同步。">Prompts, replies, tool summaries, validation results, file-change summaries, and the voyage map are stored in <code>~/.wayfinder</code>. The current version has no account, telemetry, advertising, or cloud sync.</p>
     </section>
     <section>
-      <h2>自动采集</h2>
-      <p>Wayfinder 在本机读取 Codex 与 Claude Code 的兼容会话记录，并以增量方式更新航海图。</p>
+      <h2 data-zh="自动采集">Automatic collection</h2>
+      <p data-zh="Wayfinder 在本机读取 Codex 与 Claude Code 的兼容会话记录，并以增量方式更新航海图。">Wayfinder reads compatible Codex and Claude Code session records on your machine and updates the voyage map incrementally.</p>
     </section>
     <section>
-      <h2>规则分析</h2>
-      <p>当前版本只在本地根据测试失败、工具失败、用户否决和回滚等明确证据整理失败候选，不调用云端模型。</p>
+      <h2 data-zh="规则分析">Rule-based analysis</h2>
+      <p data-zh="当前版本只在本地根据测试失败、工具失败、用户否决和回滚等明确证据整理失败候选，不调用云端模型。">The current version organizes failure candidates locally from explicit evidence such as test failures, tool failures, user rejections, and rollbacks, without calling a cloud model.</p>
     </section>
     <section>
-      <h2>网络访问</h2>
-      <p>应用仅在你主动查看版本信息时打开 GitHub Releases。会话内容、文件变化摘要和航迹不会上传到 Wayfinder 服务。</p>
+      <h2 data-zh="网络访问">Network access</h2>
+      <p data-zh="应用仅在你主动查看版本信息时打开 GitHub Releases。会话内容、文件变化摘要和航迹不会上传到 Wayfinder 服务。">The app opens GitHub Releases only when you actively check for versions. Session content, file-change summaries, and the voyage map are not uploaded to a Wayfinder service.</p>
     </section>
     <section>
-      <h2>删除数据</h2>
-      <p>卸载应用不会删除历史。需要清除时，请先退出 Wayfinder，再删除 <code>~/.wayfinder</code> 中对应项目或全部数据。</p>
+      <h2 data-zh="删除数据">Deleting data</h2>
+      <p data-zh="卸载应用不会删除历史。需要清除时，请先退出 Wayfinder，再删除 ~/.wayfinder 中对应项目或全部数据。">Uninstalling the app does not delete history. To clear it, quit Wayfinder first, then delete the relevant project or all data under <code>~/.wayfinder</code>.</p>
     </section>
-    <p class="document-updated">更新日期：2026 年 9 月 13 日</p>
+    <p class="document-updated" data-zh="更新日期：2026 年 9 月 13 日">Updated: 2026-09-13</p>
   </main>
   <footer class="guide-footer">
     <span>Wayfinder</span>
-    <nav class="footer-links" aria-label="相关资料">
-      <a href="./ai-collaboration-history">AI 协作历史</a>
-      <a href="https://github.com/StayCurious-Xuan/wayfinder/blob/main/PRIVACY.md">完整政策 ↗</a>
+    <nav class="footer-links" aria-label="Related" data-zh-aria="相关资料">
+      <a href="./ai-collaboration-history" data-zh="AI 协作历史">AI collaboration history</a>
+      <a href="https://github.com/StayCurious-Xuan/wayfinder/blob/main/PRIVACY.md" data-zh="完整政策 ↗">Full policy ↗</a>
     </nav>
   </footer>
+  <script src="./i18n.js?v=0.3.17-i18n-v1" defer></script>
 </body>
 </html>

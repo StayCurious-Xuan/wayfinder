@@ -25,9 +25,9 @@ function temporaryWebsite() {
 test("website discovery surface is complete and internally consistent", () => {
   const result = verifyStaticWebsite({ websiteDir });
   assert.deepEqual(result, {
-    pages: 5,
-    sitemapEntries: 5,
-    llmsLinks: 5
+    pages: 6,
+    sitemapEntries: 6,
+    llmsLinks: 6
   });
 });
 
@@ -91,7 +91,7 @@ test("discovery verifier accepts an authentic Search Console HTML file", () => {
       `google-site-verification: ${filename}\n`
     );
     const result = verifyStaticWebsite({ websiteDir: directory });
-    assert.equal(result.pages, 5);
+    assert.equal(result.pages, 6);
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
@@ -121,7 +121,7 @@ test("discovery verifier accepts Windows line endings in llms.txt", () => {
       .replace(/\r?\n/g, "\r\n");
     fs.writeFileSync(llmsFile, llms);
     const result = verifyStaticWebsite({ websiteDir: directory });
-    assert.equal(result.llmsLinks, 5);
+    assert.equal(result.llmsLinks, 6);
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
@@ -162,7 +162,7 @@ test("live discovery verifier accepts canonical pages and a real 404", async () 
     attempts: 1,
     fetchImpl: async (url) => liveResponse(url)
   });
-  assert.equal(result.pages, 5);
+  assert.equal(result.pages, 6);
 });
 
 test("live discovery verifier rejects a soft 404", async () => {
@@ -196,7 +196,7 @@ test("live discovery verifier tolerates edge propagation for 404s", async () => 
       return liveResponse(url);
     }
   });
-  assert.equal(result.pages, 5);
+  assert.equal(result.pages, 6);
   assert.equal(unknownRequests, 2);
   assert.equal(sleeps, 1);
 });

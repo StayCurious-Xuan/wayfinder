@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Wayfinder 如何在本地读取 Codex 会话，按项目整理目标、尝试、分支、工具活动与真实文件变化。">
-  <meta property="og:title" content="Codex 会话历史与项目航海图 — Wayfinder">
-  <meta property="og:description" content="把分散的 Codex 会话按项目整理成可回看的目标、尝试、分支和验证路径。">
+  <meta name="description" content="How Wayfinder reads Codex sessions locally and organizes goals, attempts, branches, tool activity, and real file changes by project.">
+  <meta property="og:title" content="Codex session history and project voyage map — Wayfinder">
+  <meta property="og:description" content="Organize scattered Codex sessions by project into a reviewable path of goals, attempts, branches, and validation.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://wayfinder-ai.pages.dev/integrations/codex">
   <meta property="og:site_name" content="Wayfinder">
-  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
   <meta property="og:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://wayfinder-ai.pages.dev/integrations/codex">
-  <title>Codex 会话历史与项目路径可视化 — Wayfinder</title>
+  <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations/codex">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/integrations/codex">
+  <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations/codex">
+  <title>Codex session history and project path visualization — Wayfinder</title>
   <link rel="icon" href="/wayfinder-icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css?v=0.3.17">
+  <link rel="stylesheet" href="/styles.css?v=0.3.17-i18n-v1">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "@id": "https://wayfinder-ai.pages.dev/integrations/codex#webpage",
       "url": "https://wayfinder-ai.pages.dev/integrations/codex",
-      "name": "Codex 会话历史与项目路径可视化",
-      "description": "Wayfinder 在本地读取 Codex 会话并按项目整理目标、尝试、分支和可用证据。",
-      "inLanguage": "zh-CN",
+      "name": "Codex session history and project path visualization",
+      "description": "Wayfinder reads Codex sessions locally and organizes goals, attempts, branches, and available evidence by project.",
+      "inLanguage": ["en", "zh-CN"],
       "isPartOf": {
         "@id": "https://wayfinder-ai.pages.dev/#website"
       },
@@ -40,63 +44,81 @@
       <img class="brand-mark" src="/wayfinder-icon.svg" alt="">
       <span>Wayfinder</span>
     </a>
-    <nav class="header-nav" aria-label="主导航">
-      <a href="/ai-collaboration-history">工作原理</a>
-      <a class="header-link" href="/">下载</a>
+    <nav class="header-nav" aria-label="Primary" data-zh-aria="主导航">
+      <a href="/ai-collaboration-history" data-zh="工作原理">How it works</a>
+      <a class="header-link" href="/" data-zh="下载">Download</a>
+      <button type="button" class="lang-toggle" data-lang-toggle aria-label="切换到中文">中文</button>
     </nav>
   </header>
   <main class="document guide-document">
     <p class="eyebrow">CURRENT COLLECTOR · CODEX</p>
-    <h1>让 Codex 会话成为可回看的项目路径。</h1>
-    <p class="document-lead">Wayfinder 在本地读取可用的 Codex 活跃与归档会话，把属于同一项目的工作整理成航程，而不是重新生成一份聊天摘要。</p>
+    <h1 data-zh="让 Codex 会话成为可回看的项目路径。">Turn Codex sessions into a reviewable project path.</h1>
+    <p class="document-lead" data-zh="Wayfinder 在本地读取可用的 Codex 活跃与归档会话，把属于同一项目的工作整理成航程，而不是重新生成一份聊天摘要。">Wayfinder reads available active and archived Codex sessions locally and organizes work that belongs to one project into voyages, instead of regenerating a chat summary.</p>
 
     <figure class="document-visual">
       <img src="/login-voyage-focus-4k.png"
-        alt="Wayfinder 航海图展示 AI 会话中的目标、失败分支、有效路径和验证节点"
+        alt="Wayfinder voyage map showing an AI session's goal, failed branch, working path, and validation node"
         width="3840" height="2160" decoding="async" fetchpriority="high">
-      <figcaption>模拟数据示例 · 不包含真实 Codex 项目内容</figcaption>
+      <figcaption data-zh="模拟数据示例 · 不包含真实 Codex 项目内容">Simulated-data example · contains no real Codex project content</figcaption>
     </figure>
 
     <section>
-      <h2>会保留什么</h2>
+      <h2 data-zh="会保留什么">What it keeps</h2>
       <div class="document-copy">
         <ul class="document-list">
-          <li>会话中的目标、回复和工具活动来源。</li>
-          <li>同一工作区内相互关联的尝试与航程。</li>
-          <li>成功与失败路径，而不是只保留最终答案。</li>
-          <li>来源明确包含真实编辑时的文件变化。</li>
-          <li>测试或检查等可用验证信息。</li>
+          <li data-zh="会话中的目标、回复和工具活动来源。">The provenance of goals, replies, and tool activity in a session.</li>
+          <li data-zh="同一工作区内相互关联的尝试与航程。">Related attempts and voyages within the same workspace.</li>
+          <li data-zh="成功与失败路径，而不是只保留最终答案。">Both successful and failed paths, not only the final answer.</li>
+          <li data-zh="来源明确包含真实编辑时的文件变化。">File changes when the source clearly contains real edits.</li>
+          <li data-zh="测试或检查等可用验证信息。">Available validation such as tests or checks.</li>
         </ul>
       </div>
     </section>
 
     <section>
-      <h2>不会做什么</h2>
+      <h2 data-zh="不会做什么">What it does not do</h2>
       <div class="document-copy">
-        <p>Wayfinder 不调用系统 Git，不为工作区创建隐藏快照，也不会根据最终文件状态反推一段不存在的历史 Diff。未完成、失败或路径越界的工具调用不会形成文件变化。</p>
-        <p>完整历史保存在用户电脑上，当前版本没有 Wayfinder 账号、遥测、云同步或云分析。</p>
+        <p data-zh="Wayfinder 不调用系统 Git，不为工作区创建隐藏快照，也不会根据最终文件状态反推一段不存在的历史 Diff。未完成、失败或路径越界的工具调用不会形成文件变化。">Wayfinder does not invoke system Git, does not create hidden workspace snapshots, and does not infer a nonexistent historical diff from the final file state. Unfinished, failed, or out-of-bounds tool calls do not become file changes.</p>
+        <p data-zh="完整历史保存在用户电脑上，当前版本没有 Wayfinder 账号、遥测、云同步或云分析。">The complete history stays on the user's computer; the current version has no Wayfinder account, telemetry, cloud sync, or cloud analysis.</p>
       </div>
     </section>
 
     <section>
-      <h2>开始使用</h2>
+      <h2 data-zh="采集范围一览">Collection scope at a glance</h2>
       <div class="document-copy">
-        <p>安装并打开 Wayfinder 后，继续照常使用 Codex。应用首次启动会回扫本机可用历史，随后在后台增量更新对应项目航海图。</p>
+        <table class="spec-table">
+          <tbody>
+            <tr><th scope="row" data-zh="读取来源">Reads from</th><td data-zh="本机 Codex 活跃与归档会话记录">Local Codex active and archived session records</td></tr>
+            <tr><th scope="row" data-zh="归并方式">Grouping</th><td data-zh="按项目/工作区整理为航程和分支">Into voyages and branches by project/workspace</td></tr>
+            <tr><th scope="row" data-zh="文件变化来源">File-change source</th><td data-zh="仅来自真实成功、有编辑证据的工具调用">Only successful tool calls with real edit evidence</td></tr>
+            <tr><th scope="row" data-zh="插件要求">Plugin required</th><td data-zh="无；照常使用 Codex 即可">None; use Codex as usual</td></tr>
+            <tr><th scope="row" data-zh="网络">Network</th><td data-zh="仅在你查看版本时打开 GitHub Releases">Only opens GitHub Releases when you check for versions</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="开始使用">Getting started</h2>
+      <div class="document-copy">
+        <p data-zh="安装并打开 Wayfinder 后，继续照常使用 Codex。应用首次启动会回扫本机可用历史，随后在后台增量更新对应项目航海图。">Install and open Wayfinder, then keep using Codex as usual. On first launch it backfills available local history, then updates the matching project voyage map incrementally in the background.</p>
         <div class="document-actions">
-          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17">下载 Wayfinder ↗</a>
-          <a href="https://github.com/StayCurious-Xuan/wayfinder/blob/main/docs/INSTALL.md">查看安装说明 ↗</a>
-          <a href="/privacy">阅读数据边界</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17" data-zh="下载 Wayfinder ↗">Download Wayfinder ↗</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/blob/main/docs/INSTALL.md" data-zh="查看安装说明 ↗">Read the install guide ↗</a>
+          <a href="/compare" data-zh="对比：只留结果 vs 保留过程">Compare: final output vs full process</a>
+          <a href="/privacy" data-zh="阅读数据边界">Read the data boundary</a>
         </div>
       </div>
     </section>
-    <p class="document-updated">当前支持状态：Early Access · 更新日期：2026 年 9 月 14 日</p>
+    <p class="document-updated" data-zh="当前支持状态：Early Access · 更新日期：2026 年 9 月 14 日">Support status: Early Access · Updated: 2026-09-14</p>
   </main>
   <footer class="guide-footer">
-    <span>Wayfinder · Codex 采集入口</span>
-    <nav class="footer-links" aria-label="其他采集入口">
+    <span data-zh="Wayfinder · Codex 采集入口">Wayfinder · Codex collector</span>
+    <nav class="footer-links" aria-label="Other collectors" data-zh-aria="其他采集入口">
       <a href="/integrations/claude-code">Claude Code</a>
-      <a href="/">首页</a>
+      <a href="/" data-zh="首页">Home</a>
     </nav>
   </footer>
+  <script src="/i18n.js?v=0.3.17-i18n-v1" defer></script>
 </body>
 </html>

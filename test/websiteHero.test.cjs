@@ -17,19 +17,21 @@ test("hero labels share the route SVG coordinate system", () => {
     /class="route-note-title"[^>]*>([^<]+)</g
   )].map((match) => match[1]);
   assert.deepEqual(titles, [
-    "确认目标",
-    "保留分叉",
-    "查看记录",
-    "沉淀经验"
+    "Set the goal",
+    "Keep branches",
+    "Open the record",
+    "Keep the lesson"
   ]);
-  assert.ok(titles.every((title) => [...title].length === 4));
   assert.equal((svg.match(/class="route-note /g) || []).length, 4);
   assert.equal((svg.match(/class="route-note-leader"/g) || []).length, 4);
   assert.doesNotMatch(html.replace(svg, ""), /class="route-note /);
-  assert.match(svg, /把同一件事的对话和操作放进一条航程/);
-  assert.match(svg, /点击航点，查看当时的对话、文件修改/);
-  assert.match(svg, /和测试结果/);
-  assert.doesNotMatch(svg, /明确目标|连接证据/);
+  // Chinese labels stay available through the runtime language toggle.
+  assert.match(svg, /data-zh="确认目标"/);
+  assert.match(svg, /data-zh="保留分叉"/);
+  assert.match(svg, /data-zh="查看记录"/);
+  assert.match(svg, /data-zh="沉淀经验"/);
+  assert.match(svg, /data-zh="把同一件事的对话和操作放进一条航程"/);
+  assert.match(svg, /Click a waypoint to see the chat, file changes,/);
 });
 
 test("successful voyage stays at the endpoint and triggers a restrained burst", () => {
@@ -57,10 +59,10 @@ test("phone voyage has its own complete scene and animation state", () => {
     (svg.match(/class="mobile-route-label /g) || []).length,
     4
   );
-  assert.match(svg, /<tspan>01<\/tspan> 确认目标/);
-  assert.match(svg, /<tspan>02<\/tspan> 保留分叉/);
-  assert.match(svg, /<tspan>03<\/tspan> 查看记录/);
-  assert.match(svg, /<tspan>04<\/tspan> 沉淀经验/);
+  assert.match(svg, /<tspan>01<\/tspan> <tspan data-zh="确认目标">Set goal<\/tspan>/);
+  assert.match(svg, /<tspan>02<\/tspan> <tspan data-zh="保留分叉">Branches<\/tspan>/);
+  assert.match(svg, /<tspan>03<\/tspan> <tspan data-zh="查看记录">Record<\/tspan>/);
+  assert.match(svg, /<tspan>04<\/tspan> <tspan data-zh="沉淀经验">Lesson<\/tspan>/);
   assert.match(svg, /class="mobile-coast-land"/);
   assert.match(svg, /class="mobile-reef"/);
   assert.match(svg, /class="mobile-map-node mobile-success-marker"/);
@@ -87,7 +89,7 @@ test("homepage footer metadata is part of the final dark section", () => {
   );
   assert.match(html, /class="final-meta" role="group"/);
   assert.match(html, /<span>Wayfinder<\/span>/);
-  assert.match(html, /<span>本地优先 · 开源<\/span>/);
+  assert.match(html, /<span data-zh="本地优先 · 开源">Local-first · open source<\/span>/);
   assert.match(styles, /\.final-meta\s*\{[\s\S]*?color: #ffffff/);
   assert.match(styles, /\.final-meta a\s*\{[\s\S]*?color: #ffffff/);
   assert.match(html, /class="final-route-phone"/);

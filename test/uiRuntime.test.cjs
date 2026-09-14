@@ -3448,7 +3448,7 @@ test(
       })()`);
       assert.deepEqual(
         noteAnchors.map((note) => note.title),
-        ["确认目标", "保留分叉", "查看记录", "沉淀经验"]
+        ["Set the goal", "Keep branches", "Open the record", "Keep the lesson"]
       );
       assert.ok(
         noteAnchors.every((note) => note.edgeGap <= 0.1),
@@ -3567,7 +3567,7 @@ test(
       assert.equal(mobileVoyageScenes[7].celebrationOpacity, 1);
       assert.equal(mobileVoyageScenes[7].visibleRays, 8);
       assert.equal(mobileVoyageScenes[7].visiblePieces, 6);
-      assert.match(mobileVoyageScenes[7].currentLabel, /04\s+沉淀经验/);
+      assert.match(mobileVoyageScenes[7].currentLabel, /04\s+Lesson/);
 
       await cdp.send("Runtime.evaluate", {
         expression: `(() => {
