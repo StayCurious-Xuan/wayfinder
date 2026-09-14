@@ -113,6 +113,20 @@ test("discovery verifier rejects a malformed Search Console HTML file", () => {
   }
 });
 
+test("discovery verifier accepts Windows line endings in llms.txt", () => {
+  const directory = temporaryWebsite();
+  try {
+    const llmsFile = path.join(directory, "llms.txt");
+    const llms = fs.readFileSync(llmsFile, "utf8")
+      .replace(/\r?\n/g, "\r\n");
+    fs.writeFileSync(llmsFile, llms);
+    const result = verifyStaticWebsite({ websiteDir: directory });
+    assert.equal(result.llmsLinks, 5);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 function liveResponse(url, { soft404 = false } = {}) {
   const parsed = new URL(url);
   if (parsed.pathname.startsWith("/definitely-not-a-wayfinder-page-")) {

@@ -219,7 +219,8 @@ function verifyStaticWebsite({
     new RegExp(`Sitemap: ${baseUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/sitemap\\.xml`)
   );
 
-  const llms = fs.readFileSync(path.join(websiteDir, "llms.txt"), "utf8");
+  const llms = fs.readFileSync(path.join(websiteDir, "llms.txt"), "utf8")
+    .replace(/\r\n?/g, "\n");
   assert.match(llms, /^# Wayfinder\n\n> /);
   assert.doesNotMatch(llms, /<html/i);
   const llmsWebsiteLinks = [...llms.matchAll(/\]\((https?:\/\/[^)]+)\)/g)]
