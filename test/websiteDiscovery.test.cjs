@@ -7,6 +7,7 @@ const test = require("node:test");
 const { URL } = require("node:url");
 
 const {
+  canonicalPath,
   verifyLiveWebsite,
   verifyStaticWebsite
 } = require("../scripts/verify-website-discovery.cjs");
@@ -29,6 +30,14 @@ test("website discovery surface is complete and internally consistent", () => {
     sitemapEntries: 18,
     llmsLinks: 18
   });
+});
+
+test("canonical paths are stable for Windows separators", () => {
+  assert.equal(canonicalPath("zh\\index.html"), "/zh/");
+  assert.equal(
+    canonicalPath("zh\\integrations\\codex.html"),
+    "/zh/integrations/codex"
+  );
 });
 
 test("discovery verifier rejects a stale sitemap", () => {

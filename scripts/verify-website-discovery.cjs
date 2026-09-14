@@ -118,8 +118,12 @@ function jsonLdNodes(documents) {
   );
 }
 
+function normalizePathSeparators(value) {
+  return value.replaceAll("\\", "/");
+}
+
 function canonicalPath(relativeFile) {
-  const normalized = relativeFile.split(path.sep).join("/");
+  const normalized = normalizePathSeparators(relativeFile);
   if (normalized === "index.html") {
     return "/";
   }
@@ -221,15 +225,17 @@ function verifyStaticWebsite({
   const pageRecords = [];
 
   for (const file of indexableFiles) {
-    const relativeFile = path.relative(websiteDir, file);
+    const relativeFile = normalizePathSeparators(
+      path.relative(websiteDir, file)
+    );
     const expectedUrl = new URL(canonicalPath(relativeFile), `${baseUrl}/`).href;
-    const isChinese = relativeFile.split(path.sep)[0] === "zh";
+    const isChinese = relativeFile.split("/")[0] === "zh";
     const englishRelativeFile = isChinese
-      ? relativeFile.split(path.sep).slice(1).join(path.sep)
+      ? relativeFile.split("/").slice(1).join("/")
       : relativeFile;
     const chineseRelativeFile = isChinese
       ? relativeFile
-      : path.join("zh", relativeFile);
+      : `zh/${relativeFile}`;
     const englishUrl = new URL(
       canonicalPath(englishRelativeFile),
       `${baseUrl}/`
@@ -458,7 +464,7 @@ function verifyStaticWebsite({
   const homes = pageRecords.filter(
     (page) =>
       page.relativeFile === "index.html" ||
-      page.relativeFile === path.join("zh", "index.html")
+      page.relativeFile === "zh/index.html"
   );
   assert.equal(homes.length, 2, "English and Chinese home pages are required");
   for (const home of homes) {
@@ -736,7 +742,9 @@ module.exports = {
   DEFAULT_LIVE_INTERVAL_MS,
   alternateHrefs,
   assertValidHtml,
+  canonicalPath,
   canonicalHref,
+  normalizePathSeparators,
   indexNowKeyFile,
   sitemapLocations,
   sitemapRecords,
