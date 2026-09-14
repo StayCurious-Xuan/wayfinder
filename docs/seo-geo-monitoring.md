@@ -16,14 +16,12 @@ running record only; it does not redefine the method.
    not a citation.
 4. Keep prior months intact. This is an append-only ledger.
 
-## Automation
+## Reminder
 
-A macOS `launchd` agent (`~/Library/LaunchAgents/com.wayfinder.seo-geo-monthly.plist`,
-label `com.wayfinder.seo-geo-monthly`) runs step 1 automatically on the 1st of
-each month at 10:00 and logs to `scripts/.monitoring-cron.log`. This only
-appends the blank entry. Steps 2 and 3 need a logged-in Search Console/Bing
-session and live prompt runs, so they still require a person to open a working
-session and fill the readings; they cannot run fully unattended.
+A monthly repeating macOS Calendar event ("跑 Wayfinder 月度 SEO/GEO 监测",
+1st of each month at 10:00, with a same-day and a one-day-ahead alert) prompts
+the owner to open a working session and run the monitoring. There is no
+unattended cron job; every step below is done inside a session on purpose.
 
 ## Fixed GEO Prompt Set
 
