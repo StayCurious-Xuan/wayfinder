@@ -441,7 +441,7 @@ function verifyStaticWebsite({
   );
   assert.equal(
     application.subjectOf?.url,
-    "https://github.com/jaywcjlove/awesome-mac#ai-tools"
+    "https://github.com/jaywcjlove/awesome-mac/pull/2828"
   );
   const historyPage = pageRecords.find(
     (page) => page.relativeFile === "ai-collaboration-history.html"
