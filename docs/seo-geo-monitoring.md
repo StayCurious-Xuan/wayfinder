@@ -16,6 +16,15 @@ running record only; it does not redefine the method.
    not a citation.
 4. Keep prior months intact. This is an append-only ledger.
 
+## Automation
+
+A macOS `launchd` agent (`~/Library/LaunchAgents/com.wayfinder.seo-geo-monthly.plist`,
+label `com.wayfinder.seo-geo-monthly`) runs step 1 automatically on the 1st of
+each month at 10:00 and logs to `scripts/.monitoring-cron.log`. This only
+appends the blank entry. Steps 2 and 3 need a logged-in Search Console/Bing
+session and live prompt runs, so they still require a person to open a working
+session and fill the readings; they cannot run fully unattended.
+
 ## Fixed GEO Prompt Set
 
 1. What tools visualize the history of AI-assisted project work?

@@ -17,3 +17,6 @@ companion/src-tauri/target/
 .env.*
 .npmrc
 .DS_Store
+
+# Local monthly monitoring cron log
+scripts/.monitoring-cron.log
