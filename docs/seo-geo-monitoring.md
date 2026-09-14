@@ -102,23 +102,38 @@ Recorded: 2026-09-14
 | Citation share | Pending | observational metric, not a ranking |
 | Prior-period comparison | Pending | annotate backfills or reporting changes |
 
+### Consumer Engine Readiness
+
+Checked: 2026-09-14
+
+| Engine | Status | Evidence / completion requirement |
+| --- | --- | --- |
+| ChatGPT Search | Authentication required | The consumer search page redirected to login; no run counted |
+| Perplexity | Partial probe only | One English probe returned the unrelated Web3 Wayfinder with no owned URL, then anonymous repeat requests required sign-up; no aggregate is reported |
+| Gemini | Interactive run required | The signed-in consumer page opened, but a URL query did not submit the prompt; no run counted |
+| Google AI Mode | Unavailable in current session | The current Google Hong Kong session rendered ordinary search instead of AI Mode; no run counted |
+
+Complete the fixed baseline as soon as authenticated consumer sessions and a
+supported Google AI Mode region are available. Do not mix the exploratory
+Perplexity probe into the required 15-run denominator.
+
 ### GEO English (5 prompts x 3 runs per engine)
 
-| Engine | Mentioned (n/3) | Cited owned URL (n/3) | Cited URL | Factually correct |
+| Engine | Mentioned (n/15) | Cited owned URL (n/15) | Cited URL | Factually correct |
 | --- | --- | --- | --- | --- |
-| ChatGPT Search | | | | |
-| Perplexity | | | | |
-| Gemini | | | | |
-| Google AI Mode | | | | |
+| ChatGPT Search | Pending | Pending | | Pending |
+| Perplexity | Pending | Pending | | Pending |
+| Gemini | Pending | Pending | | Pending |
+| Google AI Mode | Pending | Pending | | Pending |
 
 ### GEO Simplified Chinese (5 prompts x 3 runs per engine)
 
-| Engine | Mentioned (n/3) | Cited owned URL (n/3) | Cited URL | Factually correct |
+| Engine | Mentioned (n/15) | Cited owned URL (n/15) | Cited URL | Factually correct |
 | --- | --- | --- | --- | --- |
-| ChatGPT Search | | | | |
-| Perplexity | | | | |
-| Gemini | | | | |
-| Google AI Mode | | | | |
+| ChatGPT Search | Pending | Pending | | Pending |
+| Perplexity | Pending | Pending | | Pending |
+| Gemini | Pending | Pending | | Pending |
+| Google AI Mode | Pending | Pending | | Pending |
 
 ### Authority And Distribution
 

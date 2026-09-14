@@ -224,6 +224,11 @@ test("SEO and GEO monitoring covers both public languages", () => {
   assert.match(generator, /GEO First-Party \(Bing AI Performance\)/);
   assert.match(generator, /GEO English/);
   assert.match(generator, /GEO Simplified Chinese/);
+  assert.match(method, /counts as `n\/15`/);
+  assert.match(log, /Mentioned \(n\/15\)/);
+  assert.match(generator, /Mentioned \(n\/15\)/);
+  assert.doesNotMatch(log, /Mentioned \(n\/3\)/);
+  assert.doesNotMatch(generator, /Mentioned \(n\/3\)/);
   assert.match(log, /### Authority And Distribution/);
   assert.match(
     generator,

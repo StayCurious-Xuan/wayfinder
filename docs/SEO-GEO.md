@@ -227,7 +227,8 @@ Run each prompt three times per language. Record the date, engine, language,
 whether Wayfinder was mentioned, whether a Wayfinder-owned URL was cited, the
 cited URL, and whether the description was factually correct. Do not count
 uncited model recall as a website citation, and do not combine English and
-Chinese results into one rate.
+Chinese results into one rate. Each engine therefore has 15 observations per
+language; report mention and owned-citation counts as `n/15`, not `n/3`.
 
 `GEO Optimizer` may run as an advisory check. Its score is not an acceptance
 gate because its rules are not official engine ranking criteria.
