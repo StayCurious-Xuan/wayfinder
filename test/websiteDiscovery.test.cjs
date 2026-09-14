@@ -78,6 +78,25 @@ test("discovery verifier rejects a missing canonical URL", () => {
   }
 });
 
+test("discovery verifier rejects an unhelpfully short description", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "privacy.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace(
+        /<meta name="description" content="[^"]+">/,
+        '<meta name="description" content="Local privacy.">'
+      );
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /description length must be between 90 and 170 characters/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("discovery verifier rejects malformed HTML structure", () => {
   const directory = temporaryWebsite();
   try {

@@ -259,6 +259,27 @@ function verifyStaticWebsite({
 
     assert.ok(title, `${relativeFile} is missing a title`);
     assert.ok(description, `${relativeFile} is missing a meta description`);
+    const titleLength = [...title].length;
+    const descriptionLength = [...description].length;
+    if (isChinese) {
+      assert.ok(
+        titleLength >= 8 && titleLength <= 50,
+        `${relativeFile} title length must be between 8 and 50 characters`
+      );
+      assert.ok(
+        descriptionLength >= 30 && descriptionLength <= 120,
+        `${relativeFile} description length must be between 30 and 120 characters`
+      );
+    } else {
+      assert.ok(
+        titleLength >= 20 && titleLength <= 70,
+        `${relativeFile} title length must be between 20 and 70 characters`
+      );
+      assert.ok(
+        descriptionLength >= 90 && descriptionLength <= 170,
+        `${relativeFile} description length must be between 90 and 170 characters`
+      );
+    }
     assert.equal(canonical, expectedUrl, `${relativeFile} canonical is stale`);
     assert.equal(
       htmlLanguage,

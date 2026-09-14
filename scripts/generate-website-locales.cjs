@@ -21,7 +21,7 @@ const routes = [
     metadata: {
       title: "Wayfinder — 将 AI 协作整理成可回看的项目航海图",
       description:
-        "Wayfinder 是一款本地优先的 macOS 与 Windows 桌面应用，将 AI 协作中的目标、尝试、分叉、文件变化和验证整理成可回看的视觉历史。目前公开支持 Codex 与 Claude Code。",
+        "Wayfinder 是本地优先的 macOS 与 Windows 桌面应用，把 Codex 与 Claude Code 中的目标、分叉、文件变化和验证整理成可回看的项目航海图。",
       ogTitle: "Wayfinder — 将 AI 协作整理成可回看的项目航海图",
       ogDescription:
         "把 AI 协作中的目标、分叉与证据整理成可回看的项目航海图。本地优先，支持 macOS 与 Windows。",
@@ -53,7 +53,7 @@ const routes = [
     metadata: {
       title: "在 macOS 与 Windows 上安装并开始使用 Wayfinder",
       description:
-        "选择适合 Apple Silicon、Intel macOS 或 Windows x64 的 Wayfinder 安装包，核对下载文件，完成首次打开，并开始采集本机 Codex 与 Claude Code 历史。",
+        "在 Apple Silicon、Intel macOS 或 Windows x64 上安装 Wayfinder，核对下载并开始采集本机 Codex 与 Claude Code 历史。",
       ogTitle: "安装 Wayfinder，开始保留项目过程",
       ogDescription:
         "选择正确的 Wayfinder 安装包，核对文件，完成首次打开，并从 Codex 与 Claude Code 开始建立本地项目历史。",
@@ -142,7 +142,8 @@ const routes = [
     lastmod: "2026-09-14",
     metadata: {
       title: "数据边界 — Wayfinder",
-      description: "Wayfinder 的本地数据与隐私边界。",
+      description:
+        "了解 Wayfinder 如何在本机保存会话、文件变化摘要、采集游标和航海图，以及网络访问与数据删除边界。",
       ogTitle: "数据边界 — Wayfinder",
       ogDescription:
         "Wayfinder 将完整会话、文件变化摘要和项目航海图保存在你的电脑上。"
