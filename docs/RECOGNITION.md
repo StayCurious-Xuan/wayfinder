@@ -47,6 +47,10 @@ platform awards carry more weight than broad directory counts.
   news form on 2026-09-11 and the site confirmed receipt. Changelog explicitly
   permits maintainers to submit their own non-commercial open-source work.
   Treat this as an editorial pitch until a public news item includes Wayfinder.
+- Awesome AI-Driven Development: a bilingual, factual listing was submitted to
+  the actively maintained Project & Knowledge Management section on 2026-09-14:
+  https://github.com/eltociear/awesome-AI-driven-development/pull/126
+  Treat the entry as pending until the pull request is merged.
 
 ## Excluded Channels
 

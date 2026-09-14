@@ -4,8 +4,10 @@ Wayfinder is a local-first desktop app that turns AI collaboration into a
 visual history of goals, attempts, branches, evidence, and outcomes.
 
 [Website](https://wayfinder-ai.pages.dev) ·
+[Get started](https://wayfinder-ai.pages.dev/getting-started) ·
 [How it works](https://wayfinder-ai.pages.dev/ai-collaboration-history) ·
-[Install guide](https://github.com/StayCurious-Xuan/wayfinder/blob/main/docs/INSTALL.md)
+[Integrations](https://wayfinder-ai.pages.dev/integrations) ·
+[Updates](https://wayfinder-ai.pages.dev/updates)
 
 This release corrects the public collector boundary while preserving the
 mobile website redesign and the concrete waypoint-title improvements from
@@ -19,14 +21,16 @@ mobile website redesign and the concrete waypoint-title improvements from
 
 ## Website Discovery
 
-- Adds canonical pages for AI collaboration history, Codex, Claude Code, and
-  the local-data boundary.
+- Provides independent English and Simplified Chinese canonical pages for the
+  product, installation, AI collaboration history, factual comparison,
+  integrations, release history, and local-data boundary.
 - Adds connected `WebSite`, `Organization`, `SoftwareApplication`, `WebPage`,
   and visible FAQ structured data.
-- Adds `llms.txt`, a complete sitemap, clean canonical URLs, and a real
-  Cloudflare 404 response.
-- Adds zero-dependency CI checks for metadata, structured data, internal links,
-  sitemap coverage, Search Console verification files, and soft-404 behavior.
+- Adds reciprocal `hreflang`, `llms.txt`, a bilingual sitemap, clean canonical
+  URLs, a real Cloudflare 404 response, and post-deployment IndexNow updates.
+- Adds CI checks for locale generation, metadata, structured data, internal
+  links, sitemap coverage, Search Console and IndexNow verification files, and
+  soft-404 behavior.
 
 ## Downloads
 
