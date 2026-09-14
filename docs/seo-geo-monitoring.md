@@ -56,9 +56,13 @@ unattended cron job; every step below is done inside a session on purpose.
   and LCP of 1.4 seconds, CLS 0, and TBT 0 ms. Nu HTML Checker returned zero
   messages; Linkinator 8.1.0 verified 45 live pages, assets, and external links
   with zero failures or redirects.
-  Google Search Console ownership is verified, `/sitemap.xml` is submitted,
-  and Bing imported the property; their read date, discovered URL count,
-  impressions, index coverage, and citation data remain pending.
+  Google Search Console ownership is verified and Bing imported the property.
+  Search Console accepted a manual `/sitemap.xml` resubmission on 2026-09-14,
+  but the immediate table state remained `Couldn't fetch`, with no last-read
+  date and zero discovered pages. The public sitemap independently returned
+  HTTP 200 to a Googlebot user agent with valid XML. Successful console reads,
+  discovered URL counts, impressions, index coverage, and citation data remain
+  pending.
 
 ---
 
@@ -72,13 +76,13 @@ Recorded: 2026-09-14
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Valid indexed canonical pages | Pending | of 18; console data not yet available |
-| Non-brand queries (top) | Pending | no Search Console performance data yet |
-| Total impressions | Pending | 28-day |
-| Total clicks | Pending | 28-day |
-| Crawl / indexing errors | Pending | console re-read pending |
-| Sitemap status | Submitted | 2026-09-14; 18-URL re-read pending |
-| IndexNow deployment submission | Success | 2026-09-14, commit `506086a5` |
+| Valid indexed canonical pages | Pending | GSC Page indexing says data is processing; check again in 1-2 days |
+| Non-brand queries (top) | Pending | GSC Performance says data is processing and shows no data |
+| Total impressions | Pending | 28-day; GSC data is processing |
+| Total clicks | Pending | 28-day; GSC data is processing |
+| Crawl / indexing errors | Pending | GSC Page indexing data is processing |
+| Sitemap status | Re-submitted; read pending | GSC accepted it on 2026-09-14; immediate row remained `Couldn't fetch` / 0 |
+| IndexNow deployment submission | Success | 2026-09-14; verified deployment workflow |
 
 ### GEO English (5 prompts x 3 runs per engine)
 

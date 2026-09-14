@@ -122,12 +122,16 @@ Verified on 2026-09-14:
   `https://wayfinder-ai.pages.dev/` via the HTML file method
   (`website/google9326e3bda374ef14.html`, live and immutable). Do not remove
   this file.
-- The sitemap `/sitemap.xml` was submitted in Google Search Console (2026-09-14)
-  and present in Bing Webmaster Tools, which imported the verified Google
-  property and crawled the sitemap successfully. Google and Bing re-read the
-  sitemap automatically. The 18-URL sitemap is now deployed; its new read date
-  and discovered URL count remain pending in both consoles and must not be
-  inferred from the successful live crawl or IndexNow response.
+- The sitemap `/sitemap.xml` was submitted in Google Search Console and present
+  in Bing Webmaster Tools, which imported the verified Google property and
+  previously crawled the sitemap successfully. Google Search Console accepted
+  a manual resubmission on 2026-09-14, but its immediately refreshed row still
+  showed `Couldn't fetch`, no last-read date, and zero discovered pages. A
+  Googlebot-user-agent request independently returned HTTP 200 with
+  `application/xml`, the XML parsed successfully, and `robots.txt` declared the
+  same sitemap. The console's successful read and 18-page discovered count
+  therefore remain pending, as does Bing's reread of the expanded sitemap;
+  neither may be inferred from public crawling or the IndexNow response.
 - All setup steps (Google verification, sitemap submission, Bing import,
   monthly monitoring cadence) are complete. Search impressions, indexing
   coverage, and AI citation trends still need indexing time before they can be
