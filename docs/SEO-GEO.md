@@ -105,10 +105,13 @@ Verified on 2026-09-14:
 - The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
   Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
   entry use the current Codex and Claude Code collector scope.
-- Commit `d8d1ee5d3182e9357c79b40b70fe4a1dee1d0e56` passed Linux, macOS, and
-  Windows CI, production deployment checks, the public Windows installer smoke
-  test, and independent live verification of all 18 canonical pages. Lighthouse
-  13.4.1 reported SEO 100 for every English and Chinese canonical page.
+- Production commit `fff98fe7eef23feabcb8b301d29819d4dd4829d2`
+  passed Linux, macOS, and Windows CI, production deployment checks, the public
+  Windows installer smoke test, and independent live verification of all 18
+  canonical pages. Lighthouse 13.4.1 reported SEO 100 for every English and
+  Chinese canonical page. Nu HTML Checker reported zero messages across all 18
+  pages. Linkinator 8.1.0 checked 45 live pages, assets, and external links with
+  zero broken links or redirects.
 - Google Search Console ownership is verified for
   `https://wayfinder-ai.pages.dev/` via the HTML file method
   (`website/google9326e3bda374ef14.html`, live and immutable). Do not remove
@@ -190,7 +193,8 @@ document defines the method, the log holds the readings.
 
 - Repository tests pass without skipped or weakened checks, and the discovery
   verifier rejects a missing canonical URL, a stale sitemap, a mismatched
-  document language, a one-way or incorrect `hreflang`, and a soft 404.
+  document language, malformed HTML, duplicate IDs, broken internal fragments,
+  a one-way or incorrect `hreflang`, and a soft 404.
 - All nine Chinese pages are readable with JavaScript disabled, self-canonical,
   listed in the sitemap, paired with their English source, and reproduced
   byte-for-byte by `npm run generate:website-locales`.

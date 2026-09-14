@@ -46,12 +46,14 @@ unattended cron job; every step below is done inside a session on purpose.
 - 2026-09-14: Production has nine English pages and nine matching independently
   indexable Simplified Chinese pages, reciprocal `hreflang`, an 18-URL
   bilingual sitemap, structured data, `llms.txt`, and a real HTTP 404.
-  Commit `d8d1ee5d3182e9357c79b40b70fe4a1dee1d0e56` passed three-platform CI,
-  production verification, live crawling of all 18 URLs, and IndexNow
-  submission. Lighthouse 13.4.1 reported SEO 100 for all 18 pages. Google
-  Search Console ownership is verified, `/sitemap.xml` is submitted, and Bing
-  imported the property; their read date, discovered URL count, impressions,
-  index coverage, and citation data remain pending.
+  Production commit `fff98fe7eef23feabcb8b301d29819d4dd4829d2`
+  passed three-platform CI, production verification, live crawling of all 18
+  URLs, and IndexNow submission. Lighthouse 13.4.1 reported SEO 100 for all 18
+  pages; Nu HTML Checker returned zero messages; Linkinator 8.1.0 verified 45
+  live pages, assets, and external links with zero failures or redirects.
+  Google Search Console ownership is verified, `/sitemap.xml` is submitted,
+  and Bing imported the property; their read date, discovered URL count,
+  impressions, index coverage, and citation data remain pending.
 
 ---
 
