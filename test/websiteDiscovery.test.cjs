@@ -85,6 +85,38 @@ test("discovery verifier rejects malformed HTML structure", () => {
   }
 });
 
+test("discovery verifier rejects duplicate element IDs", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "index.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace('id="download"', 'id="workflow"');
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /contains duplicate element IDs/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("discovery verifier rejects a missing internal fragment", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "index.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace('href="#workflow"', 'href="#missing-workflow"');
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /links to missing fragment #missing-workflow/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("discovery verifier rejects a Chinese page canonicalized to English", () => {
   const directory = temporaryWebsite();
   try {

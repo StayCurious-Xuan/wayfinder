@@ -151,7 +151,6 @@ function internalReferences(html, pageUrl) {
     .map((match) => match[1])
     .filter((reference) =>
       reference &&
-      !reference.startsWith("#") &&
       !reference.startsWith("data:") &&
       !reference.startsWith("mailto:")
     )
@@ -249,6 +248,8 @@ function verifyStaticWebsite({
     const robots = metaContent(html, "name", "robots") || "";
     const jsonLd = jsonLdDocuments(html, relativeFile);
     const htmlLanguage = html.match(/<html\b[^>]*\blang="([^"]+)"/i)?.[1];
+    const ids = [...html.matchAll(/\bid="([^"]+)"/gi)]
+      .map((match) => match[1]);
 
     assert.ok(title, `${relativeFile} is missing a title`);
     assert.ok(description, `${relativeFile} is missing a meta description`);
@@ -281,6 +282,11 @@ function verifyStaticWebsite({
     assert.equal(h1Count, 1, `${relativeFile} must contain exactly one H1`);
     assert.doesNotMatch(robots, /noindex/i, `${relativeFile} must be indexable`);
     assert.ok(jsonLd.length > 0, `${relativeFile} is missing JSON-LD`);
+    assert.equal(
+      new Set(ids).size,
+      ids.length,
+      `${relativeFile} contains duplicate element IDs`
+    );
     assert.ok(!titles.has(title), `${relativeFile} reuses the title "${title}"`);
     assert.ok(
       !descriptions.has(description),
@@ -372,6 +378,18 @@ function verifyStaticWebsite({
       if (reference.pathname.endsWith(".html")) {
         assert.fail(
           `${page.relativeFile} uses redirecting .html URL ${reference.pathname}`
+        );
+      }
+      if (reference.hash && referencedFile.endsWith(".html")) {
+        const targetHtml = fs.readFileSync(referencedFile, "utf8");
+        const targetIds = new Set(
+          [...targetHtml.matchAll(/\bid="([^"]+)"/gi)]
+            .map((match) => match[1])
+        );
+        const fragment = decodeURIComponent(reference.hash.slice(1));
+        assert.ok(
+          targetIds.has(fragment),
+          `${page.relativeFile} links to missing fragment ${reference.hash}`
         );
       }
     }
