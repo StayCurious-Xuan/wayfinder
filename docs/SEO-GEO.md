@@ -105,13 +105,16 @@ Verified on 2026-09-14:
 - The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
   Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
   entry use the current Codex and Claude Code collector scope.
-- Production commit `fff98fe7eef23feabcb8b301d29819d4dd4829d2`
+- Audited production commit `e1b347d30326a727604ad5bc954541faa1e31768`
   passed Linux, macOS, and Windows CI, production deployment checks, the public
   Windows installer smoke test, and independent live verification of all 18
   canonical pages. Lighthouse 13.4.1 reported SEO 100 for every English and
   Chinese canonical page. Nu HTML Checker reported zero messages across all 18
   pages. Linkinator 8.1.0 checked 45 live pages, assets, and external links with
   zero broken links or redirects.
+- The Codex and Claude Code integration pages cite the vendors' official
+  session documentation in visible copy and JSON-LD rather than relying on
+  secondary descriptions.
 - Google Search Console ownership is verified for
   `https://wayfinder-ai.pages.dev/` via the HTML file method
   (`website/google9326e3bda374ef14.html`, live and immutable). Do not remove
@@ -127,6 +130,16 @@ Verified on 2026-09-14:
   coverage, and AI citation trends still need indexing time before they can be
   measured; record them monthly in
   [seo-geo-monitoring.md](seo-geo-monitoring.md).
+
+## Domain Boundary
+
+The shared `wayfinder-ai.pages.dev` host is verified and production-ready, but
+a distinctive owned domain remains the largest optional long-term brand
+authority improvement. The obvious `wayfinder-ai.com` name is already used by
+an unrelated product and must not be adopted or represented as Wayfinder's
+domain. Any future purchase requires an owner-approved name, redirects,
+canonical and `hreflang` migration, and new Search Console verification; it is
+not part of the current zero-cost deployment.
 
 ## Measurement
 
