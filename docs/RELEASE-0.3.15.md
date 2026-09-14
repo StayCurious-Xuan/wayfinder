@@ -1,5 +1,10 @@
 # Wayfinder 0.3.15 Alpha
 
+> **Withdrawn:** public installers were removed on 2026-09-14. Use
+> [Wayfinder 0.3.17](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17),
+> which preserves the unrelated improvements with the corrected public
+> collector scope.
+
 Wayfinder can now keep TRAE CN conversations beside Codex and Claude Code
 history in the same local project map. This release also replaces vague
 waypoint names with short descriptions of the actual goal or result.

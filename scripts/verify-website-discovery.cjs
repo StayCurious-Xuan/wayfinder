@@ -286,9 +286,32 @@ function verifyStaticWebsite({
 async function fetchWithTimeout(fetchImpl, url, timeoutMs) {
   return fetchImpl(url, {
     cache: "no-store",
+    headers: { "user-agent": "Wayfinder-Discovery-Check/1.0" },
     redirect: "manual",
     signal: AbortSignal.timeout(timeoutMs)
   });
+}
+
+async function fetchEventually({
+  fetchImpl,
+  url,
+  timeoutMs,
+  attempts,
+  intervalMs,
+  sleep
+}) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await fetchWithTimeout(fetchImpl, url, timeoutMs);
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) {
+        await sleep(intervalMs);
+      }
+    }
+  }
+  throw lastError;
 }
 
 async function verifyLiveWebsite({
@@ -308,7 +331,14 @@ async function verifyLiveWebsite({
   for (const location of locations) {
     const publicUrl = new URL(location);
     const requestUrl = new URL(publicUrl.pathname, `${baseUrl}/`);
-    const response = await fetchWithTimeout(fetchImpl, requestUrl, timeoutMs);
+    const response = await fetchEventually({
+      fetchImpl,
+      url: requestUrl,
+      timeoutMs,
+      attempts,
+      intervalMs,
+      sleep
+    });
     assert.equal(
       response.status,
       200,
@@ -333,7 +363,14 @@ async function verifyLiveWebsite({
     ["/llms.txt", /text\/plain/i]
   ]) {
     const url = new URL(pathname, `${baseUrl}/`);
-    const response = await fetchWithTimeout(fetchImpl, url, timeoutMs);
+    const response = await fetchEventually({
+      fetchImpl,
+      url,
+      timeoutMs,
+      attempts,
+      intervalMs,
+      sleep
+    });
     assert.equal(response.status, 200, `${url.href} returned ${response.status}`);
     assert.match(
       response.headers.get("content-type") || "",
@@ -343,23 +380,32 @@ async function verifyLiveWebsite({
   }
 
   let unknownStatus;
+  let unknownError;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     const unknownUrl = new URL(
       `/definitely-not-a-wayfinder-page-${Date.now()}-${attempt}`,
       `${baseUrl}/`
     );
-    const unknownResponse = await fetchWithTimeout(
-      fetchImpl,
-      unknownUrl,
-      timeoutMs
-    );
-    unknownStatus = unknownResponse.status;
-    if (unknownStatus === 404) {
-      break;
+    try {
+      const unknownResponse = await fetchWithTimeout(
+        fetchImpl,
+        unknownUrl,
+        timeoutMs
+      );
+      unknownStatus = unknownResponse.status;
+      unknownError = undefined;
+      if (unknownStatus === 404) {
+        break;
+      }
+    } catch (error) {
+      unknownError = error;
     }
     if (attempt < attempts) {
       await sleep(intervalMs);
     }
+  }
+  if (unknownError) {
+    throw unknownError;
   }
   assert.equal(unknownStatus, 404, `${baseUrl} must return HTTP 404`);
 

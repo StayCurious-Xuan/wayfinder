@@ -1,5 +1,10 @@
 # Wayfinder 0.3.16 Alpha
 
+> **Withdrawn:** public installers were removed on 2026-09-14. Use
+> [Wayfinder 0.3.17](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17),
+> which keeps the waypoint-title improvements with the corrected public
+> collector scope.
+
 Wayfinder is a local-first desktop app that turns AI collaboration into a
 visual history of goals, attempts, branches, evidence, and outcomes.
 
