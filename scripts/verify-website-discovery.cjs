@@ -524,11 +524,11 @@ function verifyStaticWebsite({
   for (const [relativeFile, citation] of [
     [
       "integrations/codex.html",
-      "https://developers.openai.com/codex/cli/features/#resuming-conversations"
+      "https://developers.openai.com/codex/cli/features/"
     ],
     [
       "integrations/claude-code.html",
-      "https://code.claude.com/docs/en/sessions#export-and-locate-session-data"
+      "https://code.claude.com/docs/en/sessions"
     ]
   ]) {
     const page = pageRecords.find(

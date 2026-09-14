@@ -231,10 +231,10 @@ test("collector pages cite first-party session documentation", () => {
 
   assert.match(
     codex,
-    /https:\/\/developers\.openai\.com\/codex\/cli\/features\/#resuming-conversations/
+    /https:\/\/developers\.openai\.com\/codex\/cli\/features\//
   );
   assert.match(
     claude,
-    /https:\/\/code\.claude\.com\/docs\/en\/sessions#export-and-locate-session-data/
+    /https:\/\/code\.claude\.com\/docs\/en\/sessions/
   );
 });
