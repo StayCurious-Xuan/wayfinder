@@ -70,8 +70,14 @@ Measured against `https://wayfinder-ai.pages.dev/` on 2026-09-14:
 Verified on 2026-09-14:
 
 - The technical and content implementation is complete on the production site:
-  five indexable canonical pages, matching sitemap coverage, linked structured
-  data, `llms.txt`, and a real HTTP 404 response.
+  six indexable canonical pages (home, AI collaboration history, a comparison
+  page, Codex, Claude Code, privacy), matching sitemap coverage, linked
+  structured data, `llms.txt`, and a real HTTP 404 response.
+- The site is English-first (canonical, server-rendered) with a runtime EN/中文
+  toggle (`website/i18n.js`) and `hreflang` alternates, matching the English
+  GEO prompt set. `robots.txt` explicitly allows the AI retrieval crawlers
+  (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) alongside `GPTBot`,
+  `ClaudeBot`, and `Google-Extended`.
 - The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
   Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
   entry use the current Codex and Claude Code collector scope.
@@ -83,9 +89,9 @@ Verified on 2026-09-14:
   this file.
 - The sitemap `/sitemap.xml` is submitted in Google Search Console (2026-09-14)
   and present in Bing Webmaster Tools, which imported the verified Google
-  property and already crawled the sitemap with status Success and 5 discovered
-  URLs. Bing's own reports may take up to 48 hours to populate.
-- All four setup steps (Google verification, sitemap submission, Bing import,
+  property and crawled the sitemap successfully. Google and Bing re-read the
+  sitemap automatically; the comparison page was added to it on 2026-09-14.
+- All setup steps (Google verification, sitemap submission, Bing import,
   monthly monitoring cadence) are complete. Search impressions, indexing
   coverage, and AI citation trends still need indexing time before they can be
   measured; record them monthly in

@@ -55,7 +55,7 @@ Recorded: <YYYY-MM-DD>
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Valid indexed canonical pages | | of 5 |
+| Valid indexed canonical pages | | of 6 |
 | Non-brand queries (top) | | |
 | Total impressions | | 28-day |
 | Total clicks | | 28-day |
