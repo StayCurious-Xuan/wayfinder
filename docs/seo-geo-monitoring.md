@@ -28,10 +28,11 @@ running record only; it does not redefine the method.
 
 - 2026-09-14: On-site technical and content implementation complete; five
   indexable canonical pages, sitemap, structured data, `llms.txt`, and a real
-  404 verified in production. Google Search Console verification, sitemap
-  submission, and Bing import were still pending, so no impression, index, or
-  citation data exists yet. First data-bearing entry begins the month after
-  verification completes.
+  404 verified in production. Google Search Console ownership verified the same
+  day via the HTML file method (`website/google9326e3bda374ef14.html`). Sitemap
+  submission in Search Console and the Bing Webmaster import were still pending,
+  so no impression, index, or citation data exists yet. First data-bearing
+  entry begins the month after indexing starts.
 
 ---
 

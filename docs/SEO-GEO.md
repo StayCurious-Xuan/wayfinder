@@ -77,8 +77,14 @@ Verified on 2026-09-14:
   entry use the current Codex and Claude Code collector scope.
 - The latest main commit passed Linux, macOS, and Windows CI, production
   deployment checks, and the public Windows installer smoke test.
-- Google Search Console ownership verification and the subsequent Bing
-  Webmaster import remain pending. Until those are complete and data accrues,
+- Google Search Console ownership is verified for
+  `https://wayfinder-ai.pages.dev/` via the HTML file method
+  (`website/google9326e3bda374ef14.html`, live and immutable). Do not remove
+  this file.
+- Sitemap submission in Search Console and the Bing Webmaster import from the
+  verified Google property remain pending manual steps. `robots.txt` already
+  advertises the sitemap, so Google can discover it without a manual submission;
+  the manual submission only makes status explicit sooner. Until data accrues,
   implementation can be evaluated, but search impressions, indexing coverage,
   and AI citation trends cannot yet be measured.
 
