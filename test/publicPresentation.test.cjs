@@ -82,7 +82,7 @@ test("website metadata states the product category and current platforms", () =>
   assert.match(html, /"@type": "SoftwareApplication"/);
   assert.match(html, /"@type": "WebSite"/);
   assert.match(html, /"@type": "Organization"/);
-  assert.match(html, /"softwareVersion": "0\.3\.16"/);
+  assert.match(html, /"softwareVersion": "0\.3\.17"/);
   assert.match(html, /Wayfinder AI Collaboration History/);
   assert.match(html, /producthunt\.com\/products\/wayfinder-5/);
   assert.match(

@@ -30,7 +30,7 @@ result.
 - macOS: Apple Silicon and Intel
 - Windows: x64
 - Current public collectors: Codex and Claude Code
-- Current public release: 0.3.16 early access
+- Current public release: 0.3.17 early access
 
 Do not describe the current collectors as the product boundary. Do not claim
 support for an unpublished collector, package manager, plugin, Skill, or MCP

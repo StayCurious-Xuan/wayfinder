@@ -20,7 +20,7 @@ The complete history stays on the user's computer under `~/.wayfinder`. The curr
 ## Source And Downloads
 
 - [GitHub repository](https://github.com/StayCurious-Xuan/wayfinder): Source code, README, issues, security policy, and public project history
-- [Current Early Access release](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16): Apple Silicon, Intel macOS, Windows x64, and checksums
+- [Current Early Access release](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17): Apple Silicon, Intel macOS, Windows x64, and checksums
 - [Install guide](https://github.com/StayCurious-Xuan/wayfinder/blob/main/docs/INSTALL.md): Platform-specific installation and first-run steps
 - [Privacy policy](https://github.com/StayCurious-Xuan/wayfinder/blob/main/PRIVACY.md): Complete local-data contract
 
