@@ -139,14 +139,21 @@ p {
   border-radius: 999px;
   background: rgba(255, 255, 255, .6);
   color: #40474f;
+  font-family: Arial, sans-serif;
   font-size: 12px;
   font-weight: 700;
+  letter-spacing: 0;
   line-height: 1;
   cursor: pointer;
 }
 
 .lang-toggle:hover {
   border-color: #929aa3;
+}
+
+.header-nav .lang-toggle {
+  padding: 5px 12px;
+  color: #40474f;
 }
 
 .hero {
@@ -1345,7 +1352,7 @@ footer a {
     padding: 0 18px;
   }
 
-  .header-nav > a:not(.header-link) {
+  .header-nav > a:not(.header-link):not(.lang-toggle) {
     display: none;
   }
 

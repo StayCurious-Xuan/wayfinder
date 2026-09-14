@@ -25,7 +25,7 @@ function blankEntry(label) {
     "",
     "| Metric | Value | Notes |",
     "| --- | --- | --- |",
-    "| Valid indexed canonical pages | | of 6 |",
+    "| Valid indexed canonical pages | | of 12 |",
     "| Non-brand queries (top) | | |",
     "| Total impressions | | 28-day |",
     "| Total clicks | | 28-day |",
@@ -68,4 +68,3 @@ function main() {
 }
 
 main();
-

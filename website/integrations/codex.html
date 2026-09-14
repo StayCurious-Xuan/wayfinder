@@ -15,7 +15,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://wayfinder-ai.pages.dev/integrations/codex">
   <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations/codex">
-  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/integrations/codex">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations/codex">
   <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations/codex">
   <title>Codex session history and project path visualization — Wayfinder</title>
   <link rel="icon" href="/wayfinder-icon.svg" type="image/svg+xml">
@@ -28,7 +28,7 @@
       "url": "https://wayfinder-ai.pages.dev/integrations/codex",
       "name": "Codex session history and project path visualization",
       "description": "Wayfinder reads Codex sessions locally and organizes goals, attempts, branches, and available evidence by project.",
-      "inLanguage": ["en", "zh-CN"],
+      "inLanguage": "en",
       "isPartOf": {
         "@id": "https://wayfinder-ai.pages.dev/#website"
       },
@@ -47,7 +47,9 @@
     <nav class="header-nav" aria-label="Primary" data-zh-aria="主导航">
       <a href="/ai-collaboration-history" data-zh="工作原理">How it works</a>
       <a class="header-link" href="/" data-zh="下载">Download</a>
-      <button type="button" class="lang-toggle" data-lang-toggle aria-label="切换到中文">中文</button>
+      <a class="lang-toggle" data-language-link
+        href="/zh/integrations/codex" lang="zh-Hans"
+        hreflang="zh-Hans" aria-label="切换到中文">中文</a>
     </nav>
   </header>
   <main class="document guide-document">
@@ -58,6 +60,7 @@
     <figure class="document-visual">
       <img src="/login-voyage-focus-4k.png"
         alt="Wayfinder voyage map showing an AI session's goal, failed branch, working path, and validation node"
+        data-zh-alt="Wayfinder 项目航海图，展示 AI 会话的目标、失败分支、有效路径和验证航点"
         width="3840" height="2160" decoding="async" fetchpriority="high">
       <figcaption data-zh="模拟数据示例 · 不包含真实 Codex 项目内容">Simulated-data example · contains no real Codex project content</figcaption>
     </figure>
@@ -119,6 +122,5 @@
       <a href="/" data-zh="首页">Home</a>
     </nav>
   </footer>
-  <script src="/i18n.js?v=0.3.17-i18n-v1" defer></script>
 </body>
 </html>

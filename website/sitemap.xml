@@ -1,27 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wayfinder-ai.pages.dev/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/"/>
     <lastmod>2026-09-14</lastmod>
   </url>
   <url>
     <loc>https://wayfinder-ai.pages.dev/ai-collaboration-history</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/ai-collaboration-history"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/ai-collaboration-history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/ai-collaboration-history"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/ai-collaboration-history</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/ai-collaboration-history"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/ai-collaboration-history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/ai-collaboration-history"/>
     <lastmod>2026-09-14</lastmod>
   </url>
   <url>
     <loc>https://wayfinder-ai.pages.dev/compare</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/compare"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/compare"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/compare"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/compare</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/compare"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/compare"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/compare"/>
     <lastmod>2026-09-14</lastmod>
   </url>
   <url>
     <loc>https://wayfinder-ai.pages.dev/integrations/codex</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations/codex"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations/codex"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations/codex"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/integrations/codex</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations/codex"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations/codex"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations/codex"/>
     <lastmod>2026-09-14</lastmod>
   </url>
   <url>
     <loc>https://wayfinder-ai.pages.dev/integrations/claude-code</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations/claude-code"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations/claude-code"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations/claude-code"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/integrations/claude-code</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations/claude-code"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations/claude-code"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations/claude-code"/>
     <lastmod>2026-09-14</lastmod>
   </url>
   <url>
     <loc>https://wayfinder-ai.pages.dev/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/privacy"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/privacy"/>
     <lastmod>2026-09-14</lastmod>
   </url>
 </urlset>

@@ -25,10 +25,12 @@
     "companion:build": "node scripts/build-companion-app.cjs",
     "watch": "tsc -w -p .",
     "import:history": "npm run compile && node scripts/import-memory-history.cjs",
+    "generate:website-locales": "node scripts/generate-website-locales.cjs",
+    "verify:website-locales": "node scripts/generate-website-locales.cjs --check",
     "verify:website-discovery": "node scripts/verify-website-discovery.cjs",
     "lint": "eslint src test",
     "test": "npm run compile && node --test --test-concurrency=1 test/*.test.cjs",
-    "check": "npm run verify:website-discovery && npm run lint && npm test"
+    "check": "npm run verify:website-locales && npm run verify:website-discovery && npm run lint && npm test"
   },
   "dependencies": {
     "@vscode/codicons": "^0.0.36",
@@ -44,6 +46,7 @@
     "d3": "^7.9.0",
     "esbuild": "^0.28.2",
     "eslint": "^9.35.0",
+    "parse5": "^7.3.0",
     "postject": "1.0.0-alpha.6",
     "rimraf": "^6.0.1",
     "spdx-license-list": "6.12.0",

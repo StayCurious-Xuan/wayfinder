@@ -33,15 +33,16 @@ unattended cron job; every step below is done inside a session on purpose.
 
 ## Status Baseline
 
-- 2026-09-14: On-site technical and content implementation complete; five
-  indexable canonical pages, sitemap, structured data, `llms.txt`, and a real
-  404 verified in production. Google Search Console ownership verified the same
-  day via the HTML file method (`website/google9326e3bda374ef14.html`), the
-  sitemap `/sitemap.xml` was submitted in Search Console, and Bing Webmaster
-  Tools imported the verified Google property and crawled the sitemap with
-  status Success (5 URLs discovered). No impression, index, or citation data
-  exists yet. The first data-bearing entry begins the month after indexing
-  starts.
+- 2026-09-14: The production baseline has six English canonical pages,
+  structured data, `llms.txt`, and a real HTTP 404. Google Search Console
+  ownership was verified the same day via the HTML file method
+  (`website/google9326e3bda374ef14.html`), `/sitemap.xml` was submitted, and
+  Bing Webmaster Tools imported the verified Google property. The repository
+  now adds six independently indexable Simplified Chinese pages, reciprocal
+  `hreflang`, and a 12-URL bilingual sitemap; production deployment and console
+  re-read evidence are recorded separately once available. No impression,
+  index, or citation data exists yet. The first data-bearing entry begins the
+  month after indexing starts.
 
 ---
 
@@ -55,7 +56,7 @@ Recorded: <YYYY-MM-DD>
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Valid indexed canonical pages | | of 6 |
+| Valid indexed canonical pages | | of 12 |
 | Non-brand queries (top) | | |
 | Total impressions | | 28-day |
 | Total clicks | | 28-day |

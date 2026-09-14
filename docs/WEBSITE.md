@@ -21,21 +21,31 @@ SEO page:
 
 | Purpose | Canonical path |
 | --- | --- |
+| Download experience | `/` and `/zh/` |
 | AI collaboration history | `/ai-collaboration-history` |
+| Factual comparison | `/compare` |
 | Codex collector | `/integrations/codex` |
 | Claude Code collector | `/integrations/claude-code` |
 | Data boundary | `/privacy` |
 | Agent navigation | `/llms.txt` |
 
-Every indexed HTML page must have a unique title, description, canonical URL,
-one visible H1, and valid JSON-LD that agrees with visible copy. `404.html`
-must remain present so Cloudflare Pages returns HTTP 404 for unknown paths
-instead of serving the home page as a soft 404.
+The six English pages are the maintained sources. Their independently
+indexable Simplified Chinese counterparts use the same paths under `/zh/`.
+Run `npm run generate:website-locales` after changing source text, metadata, or
+internal links. Generated Chinese HTML and the bilingual sitemap are committed;
+`npm run check` fails if they drift.
 
-Run the zero-dependency discovery check before publishing:
+Every indexed HTML page must have a unique title, description, canonical URL,
+one visible H1, reciprocal `en` / `zh-Hans` / `x-default` alternates, and valid
+JSON-LD that agrees with visible copy and language. `404.html` must remain
+present so Cloudflare Pages returns HTTP 404 for unknown paths instead of
+serving the home page as a soft 404.
+
+Run the locale and discovery checks before publishing:
 
 ```bash
-node scripts/verify-website-discovery.cjs
+npm run verify:website-locales
+npm run verify:website-discovery
 ```
 
 `llms.txt` is an optional navigation aid for agents. It is not treated as an

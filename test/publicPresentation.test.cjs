@@ -87,9 +87,22 @@ test("website metadata states the product category and current platforms", () =>
   assert.match(html, /"softwareVersion": "0\.3\.17"/);
   assert.match(html, /Wayfinder AI Collaboration History/);
   assert.match(html, /producthunt\.com\/products\/wayfinder-5/);
-  // Chinese remains available through the runtime language toggle.
+  // Chinese source text feeds independently indexable static pages.
   assert.match(html, /data-zh="把 AI 协作中的目标、分叉与证据/);
-  assert.match(html, /data-lang-toggle/);
+  assert.match(html, /data-language-link/);
+  assert.match(html, /href="\/zh\/"/);
+  assert.equal(
+    fs.existsSync(path.join(root, "website", "i18n.js")),
+    false
+  );
+  const chinese = read("website/zh/index.html").toString("utf8");
+  assert.match(chinese, /<html lang="zh-CN">/);
+  assert.match(chinese, /<h2[^>]*>照常使用 AI，Wayfinder 自动整理成图。<\/h2>/);
+  assert.match(
+    chinese,
+    /rel="canonical" href="https:\/\/wayfinder-ai\.pages\.dev\/zh\/"/
+  );
+  assert.doesNotMatch(chinese, /\bdata-zh(?:-aria|-alt)?=/);
   assert.match(
     read("website/robots.txt").toString("utf8"),
     /Sitemap: https:\/\/wayfinder-ai\.pages\.dev\/sitemap\.xml/

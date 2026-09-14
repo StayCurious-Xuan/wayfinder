@@ -18,6 +18,15 @@ The complete history stays on the user's computer under `~/.wayfinder`. The curr
 - [Codex session history](https://wayfinder-ai.pages.dev/integrations/codex): Local collection and evidence boundaries for Codex sessions
 - [Claude Code session history](https://wayfinder-ai.pages.dev/integrations/claude-code): Local collection and project grouping for Claude Code sessions
 
+## 中文页面
+
+- [Wayfinder 中文官网](https://wayfinder-ai.pages.dev/zh/)：产品概览及经过验证的 macOS 与 Windows 下载入口
+- [什么是 AI 协作历史？](https://wayfinder-ai.pages.dev/zh/ai-collaboration-history)：目标、尝试、分叉、证据、适用场景与常见问题
+- [如何回看 AI 会话历史](https://wayfinder-ai.pages.dev/zh/compare)：事实对比最终结果、原始聊天记录与可回看的项目历史
+- [Codex 会话历史](https://wayfinder-ai.pages.dev/zh/integrations/codex)：Codex 会话的本地采集方式与证据边界
+- [Claude Code 会话历史](https://wayfinder-ai.pages.dev/zh/integrations/claude-code)：Claude Code 会话的本地采集与项目归并方式
+- [数据与隐私边界](https://wayfinder-ai.pages.dev/zh/privacy)：本地存储、采集、网络访问与数据删除
+
 ## Source And Downloads
 
 - [GitHub repository](https://github.com/StayCurious-Xuan/wayfinder): Source code, README, issues, security policy, and public project history

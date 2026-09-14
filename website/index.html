@@ -23,7 +23,7 @@
   <meta name="twitter:image:alt" content="Wayfinder renders the goals, branches, and evidence of AI collaboration as a voyage map">
   <link rel="canonical" href="https://wayfinder-ai.pages.dev/">
   <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/">
-  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/">
   <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/">
   <title>Wayfinder — Turn AI collaboration into a reviewable voyage map</title>
   <link rel="icon" href="./wayfinder-icon.svg" type="image/svg+xml">
@@ -39,7 +39,7 @@
           "url": "https://wayfinder-ai.pages.dev/",
           "name": "Wayfinder",
           "description": "Local-first desktop app for AI collaboration history.",
-          "inLanguage": ["en", "zh-CN"],
+          "inLanguage": "en",
           "publisher": {
             "@id": "https://wayfinder-ai.pages.dev/#organization"
           }
@@ -102,7 +102,8 @@
       <a href="#workflow" data-zh="工作方式">How it works</a>
       <a href="#download" data-zh="下载">Download</a>
       <a class="header-link" href="https://github.com/StayCurious-Xuan/wayfinder">GitHub ↗</a>
-      <button type="button" class="lang-toggle" data-lang-toggle aria-label="切换到中文">中文</button>
+      <a class="lang-toggle" data-language-link href="/zh/" lang="zh-Hans"
+        hreflang="zh-Hans" aria-label="切换到中文">中文</a>
     </nav>
   </header>
 
@@ -463,6 +464,7 @@
             srcset="./login-voyage-mobile-2k.png?v=map-mobile-3-0.3.17">
           <img src="./login-voyage-focus-4k.png?v=map-0.3.17"
             alt="Wayfinder example voyage detail, showing a login issue's failed branch, working path, validation node, and captured lesson"
+            data-zh-alt="Wayfinder 示例航程详情，展示登录问题的失败分支、有效路径、验证航点和沉淀经验"
             loading="eager" decoding="async" draggable="false">
         </picture>
         <figcaption data-zh="示例航程 · 登录回跳稳定性">
@@ -545,7 +547,6 @@
       </div>
     </section>
   </main>
-  <script src="./i18n.js?v=0.3.17-i18n-v1" defer></script>
   <script src="./app.js?v=0.3.17-i18n-v1" defer></script>
 </body>
 </html>

@@ -53,6 +53,17 @@ function canonicalHref(html) {
   )?.attributes.href;
 }
 
+function alternateHrefs(html) {
+  return new Map(
+    elements(html, "link")
+      .filter((element) => element.attributes.rel === "alternate")
+      .map((element) => [
+        element.attributes.hreflang,
+        element.attributes.href
+      ])
+  );
+}
+
 function titleText(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
 }
@@ -80,7 +91,10 @@ function canonicalPath(relativeFile) {
   if (normalized === "index.html") {
     return "/";
   }
-  return `/${normalized.replace(/\.html$/, "").replace(/\/index$/, "")}`;
+  if (normalized.endsWith("/index.html")) {
+    return `/${normalized.slice(0, -"/index.html".length)}/`;
+  }
+  return `/${normalized.replace(/\.html$/, "")}`;
 }
 
 function fileForPublicPath(websiteDir, pathname) {
@@ -118,6 +132,19 @@ function sitemapLocations(xml) {
     .map((match) => match[1].trim());
 }
 
+function sitemapRecords(xml) {
+  return [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => {
+    const block = match[1];
+    const location = block.match(/<loc>([^<]+)<\/loc>/)?.[1]?.trim();
+    const alternates = new Map(
+      [...block.matchAll(/<xhtml:link\b[^>]*>/g)]
+        .map((link) => attributes(link[0]))
+        .map((link) => [link.hreflang, link.href])
+    );
+    return { location, alternates };
+  });
+}
+
 function isGoogleVerificationFile(file) {
   return /^google[a-z0-9_-]+\.html$/i.test(path.basename(file));
 }
@@ -151,17 +178,59 @@ function verifyStaticWebsite({
   for (const file of indexableFiles) {
     const relativeFile = path.relative(websiteDir, file);
     const expectedUrl = new URL(canonicalPath(relativeFile), `${baseUrl}/`).href;
+    const isChinese = relativeFile.split(path.sep)[0] === "zh";
+    const englishRelativeFile = isChinese
+      ? relativeFile.split(path.sep).slice(1).join(path.sep)
+      : relativeFile;
+    const chineseRelativeFile = isChinese
+      ? relativeFile
+      : path.join("zh", relativeFile);
+    const englishUrl = new URL(
+      canonicalPath(englishRelativeFile),
+      `${baseUrl}/`
+    ).href;
+    const chineseUrl = new URL(
+      canonicalPath(chineseRelativeFile),
+      `${baseUrl}/`
+    ).href;
     const html = fs.readFileSync(file, "utf8");
     const title = titleText(html);
     const description = metaContent(html, "name", "description");
     const canonical = canonicalHref(html);
+    const alternates = alternateHrefs(html);
     const h1Count = (html.match(/<h1\b/gi) || []).length;
     const robots = metaContent(html, "name", "robots") || "";
     const jsonLd = jsonLdDocuments(html, relativeFile);
+    const htmlLanguage = html.match(/<html\b[^>]*\blang="([^"]+)"/i)?.[1];
 
     assert.ok(title, `${relativeFile} is missing a title`);
     assert.ok(description, `${relativeFile} is missing a meta description`);
     assert.equal(canonical, expectedUrl, `${relativeFile} canonical is stale`);
+    assert.equal(
+      htmlLanguage,
+      isChinese ? "zh-CN" : "en",
+      `${relativeFile} has the wrong html language`
+    );
+    assert.equal(
+      alternates.size,
+      3,
+      `${relativeFile} must declare en, zh-Hans, and x-default alternates`
+    );
+    assert.equal(
+      alternates.get("en"),
+      englishUrl,
+      `${relativeFile} has the wrong English alternate`
+    );
+    assert.equal(
+      alternates.get("zh-Hans"),
+      chineseUrl,
+      `${relativeFile} has the wrong Chinese alternate`
+    );
+    assert.equal(
+      alternates.get("x-default"),
+      englishUrl,
+      `${relativeFile} has the wrong x-default alternate`
+    );
     assert.equal(h1Count, 1, `${relativeFile} must contain exactly one H1`);
     assert.doesNotMatch(robots, /noindex/i, `${relativeFile} must be indexable`);
     assert.ok(jsonLd.length > 0, `${relativeFile} is missing JSON-LD`);
@@ -174,7 +243,66 @@ function verifyStaticWebsite({
     titles.add(title);
     descriptions.add(description);
     canonicalUrls.add(expectedUrl);
-    pageRecords.push({ relativeFile, expectedUrl, html, jsonLd });
+    const structuredPages = jsonLdNodes(jsonLd).filter(
+      (node) => node["@type"] === "WebPage" || node["@type"] === "WebSite"
+    );
+    assert.ok(
+      structuredPages.length > 0,
+      `${relativeFile} JSON-LD needs a WebPage or WebSite`
+    );
+    for (const node of structuredPages) {
+      assert.equal(
+        node.inLanguage,
+        isChinese ? "zh-CN" : "en",
+        `${relativeFile} JSON-LD has the wrong language`
+      );
+    }
+
+    const languageLinks = elements(html, "a").filter((element) =>
+      (element.attributes.class || "").split(/\s+/).includes("lang-toggle")
+    );
+    assert.equal(
+      languageLinks.length,
+      1,
+      `${relativeFile} must contain one language switch link`
+    );
+    const languageLink = languageLinks[0].attributes;
+    assert.equal(
+      new URL(languageLink.href, expectedUrl).href,
+      isChinese ? englishUrl : chineseUrl,
+      `${relativeFile} language switch points to the wrong page`
+    );
+    assert.equal(
+      languageLink.hreflang,
+      isChinese ? "en" : "zh-Hans",
+      `${relativeFile} language switch has the wrong hreflang`
+    );
+    assert.doesNotMatch(
+      html,
+      /(?:src="[^"]*i18n\.js|data-lang-toggle)/i,
+      `${relativeFile} must use static language URLs`
+    );
+    if (isChinese) {
+      assert.match(
+        html,
+        /Generated by scripts\/generate-website-locales\.cjs/,
+        `${relativeFile} is not a generated locale page`
+      );
+      assert.doesNotMatch(
+        html,
+        /\bdata-zh(?:-aria|-alt)?=/,
+        `${relativeFile} contains untranslated source attributes`
+      );
+    }
+
+    pageRecords.push({
+      relativeFile,
+      expectedUrl,
+      englishUrl,
+      chineseUrl,
+      html,
+      jsonLd
+    });
   }
 
   const missingHtml = fs.readFileSync(missingPage, "utf8");
@@ -204,6 +332,12 @@ function verifyStaticWebsite({
   const sitemapFile = path.join(websiteDir, "sitemap.xml");
   const sitemap = fs.readFileSync(sitemapFile, "utf8");
   const locations = sitemapLocations(sitemap);
+  const sitemapPages = sitemapRecords(sitemap);
+  assert.match(
+    sitemap,
+    /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/,
+    "sitemap must declare the XHTML namespace for hreflang"
+  );
   assert.equal(new Set(locations).size, locations.length);
   assert.deepEqual(
     new Set(locations),
@@ -214,6 +348,23 @@ function verifyStaticWebsite({
     locations.every((location) => !location.endsWith(".html")),
     "sitemap must use clean canonical URLs"
   );
+  assert.equal(sitemapPages.length, pageRecords.length);
+  const sitemapByUrl = new Map(
+    sitemapPages.map((record) => [record.location, record])
+  );
+  for (const page of pageRecords) {
+    const record = sitemapByUrl.get(page.expectedUrl);
+    assert.ok(record, `${page.relativeFile} is missing from sitemap`);
+    assert.deepEqual(
+      record.alternates,
+      new Map([
+        ["en", page.englishUrl],
+        ["zh-Hans", page.chineseUrl],
+        ["x-default", page.englishUrl]
+      ]),
+      `${page.relativeFile} sitemap alternates are stale`
+    );
+  }
 
   const robots = fs.readFileSync(path.join(websiteDir, "robots.txt"), "utf8");
   assert.match(
@@ -229,19 +380,32 @@ function verifyStaticWebsite({
     .map((match) => match[1])
     .filter((url) => new URL(url).origin === new URL(baseUrl).origin);
   assert.equal(llmsWebsiteLinks.length, canonicalUrls.size);
+  assert.deepEqual(
+    new Set(llmsWebsiteLinks),
+    canonicalUrls,
+    "llms.txt must link to every canonical page exactly once"
+  );
   for (const url of llmsWebsiteLinks) {
     assert.ok(canonicalUrls.has(url), `llms.txt links to non-canonical ${url}`);
   }
 
-  const home = pageRecords.find((page) => page.relativeFile === "index.html");
-  assert.ok(home, "website/index.html is required");
-  const homeNodes = jsonLdNodes(home.jsonLd);
-  for (const type of ["WebSite", "Organization", "SoftwareApplication"]) {
-    assert.ok(
-      homeNodes.some((node) => node["@type"] === type),
-      `index.html JSON-LD is missing ${type}`
-    );
+  const homes = pageRecords.filter(
+    (page) =>
+      page.relativeFile === "index.html" ||
+      page.relativeFile === path.join("zh", "index.html")
+  );
+  assert.equal(homes.length, 2, "English and Chinese home pages are required");
+  for (const home of homes) {
+    const homeNodes = jsonLdNodes(home.jsonLd);
+    for (const type of ["WebSite", "Organization", "SoftwareApplication"]) {
+      assert.ok(
+        homeNodes.some((node) => node["@type"] === type),
+        `${home.relativeFile} JSON-LD is missing ${type}`
+      );
+    }
   }
+  const home = homes.find((page) => page.relativeFile === "index.html");
+  const homeNodes = jsonLdNodes(home.jsonLd);
 
   const release = JSON.parse(
     fs.readFileSync(path.join(websiteDir, "releases.json"), "utf8")
@@ -436,8 +600,10 @@ module.exports = {
   DEFAULT_BASE_URL,
   DEFAULT_LIVE_ATTEMPTS,
   DEFAULT_LIVE_INTERVAL_MS,
+  alternateHrefs,
   canonicalHref,
   sitemapLocations,
+  sitemapRecords,
   verifyLiveWebsite,
   verifyStaticWebsite
 };

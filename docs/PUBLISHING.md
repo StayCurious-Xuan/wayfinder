@@ -71,8 +71,10 @@ workflows, and MCP directories were closed as withdrawn on the same date.
    successfully.
 8. Deploy `.github/workflows/deploy-website.yml` and verify the public site.
 
-After adding or removing a public website page, update `website/sitemap.xml`,
-`website/llms.txt`, and the central guide navigation in the same change.
+After adding or removing a public website page, update the English source,
+locale configuration, `website/llms.txt`, and central guide navigation, then
+run `npm run generate:website-locales`; do not hand-edit generated `/zh/`
+pages or `website/sitemap.xml`.
 Submit the canonical sitemap URL to the verified Google Search Console
 URL-prefix property, then import that property into Bing Webmaster Tools. A
 `pages.dev` subdomain cannot use project-owned DNS verification. No visitor

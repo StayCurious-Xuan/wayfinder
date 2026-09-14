@@ -64,33 +64,48 @@ Measured against `https://wayfinder-ai.pages.dev/` on 2026-09-14:
    The repository description names the local-first AI collaboration history
    category, the homepage points to the official site, and the public topics
    include `ai-history` and `session-history`.
+9. Give English and Simplified Chinese separate server-rendered canonical URLs.
+   English remains the default under `/`; matching Chinese pages live under
+   `/zh/`. Every pair must declare reciprocal `en`, `zh-Hans`, and `x-default`
+   alternates in both HTML and the sitemap.
+10. Treat the English HTML as the maintained source. Generate the six Chinese
+    pages and bilingual sitemap with `npm run generate:website-locales`; CI
+    rejects missing translations, stale generated pages, broken locale links,
+    or sitemap drift.
 
 ## Current Status
 
 Verified on 2026-09-14:
 
-- The technical and content implementation is complete on the production site:
-  six indexable canonical pages (home, AI collaboration history, a comparison
-  page, Codex, Claude Code, privacy), matching sitemap coverage, linked
-  structured data, `llms.txt`, and a real HTTP 404 response.
-- The site is English-first (canonical, server-rendered) with a runtime EN/中文
-  toggle (`website/i18n.js`) and `hreflang` alternates, matching the English
-  GEO prompt set. `robots.txt` explicitly allows the AI retrieval crawlers
+- The deployed production baseline contains six English canonical pages (home,
+  AI collaboration history, comparison, Codex, Claude Code, privacy), matching
+  sitemap coverage, linked structured data, `llms.txt`, and a real HTTP 404
+  response. The repository now contains matching `/zh/` pages for all six,
+  bringing the next production deployment to 12 independently indexable
+  canonical pages.
+- The site is English-first and both languages are server-rendered. Language
+  switches are ordinary crawlable links, every pair has reciprocal `hreflang`,
+  and the sitemap repeats the same alternates for all 12 URLs. The old runtime
+  text replacement has been removed. `robots.txt` explicitly allows the AI
+  retrieval crawlers
   (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) alongside `GPTBot`,
   `ClaudeBot`, and `Google-Extended`.
 - The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
   Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
   entry use the current Codex and Claude Code collector scope.
-- The latest main commit passed Linux, macOS, and Windows CI, production
-  deployment checks, and the public Windows installer smoke test.
+- The last deployed main commit passed Linux, macOS, and Windows CI, production
+  deployment checks, and the public Windows installer smoke test. The
+  independent Chinese URLs remain pending deployment and production
+  verification.
 - Google Search Console ownership is verified for
   `https://wayfinder-ai.pages.dev/` via the HTML file method
   (`website/google9326e3bda374ef14.html`, live and immutable). Do not remove
   this file.
-- The sitemap `/sitemap.xml` is submitted in Google Search Console (2026-09-14)
+- The sitemap `/sitemap.xml` was submitted in Google Search Console (2026-09-14)
   and present in Bing Webmaster Tools, which imported the verified Google
   property and crawled the sitemap successfully. Google and Bing re-read the
-  sitemap automatically; the comparison page was added to it on 2026-09-14.
+  sitemap automatically. After the 12-URL sitemap is deployed, verify its read
+  date and discovered URL count in both consoles.
 - All setup steps (Google verification, sitemap submission, Bing import,
   monthly monitoring cadence) are complete. Search impressions, indexing
   coverage, and AI citation trends still need indexing time before they can be
@@ -149,7 +164,11 @@ document defines the method, the log holds the readings.
 ## Acceptance
 
 - Repository tests pass without skipped or weakened checks, and the discovery
-  verifier rejects a missing canonical URL, a stale sitemap, and a soft 404.
+  verifier rejects a missing canonical URL, a stale sitemap, a mismatched
+  document language, a one-way or incorrect `hreflang`, and a soft 404.
+- All six Chinese pages are readable with JavaScript disabled, self-canonical,
+  listed in the sitemap, paired with their English source, and reproduced
+  byte-for-byte by `npm run generate:website-locales`.
 - Every sitemap URL returns HTTP 200 at its canonical URL after deployment;
   an unknown URL returns HTTP 404; the home-page Lighthouse SEO score remains
   100 and its 1440x900 visual baseline remains unchanged.

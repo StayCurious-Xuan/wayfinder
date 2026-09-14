@@ -25,7 +25,7 @@ test(
   "public discovery pages fit desktop and phone viewports",
   {
     skip: !chrome || skipUiTest,
-    timeout: 75_000
+    timeout: 120_000
   },
   async () => {
     const websiteRoot = path.join(root, "website");
@@ -91,9 +91,16 @@ test(
       const pages = [
         "/",
         "/ai-collaboration-history",
+        "/compare",
         "/integrations/codex",
         "/integrations/claude-code",
         "/privacy",
+        "/zh/",
+        "/zh/ai-collaboration-history",
+        "/zh/compare",
+        "/zh/integrations/codex",
+        "/zh/integrations/claude-code",
+        "/zh/privacy",
         "/missing-discovery-page"
       ];
       const viewports = [
@@ -145,6 +152,9 @@ test(
               const visual = document.querySelector(
                 ".document-visual img"
               )?.getBoundingClientRect();
+              const languageSwitch = document.querySelector(
+                ".lang-toggle"
+              )?.getBoundingClientRect();
               return {
                 innerWidth,
                 documentWidth: document.documentElement.scrollWidth,
@@ -157,6 +167,10 @@ test(
                 visual: visual && {
                   width: visual.width,
                   height: visual.height
+                },
+                languageSwitch: languageSwitch && {
+                  width: languageSwitch.width,
+                  height: languageSwitch.height
                 },
                 overflow,
                 brokenImages: [...document.images]
@@ -171,6 +185,8 @@ test(
           assert.ok(layout.h1, `${page} is missing an H1`);
           assert.ok(layout.h1.left >= -1, page);
           assert.ok(layout.h1.right <= viewport.width + 1, page);
+          assert.ok(layout.languageSwitch?.width > 0, page);
+          assert.ok(layout.languageSwitch?.height > 0, page);
           assert.deepEqual(layout.overflow, [], `${page} has clipped text`);
           assert.deepEqual(layout.brokenImages, [], page);
           if (layout.visual) {

@@ -25,9 +25,9 @@ function temporaryWebsite() {
 test("website discovery surface is complete and internally consistent", () => {
   const result = verifyStaticWebsite({ websiteDir });
   assert.deepEqual(result, {
-    pages: 6,
-    sitemapEntries: 6,
-    llmsLinks: 6
+    pages: 12,
+    sitemapEntries: 12,
+    llmsLinks: 12
   });
 });
 
@@ -69,6 +69,79 @@ test("discovery verifier rejects a missing canonical URL", () => {
   }
 });
 
+test("discovery verifier rejects a Chinese page canonicalized to English", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "zh", "compare.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace(
+        'rel="canonical" href="https://wayfinder-ai.pages.dev/zh/compare"',
+        'rel="canonical" href="https://wayfinder-ai.pages.dev/compare"'
+      );
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /zh.compare\.html canonical is stale/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("discovery verifier requires reciprocal language alternates", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "zh", "integrations", "codex.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace(
+        'hreflang="en" href="https://wayfinder-ai.pages.dev/integrations/codex"',
+        'hreflang="en" href="https://wayfinder-ai.pages.dev/zh/integrations/codex"'
+      );
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /wrong English alternate/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("discovery verifier rejects a mismatched document language", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "zh", "privacy.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace('<html lang="zh-CN">', '<html lang="en">');
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /wrong html language/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("discovery verifier rejects stale sitemap alternates", () => {
+  const directory = temporaryWebsite();
+  try {
+    const sitemapFile = path.join(directory, "sitemap.xml");
+    const sitemap = fs.readFileSync(sitemapFile, "utf8")
+      .replace(
+        'hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/compare"',
+        'hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/compare"'
+      );
+    fs.writeFileSync(sitemapFile, sitemap);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /sitemap alternates are stale/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("discovery verifier requires the Cloudflare 404 page", () => {
   const directory = temporaryWebsite();
   try {
@@ -91,7 +164,7 @@ test("discovery verifier accepts an authentic Search Console HTML file", () => {
       `google-site-verification: ${filename}\n`
     );
     const result = verifyStaticWebsite({ websiteDir: directory });
-    assert.equal(result.pages, 6);
+    assert.equal(result.pages, 12);
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
@@ -121,7 +194,7 @@ test("discovery verifier accepts Windows line endings in llms.txt", () => {
       .replace(/\r?\n/g, "\r\n");
     fs.writeFileSync(llmsFile, llms);
     const result = verifyStaticWebsite({ websiteDir: directory });
-    assert.equal(result.llmsLinks, 6);
+    assert.equal(result.llmsLinks, 12);
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
@@ -162,7 +235,7 @@ test("live discovery verifier accepts canonical pages and a real 404", async () 
     attempts: 1,
     fetchImpl: async (url) => liveResponse(url)
   });
-  assert.equal(result.pages, 6);
+  assert.equal(result.pages, 12);
 });
 
 test("live discovery verifier rejects a soft 404", async () => {
@@ -196,7 +269,7 @@ test("live discovery verifier tolerates edge propagation for 404s", async () => 
       return liveResponse(url);
     }
   });
-  assert.equal(result.pages, 6);
+  assert.equal(result.pages, 12);
   assert.equal(unknownRequests, 2);
   assert.equal(sleeps, 1);
 });
