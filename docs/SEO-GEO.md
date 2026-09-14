@@ -199,8 +199,10 @@ Record every month's SEO and GEO readings in
 [seo-geo-monitoring.md](seo-geo-monitoring.md). Run
 `node scripts/new-monitoring-entry.cjs` on or after the first business day of
 each month to append a blank dated entry, then fill it from Search Console,
-Bing Webmaster, and the fixed GEO prompt runs. The log is append-only; this
-document defines the method, the log holds the readings.
+Bing Webmaster, the fixed bilingual GEO prompt runs, and public third-party
+listing or review pages. The log is append-only; this document defines the
+method, the log holds the readings. Pending submissions are tracked as work in
+progress and never counted as published authority.
 
 ## Acceptance
 

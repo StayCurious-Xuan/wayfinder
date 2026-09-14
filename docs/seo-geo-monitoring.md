@@ -14,7 +14,9 @@ running record only; it does not redefine the method.
    each in the consumer interfaces of ChatGPT, Perplexity, Gemini, and Google
    AI Mode. Record only cited Wayfinder-owned URLs as citations; uncited model
    recall is not a citation.
-4. Keep prior months intact. This is an append-only ledger.
+4. Recheck the authority table against the linked public page or pull request.
+   A submission remains `Pending` until the third party publishes or merges it.
+5. Keep prior months intact. This is an append-only ledger.
 
 ## Reminder
 
@@ -92,6 +94,18 @@ Recorded: 2026-09-14
 | Perplexity | | | | |
 | Gemini | | | | |
 | Google AI Mode | | | | |
+
+### Authority And Distribution
+
+| Surface | Status | Evidence |
+| --- | --- | --- |
+| awesome-mac | Merged | https://github.com/jaywcjlove/awesome-mac/pull/2828 |
+| Tauri Show and Tell | Published | https://github.com/orgs/tauri-apps/discussions/16004 |
+| Codex Show and Tell | Published | https://github.com/openai/codex/discussions/44618 |
+| Awesome AI-Driven Development | Pending | https://github.com/eltociear/awesome-AI-driven-development/pull/126 |
+| Made with Tauri | Pending | manual review |
+| Console.dev | Pending | editorial review |
+| Changelog News | Pending | editorial review |
 
 ### Actions For Next Month
 

@@ -221,6 +221,11 @@ test("SEO and GEO monitoring covers both public languages", () => {
   }
   assert.match(generator, /GEO English/);
   assert.match(generator, /GEO Simplified Chinese/);
+  assert.match(log, /### Authority And Distribution/);
+  assert.match(
+    generator,
+    /awesome-AI-driven-development\/pull\/126/
+  );
 });
 
 test("collector pages cite first-party session documentation", () => {
