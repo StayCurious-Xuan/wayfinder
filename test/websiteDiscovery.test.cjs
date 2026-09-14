@@ -159,6 +159,7 @@ function liveResponse(url, { soft404 = false } = {}) {
 test("live discovery verifier accepts canonical pages and a real 404", async () => {
   const result = await verifyLiveWebsite({
     websiteDir,
+    attempts: 1,
     fetchImpl: async (url) => liveResponse(url)
   });
   assert.equal(result.pages, 5);
@@ -168,8 +169,34 @@ test("live discovery verifier rejects a soft 404", async () => {
   await assert.rejects(
     verifyLiveWebsite({
       websiteDir,
+      attempts: 1,
       fetchImpl: async (url) => liveResponse(url, { soft404: true })
     }),
     /must return HTTP 404/
   );
+});
+
+test("live discovery verifier tolerates edge propagation for 404s", async () => {
+  let unknownRequests = 0;
+  let sleeps = 0;
+  const result = await verifyLiveWebsite({
+    websiteDir,
+    attempts: 2,
+    intervalMs: 1,
+    sleep: async (milliseconds) => {
+      assert.equal(milliseconds, 1);
+      sleeps += 1;
+    },
+    fetchImpl: async (url) => {
+      const parsed = new URL(url);
+      if (parsed.pathname.startsWith("/definitely-not-a-wayfinder-page-")) {
+        unknownRequests += 1;
+        return liveResponse(url, { soft404: unknownRequests === 1 });
+      }
+      return liveResponse(url);
+    }
+  });
+  assert.equal(result.pages, 5);
+  assert.equal(unknownRequests, 2);
+  assert.equal(sleeps, 1);
 });

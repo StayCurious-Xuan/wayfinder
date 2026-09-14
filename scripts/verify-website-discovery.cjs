@@ -5,6 +5,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const DEFAULT_BASE_URL = "https://wayfinder-ai.pages.dev";
+const DEFAULT_LIVE_ATTEMPTS = 12;
+const DEFAULT_LIVE_INTERVAL_MS = 3_000;
 const root = path.resolve(__dirname, "..");
 
 function readArgument(name) {
@@ -293,7 +295,11 @@ async function verifyLiveWebsite({
   baseUrl = DEFAULT_BASE_URL,
   websiteDir = path.join(root, "website"),
   fetchImpl = globalThis.fetch,
-  timeoutMs = 10_000
+  timeoutMs = 10_000,
+  attempts = DEFAULT_LIVE_ATTEMPTS,
+  intervalMs = DEFAULT_LIVE_INTERVAL_MS,
+  sleep = (milliseconds) =>
+    new Promise((resolve) => setTimeout(resolve, milliseconds))
 } = {}) {
   const staticResult = verifyStaticWebsite({ websiteDir });
   const sitemap = fs.readFileSync(path.join(websiteDir, "sitemap.xml"), "utf8");
@@ -336,20 +342,26 @@ async function verifyLiveWebsite({
     );
   }
 
-  const unknownUrl = new URL(
-    `/definitely-not-a-wayfinder-page-${Date.now()}`,
-    `${baseUrl}/`
-  );
-  const unknownResponse = await fetchWithTimeout(
-    fetchImpl,
-    unknownUrl,
-    timeoutMs
-  );
-  assert.equal(
-    unknownResponse.status,
-    404,
-    `${unknownUrl.href} must return HTTP 404`
-  );
+  let unknownStatus;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const unknownUrl = new URL(
+      `/definitely-not-a-wayfinder-page-${Date.now()}-${attempt}`,
+      `${baseUrl}/`
+    );
+    const unknownResponse = await fetchWithTimeout(
+      fetchImpl,
+      unknownUrl,
+      timeoutMs
+    );
+    unknownStatus = unknownResponse.status;
+    if (unknownStatus === 404) {
+      break;
+    }
+    if (attempt < attempts) {
+      await sleep(intervalMs);
+    }
+  }
+  assert.equal(unknownStatus, 404, `${baseUrl} must return HTTP 404`);
 
   return staticResult;
 }
@@ -376,6 +388,8 @@ if (require.main === module) {
 
 module.exports = {
   DEFAULT_BASE_URL,
+  DEFAULT_LIVE_ATTEMPTS,
+  DEFAULT_LIVE_INTERVAL_MS,
   canonicalHref,
   sitemapLocations,
   verifyLiveWebsite,
