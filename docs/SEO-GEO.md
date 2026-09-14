@@ -86,12 +86,11 @@ Measured against `https://wayfinder-ai.pages.dev/` on 2026-09-14:
 
 Verified on 2026-09-14:
 
-- The deployed production baseline contains six English canonical pages (home,
-  AI collaboration history, comparison, Codex, Claude Code, privacy), matching
-  sitemap coverage, linked structured data, `llms.txt`, and a real HTTP 404
-  response. The repository now contains nine English pages and matching `/zh/`
-  pages, adding focused installation, integration-index, and update-history
-  content for a total of 18 independently indexable canonical pages.
+- Production contains nine English pages and nine matching `/zh/` pages: home,
+  installation, AI collaboration history, factual comparison, integration
+  index, Codex, Claude Code, update history, and privacy. All 18 are
+  independently canonical, present in the sitemap and `llms.txt`, reachable
+  through ordinary links, and return HTTP 200. Unknown paths return HTTP 404.
 - The site is English-first and both languages are server-rendered. Language
   switches are ordinary crawlable links, every pair has reciprocal `hreflang`,
   and the sitemap repeats the same alternates for all 18 URLs. The old runtime
@@ -100,15 +99,16 @@ Verified on 2026-09-14:
   (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) alongside `GPTBot`,
   `ClaudeBot`, and `Google-Extended`.
 - The deployment workflow verifies the public release and commit marker before
-  posting all canonical URLs to IndexNow. Submission validates the deployed key
-  first and accepts only IndexNow HTTP 200 or 202 responses.
+  posting all canonical URLs to IndexNow. The production run for commit
+  `d8d1ee5d3182e9357c79b40b70fe4a1dee1d0e56` validated the deployed key and
+  completed IndexNow submission successfully.
 - The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
   Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
   entry use the current Codex and Claude Code collector scope.
-- The last deployed main commit passed Linux, macOS, and Windows CI, production
-  deployment checks, and the public Windows installer smoke test. The
-  independent Chinese URLs remain pending deployment and production
-  verification.
+- Commit `d8d1ee5d3182e9357c79b40b70fe4a1dee1d0e56` passed Linux, macOS, and
+  Windows CI, production deployment checks, the public Windows installer smoke
+  test, and independent live verification of all 18 canonical pages. Lighthouse
+  13.4.1 reported SEO 100 for every English and Chinese canonical page.
 - Google Search Console ownership is verified for
   `https://wayfinder-ai.pages.dev/` via the HTML file method
   (`website/google9326e3bda374ef14.html`, live and immutable). Do not remove
@@ -116,8 +116,9 @@ Verified on 2026-09-14:
 - The sitemap `/sitemap.xml` was submitted in Google Search Console (2026-09-14)
   and present in Bing Webmaster Tools, which imported the verified Google
   property and crawled the sitemap successfully. Google and Bing re-read the
-  sitemap automatically. After the 18-URL sitemap is deployed, verify its read
-  date and discovered URL count in both consoles.
+  sitemap automatically. The 18-URL sitemap is now deployed; its new read date
+  and discovered URL count remain pending in both consoles and must not be
+  inferred from the successful live crawl or IndexNow response.
 - All setup steps (Google verification, sitemap submission, Bing import,
   monthly monitoring cadence) are complete. Search impressions, indexing
   coverage, and AI citation trends still need indexing time before they can be

@@ -33,16 +33,15 @@ unattended cron job; every step below is done inside a session on purpose.
 
 ## Status Baseline
 
-- 2026-09-14: The production baseline has six English canonical pages,
-  structured data, `llms.txt`, and a real HTTP 404. Google Search Console
-  ownership was verified the same day via the HTML file method
-  (`website/google9326e3bda374ef14.html`), `/sitemap.xml` was submitted, and
-  Bing Webmaster Tools imported the verified Google property. The repository
-  now contains nine English pages and matching independently indexable
-  Simplified Chinese pages, reciprocal `hreflang`, and an 18-URL bilingual
-  sitemap; production deployment and console re-read evidence are recorded
-  separately once available. No impression, index, or citation data exists
-  yet. The first data-bearing entry begins the month after indexing starts.
+- 2026-09-14: Production has nine English pages and nine matching independently
+  indexable Simplified Chinese pages, reciprocal `hreflang`, an 18-URL
+  bilingual sitemap, structured data, `llms.txt`, and a real HTTP 404.
+  Commit `d8d1ee5d3182e9357c79b40b70fe4a1dee1d0e56` passed three-platform CI,
+  production verification, live crawling of all 18 URLs, and IndexNow
+  submission. Lighthouse 13.4.1 reported SEO 100 for all 18 pages. Google
+  Search Console ownership is verified, `/sitemap.xml` is submitted, and Bing
+  imported the property; their read date, discovered URL count, impressions,
+  index coverage, and citation data remain pending.
 
 ---
 
@@ -50,19 +49,19 @@ unattended cron job; every step below is done inside a session on purpose.
 
 ## 2026-09
 
-Recorded: <YYYY-MM-DD>
+Recorded: 2026-09-14
 
 ### SEO (Google Search Console + Bing Webmaster)
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Valid indexed canonical pages | | of 18 |
-| Non-brand queries (top) | | |
-| Total impressions | | 28-day |
-| Total clicks | | 28-day |
-| Crawl / indexing errors | | |
-| Sitemap status | | submitted / read date |
-| IndexNow deployment submission | | workflow date / status |
+| Valid indexed canonical pages | Pending | of 18; console data not yet available |
+| Non-brand queries (top) | Pending | no Search Console performance data yet |
+| Total impressions | Pending | 28-day |
+| Total clicks | Pending | 28-day |
+| Crawl / indexing errors | Pending | console re-read pending |
+| Sitemap status | Submitted | 2026-09-14; 18-URL re-read pending |
+| IndexNow deployment submission | Success | 2026-09-14, commit `d8d1ee5d` |
 
 ### GEO (5 prompts x 3 runs per engine)
 
@@ -75,6 +74,8 @@ Recorded: <YYYY-MM-DD>
 
 ### Actions For Next Month
 
-- 
+- Confirm Google and Bing have re-read the 18-URL sitemap.
+- Record the first available query, impression, click, index, and fixed-prompt
+  citation data without backfilling missing values.
 
 ---
