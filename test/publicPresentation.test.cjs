@@ -92,6 +92,7 @@ test("website metadata states the product category and current platforms", () =>
   assert.match(html, /"softwareVersion": "0\.3\.17"/);
   assert.match(html, /Wayfinder AI Collaboration History/);
   assert.match(html, /producthunt\.com\/products\/wayfinder-5/);
+  assert.match(html, /github\.com\/jaywcjlove\/awesome-mac#ai-tools/);
   // Chinese source text feeds independently indexable static pages.
   assert.match(html, /data-zh="把 AI 协作中的目标、分叉与证据/);
   assert.match(html, /data-language-link/);

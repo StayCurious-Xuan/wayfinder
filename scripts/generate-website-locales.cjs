@@ -158,6 +158,8 @@ const structuredTranslations = new Map(Object.entries({
   "Local-first desktop app for AI collaboration history.":
     "本地优先的 AI 协作历史桌面应用。",
   "Wayfinder AI Collaboration History": "Wayfinder AI 协作历史",
+  "Wayfinder in the awesome-mac AI Tools directory":
+    "awesome-mac AI Tools 目录中的 Wayfinder",
   "AI collaboration history": "AI 协作历史",
   "Wayfinder is a local-first desktop app that turns AI collaboration into a reviewable visual history of goals, attempts, branches, file changes, and validation.":
     "Wayfinder 是一款本地优先的桌面应用，将 AI 协作中的目标、尝试、分叉、文件变化和验证整理成可回看的视觉历史。",

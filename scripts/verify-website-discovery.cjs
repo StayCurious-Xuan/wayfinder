@@ -429,6 +429,27 @@ function verifyStaticWebsite({
   );
   assert.equal(application.softwareVersion, release.version);
   assert.ok(application.downloadUrl.includes(release.version));
+  assert.ok(
+    application.sameAs.includes(
+      "https://github.com/StayCurious-Xuan/wayfinder"
+    )
+  );
+  assert.ok(
+    application.sameAs.includes(
+      "https://www.producthunt.com/products/wayfinder-5?launch=wayfinder-6"
+    )
+  );
+  assert.equal(
+    application.subjectOf?.url,
+    "https://github.com/jaywcjlove/awesome-mac#ai-tools"
+  );
+  const historyPage = pageRecords.find(
+    (page) => page.relativeFile === "ai-collaboration-history.html"
+  );
+  assert.ok(
+    historyPage.html.includes(application.subjectOf.url),
+    "AI collaboration history must show the independent directory evidence"
+  );
   const gettingStarted = pageRecords.find(
     (page) => page.relativeFile === "getting-started.html"
   );
