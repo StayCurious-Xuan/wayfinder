@@ -10,10 +10,10 @@ running record only; it does not redefine the method.
    day of each month to append a blank dated entry below.
 2. Fill the SEO block from Google Search Console (Performance + Pages +
    Sitemaps) and Bing Webmaster Tools. Use absolute dates.
-3. Fill the GEO block by running the five fixed prompts three times each in the
-   consumer interfaces of ChatGPT, Perplexity, Gemini, and Google AI Mode.
-   Record only cited Wayfinder-owned URLs as citations; uncited model recall is
-   not a citation.
+3. Fill both GEO language blocks by running the five fixed prompts three times
+   each in the consumer interfaces of ChatGPT, Perplexity, Gemini, and Google
+   AI Mode. Record only cited Wayfinder-owned URLs as citations; uncited model
+   recall is not a citation.
 4. Keep prior months intact. This is an append-only ledger.
 
 ## Reminder
@@ -23,13 +23,23 @@ A monthly repeating macOS Calendar event ("跑 Wayfinder 月度 SEO/GEO 监测",
 the owner to open a working session and run the monitoring. There is no
 unattended cron job; every step below is done inside a session on purpose.
 
-## Fixed GEO Prompt Set
+## Fixed GEO Prompt Sets
+
+### English
 
 1. What tools visualize the history of AI-assisted project work?
 2. What local-first tools preserve AI coding session history?
 3. How can I review failed and successful attempts across AI assistants?
 4. What tools organize Codex and Claude Code sessions by project?
 5. What is Wayfinder AI collaboration history?
+
+### Simplified Chinese
+
+1. 哪些工具可以可视化 AI 辅助项目的工作历史？
+2. 有哪些本地优先的工具可以保留 AI 编程会话历史？
+3. 如何回看不同 AI 助手中的成功和失败尝试？
+4. 哪些工具可以按项目整理 Codex 和 Claude Code 会话？
+5. Wayfinder AI 协作历史是什么？
 
 ## Status Baseline
 
@@ -63,7 +73,16 @@ Recorded: 2026-09-14
 | Sitemap status | Submitted | 2026-09-14; 18-URL re-read pending |
 | IndexNow deployment submission | Success | 2026-09-14, commit `d8d1ee5d` |
 
-### GEO (5 prompts x 3 runs per engine)
+### GEO English (5 prompts x 3 runs per engine)
+
+| Engine | Mentioned (n/3) | Cited owned URL (n/3) | Cited URL | Factually correct |
+| --- | --- | --- | --- | --- |
+| ChatGPT Search | | | | |
+| Perplexity | | | | |
+| Gemini | | | | |
+| Google AI Mode | | | | |
+
+### GEO Simplified Chinese (5 prompts x 3 runs per engine)
 
 | Engine | Mentioned (n/3) | Cited owned URL (n/3) | Cited URL | Factually correct |
 | --- | --- | --- | --- | --- |

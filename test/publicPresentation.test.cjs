@@ -202,3 +202,19 @@ test("public build excludes the personal TRAE CN collector", () => {
   assert.equal(packageJson.dependencies.diff, undefined);
   assert.equal(packageJson.dependencies["isomorphic-git"], undefined);
 });
+
+test("SEO and GEO monitoring covers both public languages", () => {
+  const method = read("docs/SEO-GEO.md").toString("utf8");
+  const log = read("docs/seo-geo-monitoring.md").toString("utf8");
+  const generator = read("scripts/new-monitoring-entry.cjs").toString("utf8");
+
+  for (const content of [method, log]) {
+    assert.match(
+      content,
+      /What tools visualize the history of AI-assisted project work\?/
+    );
+    assert.match(content, /哪些工具可以可视化 AI 辅助项目的工作历史？/);
+  }
+  assert.match(generator, /GEO English/);
+  assert.match(generator, /GEO Simplified Chinese/);
+});

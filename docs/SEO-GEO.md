@@ -149,8 +149,10 @@ counts remain the product acquisition measure.
 
 ### GEO
 
-Run this fixed prompt set monthly in the consumer search interfaces of ChatGPT,
-Perplexity, Gemini, and Google AI Mode:
+Run both fixed prompt sets monthly in the consumer search interfaces of
+ChatGPT, Perplexity, Gemini, and Google AI Mode.
+
+English:
 
 1. What tools visualize the history of AI-assisted project work?
 2. What local-first tools preserve AI coding session history?
@@ -158,10 +160,19 @@ Perplexity, Gemini, and Google AI Mode:
 4. What tools organize Codex and Claude Code sessions by project?
 5. What is Wayfinder AI collaboration history?
 
-Run each prompt three times. Record the date, engine, whether Wayfinder was
-mentioned, whether a Wayfinder-owned URL was cited, the cited URL, and whether
-the description was factually correct. Do not count uncited model recall as a
-website citation.
+Simplified Chinese:
+
+1. 哪些工具可以可视化 AI 辅助项目的工作历史？
+2. 有哪些本地优先的工具可以保留 AI 编程会话历史？
+3. 如何回看不同 AI 助手中的成功和失败尝试？
+4. 哪些工具可以按项目整理 Codex 和 Claude Code 会话？
+5. Wayfinder AI 协作历史是什么？
+
+Run each prompt three times per language. Record the date, engine, language,
+whether Wayfinder was mentioned, whether a Wayfinder-owned URL was cited, the
+cited URL, and whether the description was factually correct. Do not count
+uncited model recall as a website citation, and do not combine English and
+Chinese results into one rate.
 
 `GEO Optimizer` may run as an advisory check. Its score is not an acceptance
 gate because its rules are not official engine ranking criteria.
