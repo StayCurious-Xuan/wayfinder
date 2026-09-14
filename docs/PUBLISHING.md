@@ -80,6 +80,11 @@ URL-prefix property, then import that property into Bing Webmaster Tools. A
 `pages.dev` subdomain cannot use project-owned DNS verification. No visitor
 analytics or paid SEO service is required.
 
+The production workflow submits the deployed sitemap URLs to IndexNow only
+after the commit marker and public key file pass verification. A failed
+IndexNow response fails the workflow but does not roll back the already
+deployed static files; rerun the workflow after a transient service failure.
+
 Never overwrite an existing published asset. Publish a new version so recorded
 hashes and user downloads remain reproducible.
 

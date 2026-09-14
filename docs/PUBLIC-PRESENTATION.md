@@ -76,6 +76,12 @@ metrics, visual identity, or category boundaries.
 - Keep the home page focused on product identity and download. Put
   query-specific explanations on the canonical AI collaboration history and
   collector pages linked through the home page and central guide.
+- Maintain separate server-rendered English and Simplified Chinese URLs. The
+  language switch is a normal link, not a client-side text replacement, and
+  every locale pair has reciprocal `hreflang`.
+- Keep installation, the current integration matrix, and verified update
+  history on focused pages. Do not create speculative case studies, generic
+  listicles, or competitor claims merely to increase page count.
 - Every indexed page has a unique title, description, canonical URL, visible
   H1, and structured data that agrees with visible copy.
 - Unknown paths must return HTTP 404. `llms.txt` supplements, but never

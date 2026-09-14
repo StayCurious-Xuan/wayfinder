@@ -4,3 +4,6 @@ plugins/wayfinder/skills/wayfinder/scripts/** linguist-generated=true
 skills/wayfinder/scripts/** linguist-generated=true
 **/THIRD_PARTY_LICENSES.txt linguist-generated=true
 media/d3.min.js linguist-vendored=true
+website/sitemap.xml text eol=lf
+website/zh/*.html text eol=lf
+website/zh/**/*.html text eol=lf

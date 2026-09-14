@@ -6,6 +6,11 @@ const test = require("node:test");
 const root = path.resolve(__dirname, "..");
 const read = (relativePath) =>
   fs.readFileSync(path.join(root, relativePath));
+const listFiles = (directory) =>
+  fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const entryPath = path.join(directory, entry.name);
+    return entry.isDirectory() ? listFiles(entryPath) : [entryPath];
+  });
 
 test("public screenshots use simulated data at 2K or higher", () => {
   const images = [
@@ -167,11 +172,12 @@ test("public build excludes the personal TRAE CN collector", () => {
     "docs/PUBLIC-PRESENTATION.md",
     "docs/PUBLISHING.md",
     "docs/WEBSITE.md",
-    "website/index.html",
-    "website/privacy.html",
-    "website/llms.txt"
+    "website/llms.txt",
+    ...listFiles(path.join(root, "website"))
+      .filter((file) => file.endsWith(".html"))
+      .map((file) => path.relative(root, file))
   ];
-  for (const file of publicFiles) {
+  for (const file of new Set(publicFiles)) {
     assert.doesNotMatch(read(file).toString("utf8"), /TRAE CN/i, file);
   }
 

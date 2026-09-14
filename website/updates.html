@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Wayfinder release history and current Early Access status for macOS and Windows, including collector, voyage map, reliability, privacy, and website changes.">
+  <meta property="og:title" content="Wayfinder updates and release history">
+  <meta property="og:description" content="Follow verified Wayfinder Early Access changes across local collection, project voyage maps, desktop platforms, privacy, and public documentation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wayfinder-ai.pages.dev/updates">
+  <meta property="og:site_name" content="Wayfinder">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
+  <meta property="og:image:alt" content="Wayfinder displays AI collaboration history as a project voyage map">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wayfinder-ai.pages.dev/updates">
+  <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/updates">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/updates">
+  <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/updates">
+  <title>Wayfinder updates and release history</title>
+  <link rel="icon" href="/wayfinder-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=0.3.17-i18n-v1">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://wayfinder-ai.pages.dev/updates#webpage",
+      "url": "https://wayfinder-ai.pages.dev/updates",
+      "name": "Wayfinder updates and release history",
+      "description": "Verified Wayfinder Early Access changes across local collection, project voyage maps, desktop platforms, privacy, and public documentation.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://wayfinder-ai.pages.dev/#website"
+      },
+      "about": {
+        "@id": "https://wayfinder-ai.pages.dev/#software"
+      }
+    }
+  </script>
+</head>
+<body class="document-page guide-page">
+  <header class="site-header guide-header">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/wayfinder-icon.svg" alt="">
+      <span>Wayfinder</span>
+    </a>
+    <nav class="header-nav" aria-label="Primary" data-zh-aria="主导航">
+      <a href="/getting-started" data-zh="开始使用">Get started</a>
+      <a class="header-link" href="/" data-zh="下载">Download</a>
+      <a class="lang-toggle" data-language-link href="/zh/updates"
+        lang="zh-Hans" hreflang="zh-Hans"
+        aria-label="切换到中文">中文</a>
+    </nav>
+  </header>
+  <main class="document guide-document">
+    <p class="eyebrow">RELEASE HISTORY</p>
+    <h1 data-zh="Wayfinder 更新与发布记录。">Wayfinder updates and release history.</h1>
+    <p class="document-lead" data-zh="这里记录用户能够验证的公开变化。当前可安装版本是 0.3.17 Early Access，支持 Apple Silicon、Intel macOS 和 Windows x64。">This page records public changes that users can verify. The current installable version is 0.3.17 Early Access for Apple Silicon, Intel macOS, and Windows x64.</p>
+
+    <section>
+      <h2>0.3.17 · 2026-09-14</h2>
+      <div class="document-copy">
+        <p><strong data-zh="当前公开版本。">Current public release.</strong> <span data-zh="公开桌面应用只采集 Codex 与 Claude Code 历史。">The public desktop app collects Codex and Claude Code history only.</span></p>
+        <ul class="document-list">
+          <li data-zh="提供 Apple Silicon、Intel macOS 与 Windows x64 安装包和 SHA256SUMS。">Published Apple Silicon, Intel macOS, and Windows x64 installers with SHA256SUMS.</li>
+          <li data-zh="增加 AI 协作历史、Codex、Claude Code、事实对比和数据边界页面。">Added pages for AI collaboration history, Codex, Claude Code, factual comparison, and data boundaries.</li>
+          <li data-zh="增加结构化数据、llms.txt、完整 Sitemap、干净 canonical URL 和真实 HTTP 404。">Added structured data, llms.txt, complete sitemap coverage, clean canonical URLs, and a real HTTP 404.</li>
+          <li data-zh="加强空泛航点标题的拒绝规则，让项目路径更易扫描。">Strengthened rejection of generic waypoint titles so project paths remain scannable.</li>
+        </ul>
+        <div class="document-actions">
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17" data-zh="查看 0.3.17 Release ↗">View the 0.3.17 Release ↗</a>
+          <a href="/getting-started" data-zh="安装当前版本">Install the current release</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="已撤回版本">Withdrawn releases</h2>
+      <div class="document-copy">
+        <p data-zh="0.3.15 与 0.3.16 的 Release 页面作为历史记录保留，但安装资产和旧校验和已删除。它们不是受支持的下载入口；请使用 0.3.17。">The 0.3.15 and 0.3.16 Release pages remain as historical records, but their install assets and old checksums were removed. They are not supported download paths; use 0.3.17.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>0.3.14 · 2026-09-12</h2>
+      <div class="document-copy">
+        <ul class="document-list">
+          <li data-zh="桌面采集不再要求系统安装 Git，也不会创建工作区快照。">Desktop collection no longer required system Git and stopped creating workspace snapshots.</li>
+          <li data-zh="保留当前显示的项目，直到用户请求的新项目完成加载。">Kept the currently displayed project selected until a requested project finished loading.</li>
+          <li data-zh="加强会话重写、截断、归档迁移和文件变化真实性处理。">Hardened session rewrites, truncation, archive migration, and file-change truthfulness.</li>
+        </ul>
+        <div class="document-actions">
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.14" data-zh="查看 0.3.14 Release ↗">View the 0.3.14 Release ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>0.3.13 · 2026-09-12</h2>
+      <div class="document-copy">
+        <ul class="document-list">
+          <li data-zh="首次启动自动回扫可用的 Codex 与 Claude Code 本地历史。">Added first-launch backfill for available local Codex and Claude Code history.</li>
+          <li data-zh="把没有项目文件夹的兼容会话保留在本地通用协作项目。">Kept compatible sessions without a project folder in a local general-collaboration project.</li>
+          <li data-zh="在会话移入归档位置时保持稳定去重。">Kept stable deduplication when sessions moved into archive locations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>0.3.12 · 2026-09-12</h2>
+      <div class="document-copy">
+        <ul class="document-list">
+          <li data-zh="让采集、锁、路径、状态写入和发布门禁在 macOS 与 Windows 上更稳健。">Hardened collection, locks, paths, state writes, and release gates across macOS and Windows.</li>
+          <li data-zh="要求成功 CI、公开校验和和最新 main 提交，才能部署公开版本。">Required successful CI, public checksums, and the latest main commit before public deployment.</li>
+          <li data-zh="修复窄窗口、键盘焦点、搜索定位和过期项目请求。">Fixed narrow-window actions, keyboard focus, search framing, and stale project requests.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="完整历史">Complete history</h2>
+      <div class="document-copy">
+        <p data-zh="完整变更日志和每个公开版本的发布说明保存在 GitHub。发布说明只记录公开、可验证的产品行为。">The complete changelog and release notes for each public version remain on GitHub. Release notes record only public, verifiable product behavior.</p>
+        <div class="document-actions">
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/blob/main/CHANGELOG.md" data-zh="查看完整 CHANGELOG ↗">Read the complete changelog ↗</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases" data-zh="查看所有 GitHub Releases ↗">Browse all GitHub Releases ↗</a>
+          <a href="/integrations" data-zh="查看当前支持范围">See current support scope</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="document-updated" data-zh="更新日期：2026 年 9 月 14 日">Updated: 2026-09-14</p>
+  </main>
+  <footer class="guide-footer">
+    <span data-zh="Wayfinder · 可验证的公开更新">Wayfinder · verifiable public updates</span>
+    <nav class="footer-links" aria-label="Related" data-zh-aria="相关资料">
+      <a href="/" data-zh="首页">Home</a>
+      <a href="/getting-started" data-zh="开始使用">Get started</a>
+      <a href="/privacy" data-zh="隐私">Privacy</a>
+    </nav>
+  </footer>
+</body>
+</html>

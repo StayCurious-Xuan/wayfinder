@@ -209,6 +209,8 @@ test("Cloudflare deployment cannot silently claim the occupied project name", ()
   assert.match(workflow, /Verify the production website/);
   assert.match(workflow, /verify-website-deployment\.cjs/);
   assert.match(workflow, /verify-website-discovery\.cjs/);
+  assert.match(workflow, /Notify IndexNow/);
+  assert.match(workflow, /submit-indexnow\.cjs/);
 });
 
 test("production verification fits within the deployment job budget", () => {

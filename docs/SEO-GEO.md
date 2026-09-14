@@ -68,10 +68,19 @@ Measured against `https://wayfinder-ai.pages.dev/` on 2026-09-14:
    English remains the default under `/`; matching Chinese pages live under
    `/zh/`. Every pair must declare reciprocal `en`, `zh-Hans`, and `x-default`
    alternates in both HTML and the sitemap.
-10. Treat the English HTML as the maintained source. Generate the six Chinese
+10. Treat the English HTML as the maintained source. Generate the nine Chinese
     pages and bilingual sitemap with `npm run generate:website-locales`; CI
     rejects missing translations, stale generated pages, broken locale links,
     or sitemap drift.
+11. Maintain focused pages for the three recurring user jobs that do not belong
+    in the frozen landing page: installing and completing first launch,
+    understanding the current integration matrix, and checking release
+    history. These pages reuse verified product and release evidence rather
+    than manufacturing generic blog content.
+12. Publish an IndexNow ownership key and submit every sitemap URL after a
+    verified production deployment. This accelerates discovery in Bing and
+    other participating engines; it does not replace the sitemap or affect
+    Google indexing.
 
 ## Current Status
 
@@ -80,16 +89,19 @@ Verified on 2026-09-14:
 - The deployed production baseline contains six English canonical pages (home,
   AI collaboration history, comparison, Codex, Claude Code, privacy), matching
   sitemap coverage, linked structured data, `llms.txt`, and a real HTTP 404
-  response. The repository now contains matching `/zh/` pages for all six,
-  bringing the next production deployment to 12 independently indexable
-  canonical pages.
+  response. The repository now contains nine English pages and matching `/zh/`
+  pages, adding focused installation, integration-index, and update-history
+  content for a total of 18 independently indexable canonical pages.
 - The site is English-first and both languages are server-rendered. Language
   switches are ordinary crawlable links, every pair has reciprocal `hreflang`,
-  and the sitemap repeats the same alternates for all 12 URLs. The old runtime
+  and the sitemap repeats the same alternates for all 18 URLs. The old runtime
   text replacement has been removed. `robots.txt` explicitly allows the AI
   retrieval crawlers
   (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) alongside `GPTBot`,
   `ClaudeBot`, and `Google-Extended`.
+- The deployment workflow verifies the public release and commit marker before
+  posting all canonical URLs to IndexNow. Submission validates the deployed key
+  first and accepts only IndexNow HTTP 200 or 202 responses.
 - The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
   Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
   entry use the current Codex and Claude Code collector scope.
@@ -104,7 +116,7 @@ Verified on 2026-09-14:
 - The sitemap `/sitemap.xml` was submitted in Google Search Console (2026-09-14)
   and present in Bing Webmaster Tools, which imported the verified Google
   property and crawled the sitemap successfully. Google and Bing re-read the
-  sitemap automatically. After the 12-URL sitemap is deployed, verify its read
+  sitemap automatically. After the 18-URL sitemap is deployed, verify its read
   date and discovered URL count in both consoles.
 - All setup steps (Google verification, sitemap submission, Bing import,
   monthly monitoring cadence) are complete. Search impressions, indexing
@@ -129,6 +141,7 @@ another tracking script. Review monthly:
 - non-brand queries and impressions;
 - clicks to the website;
 - crawl or indexing errors.
+- the last successful IndexNow deployment submission.
 
 Do not install visitor analytics solely for this work. GitHub release download
 counts remain the product acquisition measure.
@@ -166,7 +179,7 @@ document defines the method, the log holds the readings.
 - Repository tests pass without skipped or weakened checks, and the discovery
   verifier rejects a missing canonical URL, a stale sitemap, a mismatched
   document language, a one-way or incorrect `hreflang`, and a soft 404.
-- All six Chinese pages are readable with JavaScript disabled, self-canonical,
+- All nine Chinese pages are readable with JavaScript disabled, self-canonical,
   listed in the sitemap, paired with their English source, and reproduced
   byte-for-byte by `npm run generate:website-locales`.
 - Every sitemap URL returns HTTP 200 at its canonical URL after deployment;

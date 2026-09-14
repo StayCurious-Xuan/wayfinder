@@ -19,9 +19,10 @@ Codex and Claude Code.
 
 [Download Wayfinder](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17) ·
 [Website](https://wayfinder-ai.pages.dev) ·
+[Get started](https://wayfinder-ai.pages.dev/getting-started) ·
 [AI collaboration history](https://wayfinder-ai.pages.dev/ai-collaboration-history) ·
-[Install guide](docs/INSTALL.md) ·
-[Changelog](CHANGELOG.md) ·
+[Integrations](https://wayfinder-ai.pages.dev/integrations) ·
+[Updates](https://wayfinder-ai.pages.dev/updates) ·
 [Security](SECURITY.md) ·
 [Privacy](PRIVACY.md) ·
 [Report an issue](https://github.com/StayCurious-Xuan/wayfinder/issues)

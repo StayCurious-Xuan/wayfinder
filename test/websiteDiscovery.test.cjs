@@ -25,9 +25,9 @@ function temporaryWebsite() {
 test("website discovery surface is complete and internally consistent", () => {
   const result = verifyStaticWebsite({ websiteDir });
   assert.deepEqual(result, {
-    pages: 12,
-    sitemapEntries: 12,
-    llmsLinks: 12
+    pages: 18,
+    sitemapEntries: 18,
+    llmsLinks: 18
   });
 });
 
@@ -164,7 +164,7 @@ test("discovery verifier accepts an authentic Search Console HTML file", () => {
       `google-site-verification: ${filename}\n`
     );
     const result = verifyStaticWebsite({ websiteDir: directory });
-    assert.equal(result.pages, 12);
+    assert.equal(result.pages, 18);
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
@@ -186,6 +186,40 @@ test("discovery verifier rejects a malformed Search Console HTML file", () => {
   }
 });
 
+test("discovery verifier rejects a malformed IndexNow key file", () => {
+  const directory = temporaryWebsite();
+  try {
+    const keyFile = fs.readdirSync(directory)
+      .find((file) => /^[a-f0-9]{32,128}\.txt$/i.test(file));
+    fs.writeFileSync(path.join(directory, keyFile), "wrong-key\n");
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /IndexNow key file content must match/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("discovery verifier rejects a stale getting-started download", () => {
+  const directory = temporaryWebsite();
+  try {
+    const pageFile = path.join(directory, "getting-started.html");
+    const html = fs.readFileSync(pageFile, "utf8")
+      .replace(
+        "Wayfinder-Alpha-0.3.17-Windows-x86_64.exe",
+        "Wayfinder-Alpha-stale-Windows-x86_64.exe"
+      );
+    fs.writeFileSync(pageFile, html);
+    assert.throws(
+      () => verifyStaticWebsite({ websiteDir: directory }),
+      /getting-started\.html is missing current download/
+    );
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("discovery verifier accepts Windows line endings in llms.txt", () => {
   const directory = temporaryWebsite();
   try {
@@ -194,7 +228,7 @@ test("discovery verifier accepts Windows line endings in llms.txt", () => {
       .replace(/\r?\n/g, "\r\n");
     fs.writeFileSync(llmsFile, llms);
     const result = verifyStaticWebsite({ websiteDir: directory });
-    assert.equal(result.llmsLinks, 12);
+    assert.equal(result.llmsLinks, 18);
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
@@ -210,6 +244,12 @@ function liveResponse(url, { soft404 = false } = {}) {
   }
   if (parsed.pathname === "/robots.txt" || parsed.pathname === "/llms.txt") {
     return new Response("text", {
+      status: 200,
+      headers: { "content-type": "text/plain; charset=utf-8" }
+    });
+  }
+  if (/^\/[a-f0-9]{32,128}\.txt$/i.test(parsed.pathname)) {
+    return new Response(parsed.pathname.slice(1, -4), {
       status: 200,
       headers: { "content-type": "text/plain; charset=utf-8" }
     });
@@ -235,7 +275,7 @@ test("live discovery verifier accepts canonical pages and a real 404", async () 
     attempts: 1,
     fetchImpl: async (url) => liveResponse(url)
   });
-  assert.equal(result.pages, 12);
+  assert.equal(result.pages, 18);
 });
 
 test("live discovery verifier rejects a soft 404", async () => {
@@ -269,7 +309,7 @@ test("live discovery verifier tolerates edge propagation for 404s", async () => 
       return liveResponse(url);
     }
   });
-  assert.equal(result.pages, 12);
+  assert.equal(result.pages, 18);
   assert.equal(unknownRequests, 2);
   assert.equal(sleeps, 1);
 });

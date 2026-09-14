@@ -149,6 +149,19 @@ function isGoogleVerificationFile(file) {
   return /^google[a-z0-9_-]+\.html$/i.test(path.basename(file));
 }
 
+function indexNowKeyFile(websiteDir) {
+  const files = fs.readdirSync(websiteDir)
+    .filter((file) => /^[a-f0-9]{32,128}\.txt$/i.test(file));
+  assert.equal(files.length, 1, "website must contain one IndexNow key file");
+  const filename = files[0];
+  assert.equal(
+    fs.readFileSync(path.join(websiteDir, filename), "utf8").trim(),
+    path.basename(filename, ".txt"),
+    "IndexNow key file content must match its filename"
+  );
+  return filename;
+}
+
 function verifyStaticWebsite({
   websiteDir = path.join(root, "website"),
   baseUrl = DEFAULT_BASE_URL
@@ -156,6 +169,7 @@ function verifyStaticWebsite({
   const htmlFiles = listFiles(websiteDir, ".html");
   const missingPage = path.join(websiteDir, "404.html");
   assert.ok(fs.existsSync(missingPage), "website/404.html is required");
+  indexNowKeyFile(websiteDir);
 
   const verificationFiles = htmlFiles.filter(isGoogleVerificationFile);
   for (const file of verificationFiles) {
@@ -415,6 +429,25 @@ function verifyStaticWebsite({
   );
   assert.equal(application.softwareVersion, release.version);
   assert.ok(application.downloadUrl.includes(release.version));
+  const gettingStarted = pageRecords.find(
+    (page) => page.relativeFile === "getting-started.html"
+  );
+  assert.ok(gettingStarted, "website/getting-started.html is required");
+  for (const download of Object.values(release.downloads)) {
+    assert.ok(
+      gettingStarted.html.includes(download),
+      `getting-started.html is missing current download ${download}`
+    );
+  }
+  const updates = pageRecords.find(
+    (page) => page.relativeFile === "updates.html"
+  );
+  assert.ok(updates, "website/updates.html is required");
+  assert.match(
+    updates.html,
+    new RegExp(`\\b${release.version.replaceAll(".", "\\.")}\\b`),
+    "updates.html is missing the current release version"
+  );
 
   const pagesByUrl = new Map(
     pageRecords.map((page) => [page.expectedUrl, page])
@@ -491,6 +524,7 @@ async function verifyLiveWebsite({
   const staticResult = verifyStaticWebsite({ websiteDir });
   const sitemap = fs.readFileSync(path.join(websiteDir, "sitemap.xml"), "utf8");
   const locations = sitemapLocations(sitemap);
+  const indexNowFile = indexNowKeyFile(websiteDir);
 
   for (const location of locations) {
     const publicUrl = new URL(location);
@@ -524,7 +558,8 @@ async function verifyLiveWebsite({
   for (const [pathname, contentType] of [
     ["/robots.txt", /text\/plain/i],
     ["/sitemap.xml", /(?:application|text)\/xml/i],
-    ["/llms.txt", /text\/plain/i]
+    ["/llms.txt", /text\/plain/i],
+    [`/${indexNowFile}`, /text\/plain/i]
   ]) {
     const url = new URL(pathname, `${baseUrl}/`);
     const response = await fetchEventually({
@@ -602,6 +637,7 @@ module.exports = {
   DEFAULT_LIVE_INTERVAL_MS,
   alternateHrefs,
   canonicalHref,
+  indexNowKeyFile,
   sitemapLocations,
   sitemapRecords,
   verifyLiveWebsite,

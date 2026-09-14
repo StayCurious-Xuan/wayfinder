@@ -46,6 +46,37 @@ const routes = [
     }
   },
   {
+    source: "getting-started.html",
+    englishPath: "/getting-started",
+    chinesePath: "/zh/getting-started",
+    lastmod: "2026-09-14",
+    metadata: {
+      title: "在 macOS 与 Windows 上安装并开始使用 Wayfinder",
+      description:
+        "选择适合 Apple Silicon、Intel macOS 或 Windows x64 的 Wayfinder 安装包，核对下载文件，完成首次打开，并开始采集本机 Codex 与 Claude Code 历史。",
+      ogTitle: "安装 Wayfinder，开始保留项目过程",
+      ogDescription:
+        "选择正确的 Wayfinder 安装包，核对文件，完成首次打开，并从 Codex 与 Claude Code 开始建立本地项目历史。",
+      imageAlt: "Wayfinder 将 AI 协作历史显示为项目航海图"
+    }
+  },
+  {
+    source: "integrations.html",
+    englishPath: "/integrations",
+    chinesePath: "/zh/integrations",
+    lastmod: "2026-09-14",
+    metadata: {
+      title: "Codex 与 Claude Code 的 AI 会话集成 — Wayfinder",
+      description:
+        "了解 Wayfinder 当前面向 Codex 与 Claude Code 的 AI 会话集成：本地历史来源、首次回扫、增量采集、项目归并和证据边界。",
+      ogTitle: "Wayfinder 的 Codex 与 Claude Code 集成",
+      ogDescription:
+        "准确了解 Wayfinder 如何在本地采集 Codex 与 Claude Code 会话、按项目归并工作并保持证据可追溯。",
+      imageAlt:
+        "Wayfinder 将 Codex 与 Claude Code 会话整理成项目航海图"
+    }
+  },
+  {
     source: "compare.html",
     englishPath: "/compare",
     chinesePath: "/zh/compare",
@@ -59,6 +90,21 @@ const routes = [
         "事实对比三种 AI 协作记录方式：只留最终结果、保留原始聊天记录，以及保留带分叉与证据的可回看项目历史。",
       imageAlt:
         "Wayfinder 将 AI 协作整理成包含分叉与证据的可回看项目航海图"
+    }
+  },
+  {
+    source: "updates.html",
+    englishPath: "/updates",
+    chinesePath: "/zh/updates",
+    lastmod: "2026-09-14",
+    metadata: {
+      title: "Wayfinder 更新与发布记录",
+      description:
+        "查看 Wayfinder 在 macOS 与 Windows 上的发布历史和当前 Early Access 状态，包括采集、项目航海图、可靠性、隐私和官网更新。",
+      ogTitle: "Wayfinder 更新与发布记录",
+      ogDescription:
+        "跟踪 Wayfinder Early Access 在本地采集、项目航海图、桌面平台、隐私和公开文档方面经过验证的变化。",
+      imageAlt: "Wayfinder 将 AI 协作历史显示为项目航海图"
     }
   },
   {
@@ -134,6 +180,13 @@ const structuredTranslations = new Map(Object.entries({
     "Wayfinder 会补造缺失的文件变化吗？",
   "No. A file change is recorded only from a tool call that genuinely succeeded in the source session and has verifiable edit evidence.":
     "不会。只有来源会话中真实成功且具有可验证编辑证据的工具调用，才会形成文件变化记录。",
+  "Install and start using Wayfinder": "安装并开始使用 Wayfinder",
+  "Choose the correct Wayfinder installer, verify it, complete first launch, and start collecting local Codex and Claude Code history.":
+    "选择正确的 Wayfinder 安装包，核对文件，完成首次打开，并开始采集本机 Codex 与 Claude Code 历史。",
+  "Wayfinder integrations for Codex and Claude Code":
+    "Wayfinder 的 Codex 与 Claude Code 集成",
+  "Wayfinder reads compatible Codex and Claude Code session history locally, groups related work by project, and keeps source evidence traceable.":
+    "Wayfinder 在本地读取兼容的 Codex 与 Claude Code 会话历史，按项目归并相关工作，并保持来源证据可追溯。",
   "How to review Codex and Claude Code session history":
     "如何回看 Codex 与 Claude Code 会话历史",
   "A factual comparison of keeping the final output only, a raw chat log, and a reviewable project history with branches and evidence.":
@@ -150,6 +203,9 @@ const structuredTranslations = new Map(Object.entries({
     "项目历史与原始聊天记录有什么不同？",
   "A raw chat log stacks messages by time within one conversation. A project history groups related work across sessions and tools by project, keeps failed and working branches visible, and links each waypoint to the original session, file change, or validation.":
     "原始聊天记录按时间堆叠单次对话中的消息。项目历史按项目归并跨会话、跨工具的相关工作，同时保留失败与有效分支，并将每个航点连接到原始会话、文件变化或验证记录。",
+  "Wayfinder updates and release history": "Wayfinder 更新与发布记录",
+  "Verified Wayfinder Early Access changes across local collection, project voyage maps, desktop platforms, privacy, and public documentation.":
+    "Wayfinder Early Access 在本地采集、项目航海图、桌面平台、隐私和公开文档方面经过验证的变化。",
   "Codex session history and project path visualization":
     "Codex 会话历史与项目路径可视化",
   "Wayfinder reads Codex sessions locally and organizes goals, attempts, branches, and available evidence by project.":

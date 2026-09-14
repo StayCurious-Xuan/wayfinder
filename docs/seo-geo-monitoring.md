@@ -38,11 +38,11 @@ unattended cron job; every step below is done inside a session on purpose.
   ownership was verified the same day via the HTML file method
   (`website/google9326e3bda374ef14.html`), `/sitemap.xml` was submitted, and
   Bing Webmaster Tools imported the verified Google property. The repository
-  now adds six independently indexable Simplified Chinese pages, reciprocal
-  `hreflang`, and a 12-URL bilingual sitemap; production deployment and console
-  re-read evidence are recorded separately once available. No impression,
-  index, or citation data exists yet. The first data-bearing entry begins the
-  month after indexing starts.
+  now contains nine English pages and matching independently indexable
+  Simplified Chinese pages, reciprocal `hreflang`, and an 18-URL bilingual
+  sitemap; production deployment and console re-read evidence are recorded
+  separately once available. No impression, index, or citation data exists
+  yet. The first data-bearing entry begins the month after indexing starts.
 
 ---
 
@@ -56,12 +56,13 @@ Recorded: <YYYY-MM-DD>
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Valid indexed canonical pages | | of 12 |
+| Valid indexed canonical pages | | of 18 |
 | Non-brand queries (top) | | |
 | Total impressions | | 28-day |
 | Total clicks | | 28-day |
 | Crawl / indexing errors | | |
 | Sitemap status | | submitted / read date |
+| IndexNow deployment submission | | workflow date / status |
 
 ### GEO (5 prompts x 3 runs per engine)
 

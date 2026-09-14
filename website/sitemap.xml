@@ -30,6 +30,34 @@
     <lastmod>2026-09-14</lastmod>
   </url>
   <url>
+    <loc>https://wayfinder-ai.pages.dev/getting-started</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/getting-started"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/getting-started"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/getting-started"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/getting-started</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/getting-started"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/getting-started"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/getting-started"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/integrations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/integrations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
     <loc>https://wayfinder-ai.pages.dev/compare</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/compare"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/compare"/>
@@ -41,6 +69,20 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/compare"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/compare"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/compare"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/updates</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/updates"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/updates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/updates"/>
+    <lastmod>2026-09-14</lastmod>
+  </url>
+  <url>
+    <loc>https://wayfinder-ai.pages.dev/zh/updates</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/updates"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/updates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/updates"/>
     <lastmod>2026-09-14</lastmod>
   </url>
   <url>

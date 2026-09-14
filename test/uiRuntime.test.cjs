@@ -92,15 +92,21 @@ test(
         "/",
         "/ai-collaboration-history",
         "/compare",
+        "/getting-started",
+        "/integrations",
         "/integrations/codex",
         "/integrations/claude-code",
         "/privacy",
+        "/updates",
         "/zh/",
         "/zh/ai-collaboration-history",
         "/zh/compare",
+        "/zh/getting-started",
+        "/zh/integrations",
         "/zh/integrations/codex",
         "/zh/integrations/claude-code",
         "/zh/privacy",
+        "/zh/updates",
         "/missing-discovery-page"
       ];
       const viewports = [

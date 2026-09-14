@@ -26,6 +26,7 @@
     "watch": "tsc -w -p .",
     "import:history": "npm run compile && node scripts/import-memory-history.cjs",
     "generate:website-locales": "node scripts/generate-website-locales.cjs",
+    "submit:indexnow": "node scripts/submit-indexnow.cjs --base-url https://wayfinder-ai.pages.dev",
     "verify:website-locales": "node scripts/generate-website-locales.cjs --check",
     "verify:website-discovery": "node scripts/verify-website-discovery.cjs",
     "lint": "eslint src test",

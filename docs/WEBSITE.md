@@ -22,14 +22,17 @@ SEO page:
 | Purpose | Canonical path |
 | --- | --- |
 | Download experience | `/` and `/zh/` |
+| Install and first launch | `/getting-started` |
 | AI collaboration history | `/ai-collaboration-history` |
 | Factual comparison | `/compare` |
+| Current integrations | `/integrations` |
 | Codex collector | `/integrations/codex` |
 | Claude Code collector | `/integrations/claude-code` |
+| Verified release history | `/updates` |
 | Data boundary | `/privacy` |
 | Agent navigation | `/llms.txt` |
 
-The six English pages are the maintained sources. Their independently
+The nine English pages are the maintained sources. Their independently
 indexable Simplified Chinese counterparts use the same paths under `/zh/`.
 Run `npm run generate:website-locales` after changing source text, metadata, or
 internal links. Generated Chinese HTML and the bilingual sitemap are committed;
@@ -83,6 +86,13 @@ unrelated project on 2026-09-09. Configure:
 
 Then run `.github/workflows/deploy-website.yml`. A purchased custom domain is
 not required.
+
+After the production commit marker and public release are verified, the
+deployment workflow validates the public IndexNow key and submits every
+canonical sitemap URL to `api.indexnow.org`. The key is intentionally public;
+its root-level file proves control of this host. IndexNow supplements normal
+sitemap discovery for Bing and participating engines and is not a Google
+submission path.
 
 ## Public Links
 

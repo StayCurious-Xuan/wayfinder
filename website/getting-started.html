@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Install Wayfinder on Apple Silicon or Intel macOS and Windows x64, verify the download, complete first launch, and start collecting local Codex and Claude Code history.">
+  <meta property="og:title" content="Install and start using Wayfinder on macOS and Windows">
+  <meta property="og:description" content="Choose the correct Wayfinder installer, verify it, complete first launch, and start building a local project history from Codex and Claude Code.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wayfinder-ai.pages.dev/getting-started">
+  <meta property="og:site_name" content="Wayfinder">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
+  <meta property="og:image:alt" content="Wayfinder displays AI collaboration history as a project voyage map">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wayfinder-ai.pages.dev/getting-started">
+  <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/getting-started">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/getting-started">
+  <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/getting-started">
+  <title>Install and start using Wayfinder on macOS and Windows</title>
+  <link rel="icon" href="/wayfinder-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=0.3.17-i18n-v1">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://wayfinder-ai.pages.dev/getting-started#webpage",
+      "url": "https://wayfinder-ai.pages.dev/getting-started",
+      "name": "Install and start using Wayfinder",
+      "description": "Choose the correct Wayfinder installer, verify it, complete first launch, and start collecting local Codex and Claude Code history.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://wayfinder-ai.pages.dev/#website"
+      },
+      "about": {
+        "@id": "https://wayfinder-ai.pages.dev/#software"
+      }
+    }
+  </script>
+</head>
+<body class="document-page guide-page">
+  <header class="site-header guide-header">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/wayfinder-icon.svg" alt="">
+      <span>Wayfinder</span>
+    </a>
+    <nav class="header-nav" aria-label="Primary" data-zh-aria="主导航">
+      <a href="/integrations" data-zh="集成">Integrations</a>
+      <a class="header-link" href="/" data-zh="下载">Download</a>
+      <a class="lang-toggle" data-language-link href="/zh/getting-started"
+        lang="zh-Hans" hreflang="zh-Hans"
+        aria-label="切换到中文">中文</a>
+    </nav>
+  </header>
+  <main class="document guide-document">
+    <p class="eyebrow">GETTING STARTED · 0.3.17 EARLY ACCESS</p>
+    <h1 data-zh="安装 Wayfinder，开始保留项目过程。">Install Wayfinder and start keeping the project process.</h1>
+    <p class="document-lead" data-zh="选择与你电脑匹配的安装包，核对下载文件，打开 Wayfinder，然后继续照常使用 Codex 或 Claude Code。应用会在本机回扫可用历史，并持续更新项目航海图。">Choose the installer that matches your computer, verify the download, open Wayfinder, then keep using Codex or Claude Code as usual. The app backfills available local history and keeps the project voyage map updated.</p>
+
+    <section>
+      <h2 data-zh="1. 选择安装包">1. Choose an installer</h2>
+      <div class="document-copy">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th scope="col" data-zh="平台">Platform</th>
+              <th scope="col" data-zh="适用设备">Use for</th>
+              <th scope="col" data-zh="下载">Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">macOS · Apple Silicon</th>
+              <td data-zh="搭载 M1 或更新 Apple 芯片的 Mac">Mac with M1 or newer Apple chip</td>
+              <td><a href="https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.17/Wayfinder-Alpha-0.3.17-macOS-aarch64.dmg">DMG ↗</a></td>
+            </tr>
+            <tr>
+              <th scope="row">macOS · Intel</th>
+              <td data-zh="搭载 Intel 处理器的 Mac">Mac with an Intel processor</td>
+              <td><a href="https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.17/Wayfinder-Alpha-0.3.17-macOS-x86_64.dmg">DMG ↗</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Windows · x64</th>
+              <td data-zh="Windows 10 或 11 x64 电脑">Windows 10 or 11 x64 computer</td>
+              <td><a href="https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.17/Wayfinder-Alpha-0.3.17-Windows-x86_64.exe">EXE ↗</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p data-zh="所有安装包与 SHA256SUMS 都来自同一个公开 GitHub Release。">Every installer and SHA256SUMS comes from the same public GitHub Release.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="2. 核对下载">2. Verify the download</h2>
+      <div class="document-copy">
+        <p data-zh="先从 Release 下载 SHA256SUMS，再核对安装包。macOS 使用 shasum -a 256；Windows PowerShell 使用 Get-FileHash -Algorithm SHA256。">Download SHA256SUMS from the Release first, then verify the installer. Use <code>shasum -a 256</code> on macOS or <code>Get-FileHash -Algorithm SHA256</code> in Windows PowerShell.</p>
+        <div class="document-actions">
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.17/SHA256SUMS" data-zh="下载 SHA256SUMS ↗">Download SHA256SUMS ↗</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17" data-zh="查看 0.3.17 Release ↗">Open the 0.3.17 Release ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="3. 完成首次打开">3. Complete first launch</h2>
+      <div class="document-copy">
+        <p data-zh="当前零成本 Alpha 未使用商店签名。macOS 首次打开时，在“系统设置 → 隐私与安全性”选择“仍要打开”。Windows 可能显示 Microsoft Defender SmartScreen；核对校验和后，选择“更多信息 → 仍要运行”。">The current zero-cost Alpha is not store-signed. On macOS, choose <strong>Open Anyway</strong> under <strong>System Settings → Privacy &amp; Security</strong>. Windows may show Microsoft Defender SmartScreen; after verifying the checksum, choose <strong>More info → Run anyway</strong>.</p>
+        <p data-zh="Wayfinder 需要 macOS 12 或更新版本，或 Windows 10/11 x64；不要求另外安装 Git 或 Node.js。">Wayfinder requires macOS 12 or newer, or Windows 10/11 x64. It does not require a separate Git or Node.js installation.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="4. 继续照常工作">4. Keep working as usual</h2>
+      <div class="document-copy">
+        <p data-zh="保持 Wayfinder 运行，然后继续使用 Codex 或 Claude Code。首次启动会回扫本机可用历史，之后 watcher 只处理新增或变化的兼容会话记录，并按项目归并。">Keep Wayfinder running, then continue using Codex or Claude Code. First launch backfills compatible local history; after that, the watcher processes only new or changed session records and groups them by project.</p>
+        <p data-zh="无需安装 IDE 插件，也无需修改现有协作方式。">No IDE plugin is required, and you do not need to change your existing workflow.</p>
+        <div class="document-actions">
+          <a href="/integrations" data-zh="查看采集范围">Review collection scope</a>
+          <a href="/ai-collaboration-history" data-zh="了解项目航海图">Learn about project voyage maps</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="本地数据">Local data</h2>
+      <div class="document-copy">
+        <p data-zh="完整历史、文件变化摘要、采集游标和航海图保存在 ~/.wayfinder。当前版本没有账号、遥测、云同步或云分析。">Complete history, file-change summaries, collection cursors, and voyage maps stay under <code>~/.wayfinder</code>. The current version has no account, telemetry, cloud sync, or cloud analysis.</p>
+        <p data-zh="卸载应用不会自动删除历史。要清除数据，请先退出 Wayfinder，再删除 ~/.wayfinder 中对应项目或全部内容。">Uninstalling the app does not automatically delete history. To clear data, quit Wayfinder first, then delete the relevant project or all content under <code>~/.wayfinder</code>.</p>
+        <div class="document-actions">
+          <a href="/privacy" data-zh="阅读数据边界">Read the data boundary</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/issues" data-zh="报告安装问题 ↗">Report an install issue ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="document-updated" data-zh="适用于 Wayfinder 0.3.17 Early Access · 更新日期：2026 年 9 月 14 日">Applies to Wayfinder 0.3.17 Early Access · Updated: 2026-09-14</p>
+  </main>
+  <footer class="guide-footer">
+    <span data-zh="Wayfinder · 安装与首次使用">Wayfinder · install and first launch</span>
+    <nav class="footer-links" aria-label="Related" data-zh-aria="相关资料">
+      <a href="/" data-zh="首页">Home</a>
+      <a href="/updates" data-zh="更新">Updates</a>
+      <a href="/privacy" data-zh="隐私">Privacy</a>
+    </nav>
+  </footer>
+</body>
+</html>

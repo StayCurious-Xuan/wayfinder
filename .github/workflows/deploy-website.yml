@@ -280,3 +280,7 @@ jobs:
             --expected-sha "$DEPLOY_SHA"
           node scripts/verify-website-discovery.cjs \
             --base-url https://wayfinder-ai.pages.dev
+      - name: Notify IndexNow
+        run: |
+          node scripts/submit-indexnow.cjs \
+            --base-url https://wayfinder-ai.pages.dev

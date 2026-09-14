@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Wayfinder's current AI session integrations for Codex and Claude Code: local history sources, backfill, incremental collection, project grouping, and evidence boundaries.">
+  <meta property="og:title" content="Wayfinder integrations for Codex and Claude Code">
+  <meta property="og:description" content="See exactly how Wayfinder collects Codex and Claude Code sessions locally, groups work by project, and keeps evidence traceable.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wayfinder-ai.pages.dev/integrations">
+  <meta property="og:site_name" content="Wayfinder">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
+  <meta property="og:image:alt" content="Wayfinder organizes Codex and Claude Code sessions into a project voyage map">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wayfinder-ai.pages.dev/integrations">
+  <link rel="alternate" hreflang="en" href="https://wayfinder-ai.pages.dev/integrations">
+  <link rel="alternate" hreflang="zh-Hans" href="https://wayfinder-ai.pages.dev/zh/integrations">
+  <link rel="alternate" hreflang="x-default" href="https://wayfinder-ai.pages.dev/integrations">
+  <title>AI session integrations for Codex and Claude Code — Wayfinder</title>
+  <link rel="icon" href="/wayfinder-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=0.3.17-i18n-v1">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://wayfinder-ai.pages.dev/integrations#webpage",
+      "url": "https://wayfinder-ai.pages.dev/integrations",
+      "name": "Wayfinder integrations for Codex and Claude Code",
+      "description": "Wayfinder reads compatible Codex and Claude Code session history locally, groups related work by project, and keeps source evidence traceable.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://wayfinder-ai.pages.dev/#website"
+      },
+      "about": {
+        "@id": "https://wayfinder-ai.pages.dev/#software"
+      }
+    }
+  </script>
+</head>
+<body class="document-page guide-page">
+  <header class="site-header guide-header">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/wayfinder-icon.svg" alt="">
+      <span>Wayfinder</span>
+    </a>
+    <nav class="header-nav" aria-label="Primary" data-zh-aria="主导航">
+      <a href="/getting-started" data-zh="开始使用">Get started</a>
+      <a class="header-link" href="/" data-zh="下载">Download</a>
+      <a class="lang-toggle" data-language-link href="/zh/integrations"
+        lang="zh-Hans" hreflang="zh-Hans"
+        aria-label="切换到中文">中文</a>
+    </nav>
+  </header>
+  <main class="document guide-document">
+    <p class="eyebrow">CURRENT PUBLIC INTEGRATIONS</p>
+    <h1 data-zh="把 Codex 与 Claude Code 的项目过程放回同一张图。">Put Codex and Claude Code project history back on one map.</h1>
+    <p class="document-lead" data-zh="Wayfinder 当前公开支持 Codex 与 Claude Code。桌面应用只读地扫描本机兼容会话，按项目归并跨工具工作，并保留每条记录的来源。">Wayfinder currently supports Codex and Claude Code publicly. The desktop app scans compatible local sessions read-only, groups work across tools by project, and preserves the source of every record.</p>
+
+    <figure class="document-visual">
+      <img src="/login-voyage-focus-4k.png"
+        alt="Simulated Wayfinder voyage containing work from multiple AI sessions"
+        data-zh-alt="包含多个 AI 会话工作的 Wayfinder 模拟项目航海图"
+        width="3840" height="2160" decoding="async" fetchpriority="high">
+      <figcaption data-zh="模拟数据示例 · 不包含真实项目或会话内容">Simulated-data example · contains no real project or session content</figcaption>
+    </figure>
+
+    <section>
+      <h2 data-zh="支持范围">Supported sources</h2>
+      <div class="document-copy">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th scope="col" data-zh="能力">Capability</th>
+              <th scope="col">Codex</th>
+              <th scope="col">Claude Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row" data-zh="首次启动历史回扫">First-launch history backfill</th><td data-zh="活跃与归档 rollout">Active and archived rollouts</td><td data-zh="兼容的本机会话记录">Compatible local session records</td></tr>
+            <tr><th scope="row" data-zh="后台增量更新">Incremental background updates</th><td data-zh="是">Yes</td><td data-zh="是">Yes</td></tr>
+            <tr><th scope="row" data-zh="按项目归并">Project grouping</th><td data-zh="按工作区">By workspace</td><td data-zh="按工作区与可用项目来源">By workspace and available project provenance</td></tr>
+            <tr><th scope="row" data-zh="需要插件">Plugin required</th><td data-zh="不需要">No</td><td data-zh="不需要">No</td></tr>
+            <tr><th scope="row" data-zh="完整历史上传">Full-history upload</th><td data-zh="不会">No</td><td data-zh="不会">No</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="如何形成航海图">How the map is built</h2>
+      <div class="document-copy">
+        <ol class="document-list">
+          <li data-zh="读取本机兼容会话中的目标、回复、工具活动和验证来源。">Read goals, replies, tool activity, and validation provenance from compatible local sessions.</li>
+          <li data-zh="按项目归并不同会话和不同工具中的相关工作。">Group related work from different sessions and tools by project.</li>
+          <li data-zh="把独立目标整理成航程，同时保留有效、失败、回退和冲突分支。">Organize separate goals into voyages while retaining working, failed, reverted, and conflicting branches.</li>
+          <li data-zh="将航点连接回可用的原始会话、文件变化和验证。">Link waypoints back to available original sessions, file changes, and validation.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="证据边界">Evidence boundary</h2>
+      <div class="document-copy">
+        <p data-zh="Wayfinder 只在来源记录中存在真实成功的编辑证据时形成文件变化。未完成、失败或路径越界的工具调用不会成为文件变化；应用也不会根据当前工作区反推一段不存在的历史 Diff。">Wayfinder creates a file change only when the source record contains evidence of a genuinely successful edit. Unfinished, failed, or out-of-bounds tool calls do not become file changes, and the app does not infer a nonexistent historical diff from the current workspace.</p>
+        <p data-zh="采集、归并和地图生成在本地完成。当前版本没有账号、遥测、云同步或云分析。">Collection, grouping, and map generation happen locally. The current version has no account, telemetry, cloud sync, or cloud analysis.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="查看具体集成">Integration details</h2>
+      <div class="document-copy">
+        <p data-zh="每个集成页记录准确的本地来源、增量行为、文件变化规则和开始使用方式。">Each integration page documents its exact local sources, incremental behavior, file-change rules, and first-use flow.</p>
+        <div class="document-actions">
+          <a href="/integrations/codex" data-zh="Codex 会话采集">Codex session collection</a>
+          <a href="/integrations/claude-code" data-zh="Claude Code 会话采集">Claude Code session collection</a>
+          <a href="/compare" data-zh="对比最终结果、聊天记录与项目历史">Compare final output, chat logs, and project history</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-zh="当前边界">Current boundary</h2>
+      <div class="document-copy">
+        <p data-zh="Codex 与 Claude Code 是当前公开 Early Access 的采集入口，不是产品只能用于编程的边界。Wayfinder 的项目模型适用于研究、写作、设计、编码和其他持续的 AI 协作；只有上表列出的来源已公开提供自动采集。">Codex and Claude Code are the current public Early Access collectors, not a boundary that limits the product to coding. Wayfinder's project model applies to research, writing, design, coding, and other sustained AI collaboration; only the sources listed above currently have public automatic collection.</p>
+        <div class="document-actions">
+          <a href="/getting-started" data-zh="安装并开始使用">Install and get started</a>
+          <a href="/privacy" data-zh="阅读数据边界">Read the data boundary</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="document-updated" data-zh="当前支持状态：Early Access · 更新日期：2026 年 9 月 14 日">Current support status: Early Access · Updated: 2026-09-14</p>
+  </main>
+  <footer class="guide-footer">
+    <span data-zh="Wayfinder · 当前公开集成">Wayfinder · current public integrations</span>
+    <nav class="footer-links" aria-label="Related" data-zh-aria="相关资料">
+      <a href="/" data-zh="首页">Home</a>
+      <a href="/getting-started" data-zh="开始使用">Get started</a>
+      <a href="/updates" data-zh="更新">Updates</a>
+    </nav>
+  </footer>
+</body>
+</html>
