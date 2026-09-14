@@ -54,9 +54,9 @@ test("repository overview uses the public 2K presentation assets", () => {
   assert.match(readme, /wayfinder-social-preview-2k\.png/);
   assert.match(readme, /wayfinder-voyage-overview-2k\.png/);
   assert.match(readme, /No account\. No telemetry\. No cloud sync\./);
-  assert.match(readme, /Wayfinder-Alpha-0\.3\.16-macOS-aarch64\.dmg/);
-  assert.match(readme, /Wayfinder-Alpha-0\.3\.16-macOS-x86_64\.dmg/);
-  assert.match(readme, /Wayfinder-Alpha-0\.3\.16-Windows-x86_64\.exe/);
+  assert.match(readme, /Wayfinder-Alpha-0\.3\.17-macOS-aarch64\.dmg/);
+  assert.match(readme, /Wayfinder-Alpha-0\.3\.17-macOS-x86_64\.dmg/);
+  assert.match(readme, /Wayfinder-Alpha-0\.3\.17-Windows-x86_64\.exe/);
   assert.match(readme, /collection cursors, and project maps/);
   assert.doesNotMatch(readme, /collection cursors, and snapshots/);
   assert.doesNotMatch(readme, /wayfinder-product-hunt-map\.png/);
@@ -80,18 +80,30 @@ test("website metadata states the product category and current platforms", () =>
   assert.match(html, /property="og:image:alt" content="Wayfinder [^"]+"/);
   assert.match(html, /name="twitter:image:alt" content="Wayfinder [^"]+"/);
   assert.match(html, /"@type": "SoftwareApplication"/);
+  assert.match(html, /"@type": "WebSite"/);
+  assert.match(html, /"@type": "Organization"/);
   assert.match(html, /"softwareVersion": "0\.3\.16"/);
+  assert.match(html, /Wayfinder AI Collaboration History/);
+  assert.match(html, /producthunt\.com\/products\/wayfinder-5/);
   assert.match(
     read("website/robots.txt").toString("utf8"),
     /Sitemap: https:\/\/wayfinder-ai\.pages\.dev\/sitemap\.xml/
   );
   assert.match(
     read("website/sitemap.xml").toString("utf8"),
-    /https:\/\/wayfinder-ai\.pages\.dev\/privacy\.html/
+    /https:\/\/wayfinder-ai\.pages\.dev\/privacy/
+  );
+  assert.doesNotMatch(
+    read("website/sitemap.xml").toString("utf8"),
+    /\.html/
   );
   assert.match(
     read("website/sitemap.xml").toString("utf8"),
-    /<lastmod>2026-09-13<\/lastmod>/
+    /<lastmod>2026-09-14<\/lastmod>/
+  );
+  assert.match(
+    read("website/llms.txt").toString("utf8"),
+    /^# Wayfinder[\s\S]*?no account, telemetry, cloud sync, or cloud analysis/i
   );
 });
 
@@ -107,18 +119,62 @@ test("public support and release documents are explicit and current", () => {
   const privacy = read("PRIVACY.md").toString("utf8");
   const privacyPage = read("website/privacy.html").toString("utf8");
   const changelog = read("CHANGELOG.md").toString("utf8");
+  const releaseNotes = read("docs/RELEASE-0.3.17.md").toString("utf8");
   const bugTemplate = read(
     ".github/ISSUE_TEMPLATE/bug-report.yml"
   ).toString("utf8");
 
   assert.match(security, /private vulnerability reporting/);
   assert.ok(security.includes("`~/.wayfinder`"));
-  assert.match(security, /\| 0\.3\.16 \| Yes \|/);
+  assert.match(security, /\| 0\.3\.17 \| Yes \|/);
   assert.match(privacy, /file-change summaries, and map state/);
   assert.doesNotMatch(privacy, /Snapshot exclusions/);
   assert.doesNotMatch(privacyPage, /代码快照|和快照存储/);
   assert.match(privacyPage, /文件变化摘要和航海图/);
   assert.match(changelog, /## \[0\.3\.14\] - 2026-09-12/);
   assert.match(changelog, /Windows x64 installer/);
+  assert.match(releaseNotes, /local-first desktop app/);
+  assert.match(releaseNotes, /wayfinder-ai\.pages\.dev\/ai-collaboration-history/);
   assert.match(bugTemplate, /synthetic data/);
+});
+
+test("public build excludes the personal TRAE CN collector", () => {
+  const publicFiles = [
+    "AGENTS.md",
+    "README.md",
+    "PRIVACY.md",
+    "docs/COMPANION.md",
+    "docs/INSTALL.md",
+    "docs/PRODUCT-HUNT.md",
+    "docs/PUBLIC-PRESENTATION.md",
+    "docs/PUBLISHING.md",
+    "docs/WEBSITE.md",
+    "website/index.html",
+    "website/privacy.html",
+    "website/llms.txt"
+  ];
+  for (const file of publicFiles) {
+    assert.doesNotMatch(read(file).toString("utf8"), /TRAE CN/i, file);
+  }
+
+  assert.equal(
+    fs.existsSync(path.join(root, "src", "traeRuntimeBridge.ts")),
+    false
+  );
+  assert.equal(
+    fs.existsSync(path.join(root, "src", "traeSessionCollector.ts")),
+    false
+  );
+  assert.doesNotMatch(
+    read("src/sessionCollector.ts").toString("utf8"),
+    /discoverTraeSnapshotSources|trae-code/
+  );
+  assert.doesNotMatch(
+    read("companion/src-tauri/src/main.rs").toString("utf8"),
+    /TRAE_APP_ROOT|TRAE SOLO CN|workspaceStorage/
+  );
+
+  const packageJson = JSON.parse(read("package.json").toString("utf8"));
+  assert.equal(packageJson.dependencies.diff, undefined);
+  assert.equal(packageJson.dependencies["isomorphic-git"], undefined);
 });

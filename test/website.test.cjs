@@ -208,6 +208,7 @@ test("Cloudflare deployment cannot silently claim the occupied project name", ()
   );
   assert.match(workflow, /Verify the production website/);
   assert.match(workflow, /verify-website-deployment\.cjs/);
+  assert.match(workflow, /verify-website-discovery\.cjs/);
 });
 
 test("production verification fits within the deployment job budget", () => {
@@ -345,7 +346,7 @@ test("public Windows installer smoke test installs and launches the release", ()
   assert.match(workflow, /SHA256SUMS/);
   assert.match(workflow, /Get-FileHash \$installer -Algorithm SHA256/);
   assert.match(workflow, /ArgumentList @\("\/S", "\/D=\$installDir"\)/);
-  assert.match(workflow, /default: alpha-v0\.3\.16/);
+  assert.match(workflow, /default: alpha-v0\.3\.17/);
   assert.match(workflow, /collector sidecar was not found/);
   assert.match(workflow, /\$machine -ne 0x8664/);
   assert.match(workflow, /& \$sidecar\.FullName --version/);

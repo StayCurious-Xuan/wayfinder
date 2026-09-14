@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI 协作历史记录什么、为什么仅保留最终答案不够，以及 Wayfinder 如何在本地整理目标、尝试、分叉、文件变化与验证。">
+  <meta property="og:title" content="什么是 AI 协作历史？— Wayfinder">
+  <meta property="og:description" content="了解如何把分散在 Codex 和 Claude Code 中的目标、尝试、分叉与证据整理成可回看的项目路径。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wayfinder-ai.pages.dev/ai-collaboration-history">
+  <meta property="og:site_name" content="Wayfinder">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image" content="https://wayfinder-ai.pages.dev/wayfinder-social-preview-2k.png">
+  <meta property="og:image:alt" content="Wayfinder 将 AI 协作过程整理成包含成功与失败分支的航海图">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wayfinder-ai.pages.dev/ai-collaboration-history">
+  <title>什么是 AI 协作历史？目标、分支与证据如何保留 — Wayfinder</title>
+  <link rel="icon" href="/wayfinder-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=0.3.16">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://wayfinder-ai.pages.dev/ai-collaboration-history#webpage",
+          "url": "https://wayfinder-ai.pages.dev/ai-collaboration-history",
+          "name": "什么是 AI 协作历史？",
+          "description": "AI 协作历史记录目标、尝试、分叉、文件变化与验证，使项目过程可以回看。",
+          "inLanguage": "zh-CN",
+          "isPartOf": {
+            "@id": "https://wayfinder-ai.pages.dev/#website"
+          },
+          "about": {
+            "@id": "https://wayfinder-ai.pages.dev/#software"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://wayfinder-ai.pages.dev/ai-collaboration-history#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Wayfinder 会把完整会话上传到云端吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "不会。当前版本没有账号、遥测、云同步或云分析；完整历史保存在用户电脑上的 ~/.wayfinder。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Wayfinder 只适合 AI 编程吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "不是。产品面向研究、写作、设计、编码及其他 AI 协作项目；Codex 和 Claude Code 是当前公开 Early Access 的采集入口。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Wayfinder 会补造缺失的文件变化吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "不会。只有来源会话中真实成功且具有可验证编辑证据的工具调用才会形成文件变化记录。"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+</head>
+<body class="document-page guide-page">
+  <header class="site-header guide-header">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/wayfinder-icon.svg" alt="">
+      <span>Wayfinder</span>
+    </a>
+    <nav class="header-nav" aria-label="主导航">
+      <a href="/privacy">数据边界</a>
+      <a class="header-link" href="/">下载</a>
+    </nav>
+  </header>
+  <main class="document guide-document">
+    <p class="eyebrow">AI COLLABORATION HISTORY</p>
+    <h1>什么是 AI 协作历史？</h1>
+    <p class="document-lead">AI 协作历史不是聊天备份。它记录一个项目如何从目标出发，经过不同尝试、分叉、失败和验证，最终到达结果。</p>
+
+    <figure class="document-visual">
+      <img src="/login-voyage-focus-4k.png"
+        alt="Wayfinder 示例航程展示登录问题的失败分支、有效路径和验证节点"
+        width="3840" height="2160" decoding="async" fetchpriority="high">
+      <figcaption>模拟数据示例 · 登录回跳稳定性</figcaption>
+    </figure>
+
+    <section>
+      <h2>为什么需要</h2>
+      <div class="document-copy">
+        <p>普通聊天记录按时间堆叠消息，最终答案通常与产生它的证据分开。项目一长，就很难回答“为什么放弃这个方案”“哪个测试改变了方向”“另一个 AI 工具做过什么”。</p>
+        <p>AI 协作历史把这些信息放回同一条项目路径，保留过程，而不是只保留一份整理过的成功故事。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>应该记录什么</h2>
+      <div class="document-copy">
+        <ul class="document-list">
+          <li><strong>目标：</strong>这一段工作试图解决什么问题。</li>
+          <li><strong>尝试与分叉：</strong>哪些方向被探索，哪些后来失败或被否决。</li>
+          <li><strong>来源：</strong>工作来自哪个会话、工具和时间点。</li>
+          <li><strong>文件变化：</strong>来源中存在真实编辑证据时，记录改了哪些文件。</li>
+          <li><strong>验证：</strong>测试、检查或人工判断如何支持最终结果。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Wayfinder 如何工作</h2>
+      <div class="document-copy">
+        <p>Wayfinder 是 macOS 与 Windows 桌面应用。首次启动会回扫本机可用历史，随后在后台增量读取新的兼容会话，并按项目整理为航程和分支。</p>
+        <p>当前公开 Early Access 支持 Codex 和 Claude Code。这些入口是当前支持范围，不是产品只能用于编程的边界。</p>
+        <div class="document-actions">
+          <a href="/integrations/codex">查看 Codex 采集说明</a>
+          <a href="/integrations/claude-code">查看 Claude Code 采集说明</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>适用场景</h2>
+      <div class="document-copy">
+        <p>只要工作包含持续目标、多轮尝试和可以核对的结果，就可以形成可回看的历史。它可以是代码修改，也可以是研究资料的取舍、文章结构的迭代、设计方向的比较或其他 AI 协作项目。</p>
+        <p>Wayfinder 不判断哪条路线“正确”，而是保留当前可获得的来源和证据，让人能够自己复盘。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>常见问题</h2>
+      <div class="document-copy">
+        <p><strong>会把完整会话上传到云端吗？</strong><br>不会。当前版本没有账号、遥测、云同步或云分析；完整历史保存在本机 <code>~/.wayfinder</code>。</p>
+        <p><strong>只适合 AI 编程吗？</strong><br>不是。产品面向研究、写作、设计、编码及其他 AI 协作项目。</p>
+        <p><strong>会补造缺失的文件变化吗？</strong><br>不会。只有真实成功且具有可验证编辑证据的工具调用才会形成文件变化记录。</p>
+        <div class="document-actions">
+          <a href="/privacy">阅读完整数据边界</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder">查看开源仓库 ↗</a>
+          <a href="https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16">下载 Early Access ↗</a>
+        </div>
+      </div>
+    </section>
+    <p class="document-updated">更新日期：2026 年 9 月 14 日</p>
+  </main>
+  <footer class="guide-footer">
+    <span>Wayfinder · 本地优先的 AI 协作历史</span>
+    <nav class="footer-links" aria-label="相关资料">
+      <a href="/">首页</a>
+      <a href="/privacy">隐私</a>
+      <a href="https://github.com/StayCurious-Xuan/wayfinder">GitHub ↗</a>
+    </nav>
+  </footer>
+</body>
+</html>

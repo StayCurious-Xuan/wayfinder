@@ -4,17 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Wayfinder 本地数据与隐私边界。">
+  <meta property="og:title" content="数据边界 — Wayfinder">
+  <meta property="og:description" content="Wayfinder 的完整会话、文件变化摘要和航海图保存在你的电脑上。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wayfinder-ai.pages.dev/privacy">
+  <meta property="og:site_name" content="Wayfinder">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="canonical" href="https://wayfinder-ai.pages.dev/privacy">
   <title>数据边界 — Wayfinder</title>
   <link rel="icon" href="./wayfinder-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css?v=0.3.16">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://wayfinder-ai.pages.dev/privacy#webpage",
+      "url": "https://wayfinder-ai.pages.dev/privacy",
+      "name": "数据边界 — Wayfinder",
+      "description": "Wayfinder 的完整会话、文件变化摘要和航海图保存在用户电脑上。",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://wayfinder-ai.pages.dev/#website"
+      },
+      "about": {
+        "@id": "https://wayfinder-ai.pages.dev/#software"
+      }
+    }
+  </script>
 </head>
-<body class="document-page">
-  <header class="site-header document-header">
+<body class="document-page guide-page">
+  <header class="site-header document-header guide-header">
     <a class="brand" href="./">
       <img class="brand-mark" src="./wayfinder-icon.svg" alt="">
       <span>Wayfinder</span>
     </a>
-    <a class="header-link" href="./">返回下载页</a>
+    <nav class="header-nav" aria-label="文档导航">
+      <a href="./ai-collaboration-history">工作原理</a>
+      <a class="header-link" href="./">返回下载页</a>
+    </nav>
   </header>
   <main class="document">
     <p class="eyebrow">PRIVACY</p>
@@ -26,7 +53,7 @@
     </section>
     <section>
       <h2>自动采集</h2>
-      <p>Wayfinder 在本机读取 Codex、Claude Code 与 TRAE CN 的兼容会话记录，并以增量方式更新航海图。TRAE CN 采集目前为 macOS Early Access，通过运行中应用的本机回环会话服务读取完整消息，不操作界面，也不修改 TRAE 数据库。</p>
+      <p>Wayfinder 在本机读取 Codex 与 Claude Code 的兼容会话记录，并以增量方式更新航海图。</p>
     </section>
     <section>
       <h2>规则分析</h2>
@@ -34,7 +61,7 @@
     </section>
     <section>
       <h2>网络访问</h2>
-      <p>TRAE CN 采集只连接 <code>127.0.0.1</code>；应用仅在你主动查看版本信息时打开 GitHub Releases。会话内容、文件变化摘要和航迹不会上传到 Wayfinder 服务。</p>
+      <p>应用仅在你主动查看版本信息时打开 GitHub Releases。会话内容、文件变化摘要和航迹不会上传到 Wayfinder 服务。</p>
     </section>
     <section>
       <h2>删除数据</h2>
@@ -42,10 +69,12 @@
     </section>
     <p class="document-updated">更新日期：2026 年 9 月 13 日</p>
   </main>
-  <footer>
+  <footer class="guide-footer">
     <span>Wayfinder</span>
-    <span>Local-first by default</span>
-    <a href="https://github.com/StayCurious-Xuan/wayfinder/blob/main/PRIVACY.md">完整政策 ↗</a>
+    <nav class="footer-links" aria-label="相关资料">
+      <a href="./ai-collaboration-history">AI 协作历史</a>
+      <a href="https://github.com/StayCurious-Xuan/wayfinder/blob/main/PRIVACY.md">完整政策 ↗</a>
+    </nav>
   </footer>
 </body>
 </html>

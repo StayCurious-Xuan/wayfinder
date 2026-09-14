@@ -22,6 +22,192 @@ if (!chrome && process.env.CI && !skipUiTest) {
 }
 
 test(
+  "public discovery pages fit desktop and phone viewports",
+  {
+    skip: !chrome || skipUiTest,
+    timeout: 75_000
+  },
+  async () => {
+    const websiteRoot = path.join(root, "website");
+    const server = http.createServer((request, response) => {
+      const pathname = new URL(request.url, "http://localhost").pathname;
+      const relative = decodeURIComponent(pathname).replace(/^\/+/, "");
+      const candidates = pathname === "/"
+        ? [path.join(websiteRoot, "index.html")]
+        : [
+            path.join(websiteRoot, relative),
+            path.join(websiteRoot, `${relative}.html`),
+            path.join(websiteRoot, relative, "index.html")
+          ];
+      const file = candidates.find((candidate) =>
+        candidate.startsWith(websiteRoot) &&
+        fs.existsSync(candidate) &&
+        fs.statSync(candidate).isFile()
+      );
+      const selected = file || path.join(websiteRoot, "404.html");
+      response.writeHead(file ? 200 : 404, {
+        "content-type": contentType(selected)
+      });
+      fs.createReadStream(selected)
+        .on("error", () => response.destroy())
+        .pipe(response);
+    });
+    await listen(server);
+    server.unref();
+    const origin = `http://127.0.0.1:${server.address().port}`;
+    const debugPort = await freePort();
+    const temp = fs.mkdtempSync(
+      path.join(os.tmpdir(), "wayfinder-discovery-ui-")
+    );
+    const browser = childProcess.spawn(
+      chrome,
+      [
+        "--headless=new",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--hide-scrollbars",
+        "--no-first-run",
+        `--remote-debugging-port=${debugPort}`,
+        `--user-data-dir=${path.join(temp, "chrome")}`,
+        `${origin}/`
+      ],
+      { stdio: "ignore", detached: process.platform !== "win32" }
+    );
+    browser.unref();
+
+    try {
+      const target = await waitForTarget(debugPort, "/");
+      const cdp = await connectCdp(target.webSocketDebuggerUrl);
+      const exceptions = [];
+      cdp.on("Runtime.exceptionThrown", (params) => {
+        exceptions.push(
+          params.exceptionDetails.exception?.description ||
+            params.exceptionDetails.text
+        );
+      });
+      await cdp.send("Runtime.enable");
+      await cdp.send("Page.enable");
+
+      const pages = [
+        "/",
+        "/ai-collaboration-history",
+        "/integrations/codex",
+        "/integrations/claude-code",
+        "/privacy",
+        "/missing-discovery-page"
+      ];
+      const viewports = [
+        { width: 1440, height: 900 },
+        { width: 390, height: 844 },
+        { width: 320, height: 800 }
+      ];
+
+      for (const viewport of viewports) {
+        await cdp.send("Emulation.setDeviceMetricsOverride", {
+          ...viewport,
+          deviceScaleFactor: 1,
+          mobile: false
+        });
+        for (const page of pages) {
+          await cdp.send("Page.navigate", { url: `${origin}${page}` });
+          await waitForExpression(
+            cdp,
+            "document.readyState === 'complete' && " +
+              "document.fonts.status === 'loaded' && " +
+              "[...document.images].every((image) => image.complete)"
+          );
+          const layout = await evaluateJson(
+            cdp,
+            `(() => {
+              const visible = (element) => {
+                const style = getComputedStyle(element);
+                return style.display !== "none" &&
+                  style.visibility !== "hidden" &&
+                  element.getClientRects().length > 0;
+              };
+              const overflow = [...document.querySelectorAll(
+                "h1, h2, p, li, a, strong, code"
+              )]
+                .filter(visible)
+                .map((element) => {
+                  const rect = element.getBoundingClientRect();
+                  return {
+                    text: (element.textContent || "").trim().slice(0, 80),
+                    left: rect.left,
+                    right: rect.right,
+                    width: rect.width
+                  };
+                })
+                .filter((item) =>
+                  item.left < -1 || item.right > innerWidth + 1
+                );
+              const h1 = document.querySelector("h1")?.getBoundingClientRect();
+              const visual = document.querySelector(
+                ".document-visual img"
+              )?.getBoundingClientRect();
+              return {
+                innerWidth,
+                documentWidth: document.documentElement.scrollWidth,
+                bodyWidth: document.body.scrollWidth,
+                h1: h1 && {
+                  left: h1.left,
+                  right: h1.right,
+                  width: h1.width
+                },
+                visual: visual && {
+                  width: visual.width,
+                  height: visual.height
+                },
+                overflow,
+                brokenImages: [...document.images]
+                  .filter((image) => image.naturalWidth === 0)
+                  .map((image) => image.currentSrc)
+              };
+            })()`
+          );
+          assert.equal(layout.innerWidth, viewport.width, page);
+          assert.ok(layout.documentWidth <= viewport.width, page);
+          assert.ok(layout.bodyWidth <= viewport.width, page);
+          assert.ok(layout.h1, `${page} is missing an H1`);
+          assert.ok(layout.h1.left >= -1, page);
+          assert.ok(layout.h1.right <= viewport.width + 1, page);
+          assert.deepEqual(layout.overflow, [], `${page} has clipped text`);
+          assert.deepEqual(layout.brokenImages, [], page);
+          if (layout.visual) {
+            assert.ok(
+              Math.abs(layout.visual.width / layout.visual.height - 16 / 9) <
+                0.02,
+              `${page} product image lost its 16:9 ratio`
+            );
+          }
+        }
+      }
+
+      assert.deepEqual(exceptions, []);
+      await cdp.send("Browser.close").catch(() => {});
+      cdp.close();
+    } finally {
+      server.close();
+      if (browser.exitCode === null) {
+        const exited = new Promise((resolve) => {
+          browser.once("exit", resolve);
+        });
+        try {
+          process.kill(
+            process.platform === "win32" ? browser.pid : -browser.pid,
+            "SIGTERM"
+          );
+        } catch {
+          browser.kill("SIGTERM");
+        }
+        await Promise.race([exited, delay(2_000)]);
+      }
+      fs.rmSync(temp, { recursive: true, force: true });
+    }
+  }
+);
+
+test(
   "generated voyage previews run in Chromium at 220px and 320px",
   {
     skip: !chrome || skipUiTest,
@@ -3628,6 +3814,12 @@ function contentType(file) {
   if (file.endsWith(".css")) return "text/css";
   if (file.endsWith(".js")) return "text/javascript";
   if (file.endsWith(".ttf")) return "font/ttf";
+  if (file.endsWith(".woff2")) return "font/woff2";
+  if (file.endsWith(".png")) return "image/png";
+  if (file.endsWith(".svg")) return "image/svg+xml";
+  if (file.endsWith(".json")) return "application/json";
+  if (file.endsWith(".xml")) return "application/xml";
+  if (file.endsWith(".txt")) return "text/plain; charset=utf-8";
   return "text/html; charset=utf-8";
 }
 

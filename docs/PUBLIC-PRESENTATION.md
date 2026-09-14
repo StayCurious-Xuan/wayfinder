@@ -29,13 +29,12 @@ result.
 
 - macOS: Apple Silicon and Intel
 - Windows: x64
-- Current collectors: Codex, Claude Code, and TRAE CN
-- TRAE CN collection: Early Access, currently validated on macOS
+- Current public collectors: Codex and Claude Code
 - Current public release: 0.3.16 early access
 
 Do not describe the current collectors as the product boundary. Do not claim
-Windows TRAE validation, or support for an unreleased package manager, plugin,
-Skill, or MCP surface.
+support for an unpublished collector, package manager, plugin, Skill, or MCP
+surface.
 
 ## Benchmarks
 
@@ -74,6 +73,13 @@ metrics, visual identity, or category boundaries.
   three platform choices in one segmented row.
 - Compare the 1440x900 desktop screenshot against the frozen pre-change image
   before publishing a phone-only revision.
+- Keep the home page focused on product identity and download. Put
+  query-specific explanations on the canonical AI collaboration history and
+  collector pages linked through the home page and central guide.
+- Every indexed page has a unique title, description, canonical URL, visible
+  H1, and structured data that agrees with visible copy.
+- Unknown paths must return HTTP 404. `llms.txt` supplements, but never
+  replaces, the sitemap and ordinary HTML navigation.
 - Do not add testimonials, usage counts, awards, or trust logos without a
   public source.
 
@@ -82,8 +88,12 @@ metrics, visual identity, or category boundaries.
 - The repository description states category and outcome in one sentence.
 - The README leads with a product visual, a concise promise, trust boundaries,
   and direct platform downloads.
+- The README links to the canonical website explanation and current collector
+  pages rather than duplicating long, potentially stale descriptions.
 - The social preview uses the 2560x1280 synthetic website image.
-- Release notes use: purpose, available builds, highlights, and verification.
+- Release notes lead with the product category and canonical website,
+  explanation, and install links, then use: purpose, available builds,
+  highlights, and verification.
 
 ### Product Hunt
 

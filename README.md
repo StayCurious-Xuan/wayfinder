@@ -11,15 +11,15 @@ disappearing into separate chats.
 
 Wayfinder is designed for AI collaboration across coding, research, writing,
 design, and other project work. The current early-access collectors support
-Codex, Claude Code, and TRAE CN. TRAE CN collection is currently validated on
-macOS.
+Codex and Claude Code.
 
 [![CI](https://github.com/StayCurious-Xuan/wayfinder/actions/workflows/ci.yml/badge.svg)](https://github.com/StayCurious-Xuan/wayfinder/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/StayCurious-Xuan/wayfinder?include_prereleases&label=release)](https://github.com/StayCurious-Xuan/wayfinder/releases)
 [![License](https://img.shields.io/github/license/StayCurious-Xuan/wayfinder)](LICENSE)
 
-[Download Wayfinder](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16) ·
+[Download Wayfinder](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.17) ·
 [Website](https://wayfinder-ai.pages.dev) ·
+[AI collaboration history](https://wayfinder-ai.pages.dev/ai-collaboration-history) ·
 [Install guide](docs/INSTALL.md) ·
 [Changelog](CHANGELOG.md) ·
 [Security](SECURITY.md) ·
@@ -54,15 +54,20 @@ Wayfinder keeps that path reviewable:
 Related sessions are grouped locally. Every recorded turn retains its original
 source, and Wayfinder does not invent missing history or historical diffs.
 
+Current collector details:
+
+- [Codex session history](https://wayfinder-ai.pages.dev/integrations/codex)
+- [Claude Code session history](https://wayfinder-ai.pages.dev/integrations/claude-code)
+
 ## Downloads
 
 Wayfinder early access is available for:
 
 | Platform | Build | Download |
 | --- | --- | --- |
-| macOS | Apple Silicon | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.16/Wayfinder-Alpha-0.3.16-macOS-aarch64.dmg) |
-| macOS | Intel | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.16/Wayfinder-Alpha-0.3.16-macOS-x86_64.dmg) |
-| Windows | x64 | [EXE](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.16/Wayfinder-Alpha-0.3.16-Windows-x86_64.exe) |
+| macOS | Apple Silicon | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.17/Wayfinder-Alpha-0.3.17-macOS-aarch64.dmg) |
+| macOS | Intel | [DMG](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.17/Wayfinder-Alpha-0.3.17-macOS-x86_64.dmg) |
+| Windows | x64 | [EXE](https://github.com/StayCurious-Xuan/wayfinder/releases/download/alpha-v0.3.17/Wayfinder-Alpha-0.3.17-Windows-x86_64.exe) |
 
 Download the latest installers and checksums from
 [GitHub Releases](https://github.com/StayCurious-Xuan/wayfinder/releases). The current
@@ -82,9 +87,7 @@ Read [PRIVACY.md](PRIVACY.md) before using confidential projects.
 - Standalone desktop application for macOS and Windows.
 - AI collaboration model spanning conversations, research, writing, design,
   coding, and other project work.
-- Current early-access collection from Codex, Claude Code, and TRAE CN.
-- TRAE CN collection is currently validated on macOS and uses the running
-  app's local session service plus verifiable snapshot changes.
+- Current public early-access collection from Codex and Claude Code.
 - Project-level voyage grouping, branches, source details, and file-change
   replay.
 - Early access: data formats and grouping behavior may continue to evolve.

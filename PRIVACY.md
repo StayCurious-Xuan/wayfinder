@@ -18,17 +18,11 @@ project data.
 
 On macOS and Windows, Companion reads supported local session files from active
 and archived Codex storage, Claude Code projects, and Claude Cowork session
-storage. On supported TRAE CN installations, it also watches TRAE's local
-workspace and snapshot data. While TRAE CN is running, Wayfinder can connect to
-its loopback-only Chromium debugging endpoint to read the app's local session
-service. The connection stays on `127.0.0.1`; Wayfinder does not automate the
-TRAE interface, modify its conversation database, or send transcript content
-to Wayfinder.
+storage.
 
 Incremental collection progress is stored in
-`~/.wayfinder/collector-state.json`. Normalized TRAE messages used for
-incremental replay are cached under `~/.wayfinder/trae-runtime/`. Both
-locations remain on the user's computer.
+`~/.wayfinder/collector-state.json`. This location remains on the user's
+computer.
 
 Desktop collection does not capture workspace snapshots or reconstruct
 historical file contents. File-change summaries are recorded only when the

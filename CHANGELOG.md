@@ -3,6 +3,25 @@
 Notable public changes to Wayfinder are recorded here. Release notes describe
 user-visible behavior; implementation detail remains in the linked commits.
 
+## [0.3.17] - 2026-09-14
+
+### Removed
+
+- Removed TRAE CN collection from public builds. The public desktop app now
+  collects Codex and Claude Code history only.
+
+### Added
+
+- Added canonical AI collaboration history, Codex, and Claude Code pages with
+  structured data, `llms.txt`, sitemap coverage, and a real 404 response.
+- Added CI checks for public metadata, internal links, Search Console
+  verification files, and soft-404 behavior.
+
+### Verification
+
+- 223 JavaScript and Chromium checks.
+- 10 Rust checks and clean dependency installation.
+
 ## [0.3.16] - 2026-09-13
 
 ### Fixed

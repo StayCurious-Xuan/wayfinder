@@ -24,15 +24,13 @@ Public screenshots must use synthetic demo data rather than a real
 The website, README, install guide, and future release notes must first explain
 Wayfinder's value across AI-assisted conversations, research, writing, design,
 coding, and other project work. The current early-access flow is then:
-install Wayfinder, continue working in Codex, Claude Code, or TRAE CN, and
+install Wayfinder, continue working in Codex or Claude Code, and
 inspect the resulting visual voyage map in the app.
 
 Public positioning must describe Wayfinder as an AI collaboration history
 product for coding, research, writing, design, and other project work. Codex,
-Claude Code, and TRAE CN are the current early-access collection adapters, not
-the boundary of the product category. TRAE CN collection must be described as
-currently validated on macOS until a Windows TRAE installation has passed the
-same end-to-end checks.
+and Claude Code are the current public early-access collection adapters, not
+the boundary of the product category.
 
 ## Retired Distribution Surfaces
 
@@ -57,7 +55,9 @@ workflows, and MCP directories were closed as withdrawn on the same date.
 1. Update `package.json`, `src/version.ts`,
    `companion/src-tauri/Cargo.toml`, and
    `companion/src-tauri/tauri.conf.json` together.
-2. Run `npm ci`, `npm run check`, and `npm run companion:prepare`.
+2. Run `npm ci`, `npm run check`,
+   `node scripts/verify-website-discovery.cjs`, and
+   `npm run companion:prepare`.
 3. Run the Rust test suite.
 4. Push the source commit and confirm the main CI workflow passes.
 5. Run `.github/workflows/release-macos-alpha.yml` for the zero-cost
@@ -70,6 +70,13 @@ workflows, and MCP directories were closed as withdrawn on the same date.
 7. Update `website/releases.json` only after all three download URLs return
    successfully.
 8. Deploy `.github/workflows/deploy-website.yml` and verify the public site.
+
+After adding or removing a public website page, update `website/sitemap.xml`,
+`website/llms.txt`, and the central guide navigation in the same change.
+Submit the canonical sitemap URL to the verified Google Search Console
+URL-prefix property, then import that property into Bing Webmaster Tools. A
+`pages.dev` subdomain cannot use project-owned DNS verification. No visitor
+analytics or paid SEO service is required.
 
 Never overwrite an existing published asset. Publish a new version so recorded
 hashes and user downloads remain reproducible.

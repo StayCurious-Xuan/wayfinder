@@ -80,10 +80,12 @@ test("phone voyage has its own complete scene and animation state", () => {
 
 test("homepage footer metadata is part of the final dark section", () => {
   assert.doesNotMatch(html, /<footer[\s>]/);
+  assert.match(html, /href="\.\/ai-collaboration-history"/);
   assert.match(
     html,
     /class="final-copy"[\s\S]*?class="final-meta"[\s\S]*?<\/section>/
   );
+  assert.match(html, /class="final-meta" role="group"/);
   assert.match(html, /<span>Wayfinder<\/span>/);
   assert.match(html, /<span>本地优先 · 开源<\/span>/);
   assert.match(styles, /\.final-meta\s*\{[\s\S]*?color: #ffffff/);

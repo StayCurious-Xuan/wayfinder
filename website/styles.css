@@ -1103,6 +1103,106 @@ footer a {
   font-size: 11px;
 }
 
+.guide-page {
+  font-family: "Wayfinder Sans", "PingFang SC", sans-serif;
+}
+
+.guide-header {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, .96);
+}
+
+.guide-document {
+  width: min(920px, calc(100% - 48px));
+  padding-top: 76px;
+}
+
+.guide-document h1 {
+  max-width: 820px;
+  font-size: 64px;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.guide-document .document-lead {
+  max-width: 760px;
+}
+
+.document-visual {
+  margin: 0 0 72px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--ocean);
+}
+
+.document-visual img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.document-visual figcaption {
+  padding: 12px 16px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 11px;
+}
+
+.document-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.document-copy p,
+.document-copy li {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.document-copy strong {
+  color: var(--ink);
+}
+
+.document-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: 12px;
+  list-style: none;
+}
+
+.document-list li {
+  padding-left: 18px;
+  border-left: 3px solid var(--ocean-line);
+}
+
+.document-actions {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  gap: 12px 22px;
+}
+
+.document-actions a {
+  padding: 8px 0 5px;
+  border-bottom: 1px solid var(--blue);
+  color: #176c8a;
+  font-size: 13px;
+}
+
+.guide-footer {
+  flex-wrap: wrap;
+  gap: 18px 28px;
+}
+
+.guide-footer .footer-links {
+  flex-wrap: wrap;
+}
+
 .reveal {
   opacity: .66;
   transform: translateY(26px);
@@ -1348,6 +1448,18 @@ footer a {
 
   footer {
     padding: 0 20px;
+  }
+
+  .guide-document {
+    width: min(760px, calc(100% - 40px));
+  }
+
+  .guide-document h1 {
+    font-size: 48px;
+  }
+
+  .document-visual {
+    margin-bottom: 48px;
   }
 
   .final-meta {
@@ -1934,6 +2046,35 @@ footer a {
 
   .final-meta .footer-links {
     gap: 12px;
+  }
+
+  .guide-document {
+    width: calc(100% - 32px);
+    padding-top: 52px;
+  }
+
+  .guide-document h1 {
+    font-size: 40px;
+  }
+
+  .guide-document .document-lead {
+    margin-top: 22px;
+    margin-bottom: 42px;
+    font-size: 16px;
+  }
+
+  .guide-header {
+    height: auto;
+    min-height: 72px;
+    padding: 12px 16px;
+  }
+
+  .guide-header .header-nav {
+    gap: 14px;
+  }
+
+  .guide-header .header-nav a:first-child {
+    display: none;
   }
 }
 

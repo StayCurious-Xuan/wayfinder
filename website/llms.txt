@@ -1,0 +1,31 @@
+# Wayfinder
+
+> Wayfinder is a local-first macOS and Windows desktop app that turns AI collaboration into a reviewable visual history of goals, attempts, branches, evidence, and outcomes.
+
+Wayfinder is designed for AI-assisted research, writing, design, coding, and other project work. Codex and Claude Code are the current public Early Access collectors, not the product boundary.
+
+The complete history stays on the user's computer under `~/.wayfinder`. The current product has no account, telemetry, cloud sync, or cloud analysis. Wayfinder does not invent missing historical file changes.
+
+## Product
+
+- [Wayfinder official website](https://wayfinder-ai.pages.dev/): Product overview and verified macOS and Windows downloads
+- [What is AI collaboration history?](https://wayfinder-ai.pages.dev/ai-collaboration-history): Goals, attempts, branches, evidence, supported scenarios, and common questions
+- [Data and privacy boundaries](https://wayfinder-ai.pages.dev/privacy): Local storage, collection, network access, and deletion
+
+## Current Collectors
+
+- [Codex session history](https://wayfinder-ai.pages.dev/integrations/codex): Local collection and evidence boundaries for Codex sessions
+- [Claude Code session history](https://wayfinder-ai.pages.dev/integrations/claude-code): Local collection and project grouping for Claude Code sessions
+
+## Source And Downloads
+
+- [GitHub repository](https://github.com/StayCurious-Xuan/wayfinder): Source code, README, issues, security policy, and public project history
+- [Current Early Access release](https://github.com/StayCurious-Xuan/wayfinder/releases/tag/alpha-v0.3.16): Apple Silicon, Intel macOS, Windows x64, and checksums
+- [Install guide](https://github.com/StayCurious-Xuan/wayfinder/blob/main/docs/INSTALL.md): Platform-specific installation and first-run steps
+- [Privacy policy](https://github.com/StayCurious-Xuan/wayfinder/blob/main/PRIVACY.md): Complete local-data contract
+
+## Important Limits
+
+- Wayfinder is currently distributed only as a desktop application.
+- Plugins, VSIX packages, Skills, MCP bundles, CLIs, Homebrew, and Scoop are not current installation surfaces.
+- File changes are created only from successful source tool calls with verifiable edit evidence.

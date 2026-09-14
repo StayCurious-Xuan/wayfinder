@@ -1,5 +1,12 @@
 # Wayfinder 0.3.16 Alpha
 
+Wayfinder is a local-first desktop app that turns AI collaboration into a
+visual history of goals, attempts, branches, evidence, and outcomes.
+
+[Website](https://wayfinder-ai.pages.dev) ·
+[How it works](https://wayfinder-ai.pages.dev/ai-collaboration-history) ·
+[Install guide](https://github.com/StayCurious-Xuan/wayfinder/blob/main/docs/INSTALL.md)
+
 Waypoint names should explain the work, not merely report that work continued.
 This patch applies Wayfinder's concrete-title rule consistently across every
 current collector.

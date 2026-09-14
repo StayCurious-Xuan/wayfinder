@@ -6,7 +6,6 @@ export type NodeKind =
   | "collected";
 export type AgentHost = "trae" | "claude" | "codex";
 export type LocalSessionSurface =
-  | "trae-code"
   | "codex"
   | "claude-code"
   | "claude-cowork";
@@ -87,7 +86,6 @@ export interface TimelineNode {
         sessionId: string;
         turnIndex: number;
         turnId?: string;
-        promptSource?: "transcript" | "derived-files";
         collectedAt: string;
       }
     | {

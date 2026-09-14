@@ -7,12 +7,48 @@ analytics, cookies, or runtime dependency. Download URLs come from
 The public copy leads with Wayfinder's value across AI-assisted conversations,
 research, writing, design, coding, and other project work. It then describes
 the current early-access flow: install the app, continue working in Codex,
-Claude Code, or TRAE CN, and inspect the automatically updated local voyage
-map. It must not tell Companion users to configure or approve Hooks. TRAE CN
-support must be labeled Early Access and currently validated on macOS.
+or Claude Code, and inspect the automatically updated local voyage map. It
+must not tell Companion users to configure or approve Hooks.
 
 The responsive composition and viewport acceptance contract lives in
 [MOBILE-REDESIGN.md](MOBILE-REDESIGN.md).
+
+## Discovery Surface
+
+The home page remains the download experience. Search and AI discovery use
+separate static pages so the frozen desktop hero does not become a text-heavy
+SEO page:
+
+| Purpose | Canonical path |
+| --- | --- |
+| AI collaboration history | `/ai-collaboration-history` |
+| Codex collector | `/integrations/codex` |
+| Claude Code collector | `/integrations/claude-code` |
+| Data boundary | `/privacy` |
+| Agent navigation | `/llms.txt` |
+
+Every indexed HTML page must have a unique title, description, canonical URL,
+one visible H1, and valid JSON-LD that agrees with visible copy. `404.html`
+must remain present so Cloudflare Pages returns HTTP 404 for unknown paths
+instead of serving the home page as a soft 404.
+
+Run the zero-dependency discovery check before publishing:
+
+```bash
+node scripts/verify-website-discovery.cjs
+```
+
+`llms.txt` is an optional navigation aid for agents. It is not treated as an
+official ranking signal and does not replace `sitemap.xml`.
+
+Search Console setup uses a URL-prefix property for
+`https://wayfinder-ai.pages.dev/` and Google's generated HTML verification
+file. The project cannot add DNS records to the shared `pages.dev` parent
+domain. Place the downloaded `google*.html` file at the root of `website/`
+without renaming or editing it. The discovery verifier accepts only the exact
+`google-site-verification: <filename>` content and excludes the file from the
+sitemap. After verification, submit `/sitemap.xml` and import the property
+into Bing Webmaster Tools.
 
 ## Local Preview
 

@@ -2,7 +2,7 @@
   "name": "wayfinder",
   "displayName": "Wayfinder",
   "description": "A local-first desktop app that shows how work with AI evolved.",
-  "version": "0.3.16",
+  "version": "0.3.17",
   "private": true,
   "license": "MIT",
   "repository": {
@@ -25,14 +25,13 @@
     "companion:build": "node scripts/build-companion-app.cjs",
     "watch": "tsc -w -p .",
     "import:history": "npm run compile && node scripts/import-memory-history.cjs",
+    "verify:website-discovery": "node scripts/verify-website-discovery.cjs",
     "lint": "eslint src test",
     "test": "npm run compile && node --test --test-concurrency=1 test/*.test.cjs",
-    "check": "npm run lint && npm test"
+    "check": "npm run verify:website-discovery && npm run lint && npm test"
   },
   "dependencies": {
     "@vscode/codicons": "^0.0.36",
-    "diff": "9.0.0",
-    "isomorphic-git": "1.42.2",
     "proper-lockfile": "^4.1.2"
   },
   "devDependencies": {
