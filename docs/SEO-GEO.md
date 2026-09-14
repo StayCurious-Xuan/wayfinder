@@ -100,18 +100,21 @@ Verified on 2026-09-14:
   `ClaudeBot`, and `Google-Extended`.
 - The deployment workflow verifies the public release and commit marker before
   posting all canonical URLs to IndexNow. The production run for commit
-  `d8d1ee5d3182e9357c79b40b70fe4a1dee1d0e56` validated the deployed key and
+  `506086a5d30aa716b821c1a516430dcd8079b600` validated the deployed key and
   completed IndexNow submission successfully.
 - The public website, GitHub repository, `0.3.17` release, Product Hunt listing,
   Tauri Show and Tell post, Codex Show and Tell post, and merged awesome-mac
   entry use the current Codex and Claude Code collector scope.
-- Audited production commit `e1b347d30326a727604ad5bc954541faa1e31768`
-  passed Linux, macOS, and Windows CI, production deployment checks, the public
-  Windows installer smoke test, and independent live verification of all 18
-  canonical pages. Lighthouse 13.4.1 reported SEO 100 for every English and
-  Chinese canonical page. Nu HTML Checker reported zero messages across all 18
-  pages. Linkinator 8.1.0 checked 45 live pages, assets, and external links with
-  zero broken links or redirects.
+- Audited production commit `506086a5d30aa716b821c1a516430dcd8079b600`
+  passed Linux, macOS, and Windows CI, production deployment checks, and
+  independent live verification of all 18 canonical pages. The unchanged
+  public Windows `0.3.17` installer also passed its smoke test. Lighthouse
+  13.4.1 reported SEO 100 for every English and Chinese canonical page. A
+  production home-page audit reported performance 94, accessibility 100, best
+  practices 100, SEO 100, agentic browsing 100, FCP and LCP of 1.4 seconds,
+  CLS 0, and TBT 0 ms. Nu HTML Checker reported zero messages across all 18
+  pages. Linkinator 8.1.0 checked 45 live pages, assets, and external links
+  with zero broken links or redirects.
 - The Codex and Claude Code integration pages cite the vendors' official
   session documentation in visible copy and JSON-LD rather than relying on
   secondary descriptions.

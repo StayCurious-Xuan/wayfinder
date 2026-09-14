@@ -48,11 +48,14 @@ unattended cron job; every step below is done inside a session on purpose.
 - 2026-09-14: Production has nine English pages and nine matching independently
   indexable Simplified Chinese pages, reciprocal `hreflang`, an 18-URL
   bilingual sitemap, structured data, `llms.txt`, and a real HTTP 404.
-  Audited production commit `e1b347d30326a727604ad5bc954541faa1e31768`
+  Audited production commit `506086a5d30aa716b821c1a516430dcd8079b600`
   passed three-platform CI, production verification, live crawling of all 18
   URLs, and IndexNow submission. Lighthouse 13.4.1 reported SEO 100 for all 18
-  pages; Nu HTML Checker returned zero messages; Linkinator 8.1.0 verified 45
-  live pages, assets, and external links with zero failures or redirects.
+  pages. Its latest production home-page audit reported performance 94,
+  accessibility 100, best practices 100, SEO 100, agentic browsing 100, FCP
+  and LCP of 1.4 seconds, CLS 0, and TBT 0 ms. Nu HTML Checker returned zero
+  messages; Linkinator 8.1.0 verified 45 live pages, assets, and external links
+  with zero failures or redirects.
   Google Search Console ownership is verified, `/sitemap.xml` is submitted,
   and Bing imported the property; their read date, discovered URL count,
   impressions, index coverage, and citation data remain pending.
@@ -75,7 +78,7 @@ Recorded: 2026-09-14
 | Total clicks | Pending | 28-day |
 | Crawl / indexing errors | Pending | console re-read pending |
 | Sitemap status | Submitted | 2026-09-14; 18-URL re-read pending |
-| IndexNow deployment submission | Success | 2026-09-14, commit `d8d1ee5d` |
+| IndexNow deployment submission | Success | 2026-09-14, commit `506086a5` |
 
 ### GEO English (5 prompts x 3 runs per engine)
 
